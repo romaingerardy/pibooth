@@ -4,7 +4,9 @@ import pygame
 from PIL import Image, ImageDraw
 
 from pibooth import fonts
+from pibooth.utils import LOGGER
 from pibooth.pictures import sizing
+from pibooth.language import get_translated_text
 
 
 class BaseCamera(object):
@@ -13,8 +15,9 @@ class BaseCamera(object):
         self._cam = None
         self._border = 50
         self._window = None
-        self._overlay = None
         self._captures = []
+        self._overlay = None
+        self._overlay_font = None  # Dynamically computed
         self.resolution = resolution
         self.delete_internal_memory = delete_internal_memory
 
@@ -50,11 +53,17 @@ class BaseCamera(object):
         image = Image.new('RGBA', size)
         draw = ImageDraw.Draw(image)
 
-        font = fonts.get_pil_font(text, fonts.CURRENT, 0.9 * size[0], 0.9 * size[1])
-        txt_width, txt_height = draw.textsize(text, font=font)
+        if not self._overlay_font or self._overlay_font[0] != size:
+            LOGGER.debug("Compute font for countdown overlay")
+            # Use the "smile" text to compute the font size, the countdown numbers
+            # will have the same size to avoid font creation a each call.
+            font = fonts.get_pil_font(get_translated_text('smile'),
+                                      fonts.CURRENT, 0.9 * size[0], 0.9 * size[1])
+            self._overlay_font = (size, font)
 
+        txt_width, txt_height = draw.textsize(text, font=self._overlay_font[1])
         position = ((size[0] - txt_width) // 2, (size[1] - txt_height) // 2 - size[1] // 10)
-        draw.text(position, text, (255, 255, 255, alpha), font=font)
+        draw.text(position, text, (255, 255, 255, alpha), font=self._overlay_font[1])
         return image
 
     def preview(self, window, flip=True):
