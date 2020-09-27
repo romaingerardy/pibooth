@@ -325,7 +325,7 @@ class PtbWindow(object):
             # Make an invisible cursor (don't use pygame.mouse.set_visible(False) because
             # the mouse event will always return the window bottom-right coordinate)
             pygame.mouse.set_cursor((8, 8), (0, 0), (0, 0, 0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0, 0, 0))
-            self.surface = pygame.display.set_mode(self.display_size, pygame.FULLSCREEN)
+            self.surface = pygame.display.set_mode(self.display_size, pygame.FULLSCREEN | pygame.HWSURFACE)
 
         self.update()
 
