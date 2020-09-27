@@ -91,7 +91,7 @@ class CvCamera(BaseCamera):
         # Resize to fit the available space in the window
         height, width = image.shape[:2]
         size = sizing.new_size_keep_aspect_ratio((width, height), (rect.width, rect.height), 'outer')
-        image = cv2.resize(image, size, interpolation=cv2.INTER_AREA)
+        image = cv2.resize(image, size, interpolation=cv2.INTER_NEAREST)
 
         if self._preview_hflip:
             image = cv2.flip(image, 1)

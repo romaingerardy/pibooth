@@ -107,10 +107,8 @@ class GpCamera(BaseCamera):
         if self._preview_compatible:
             cam_file = self._cam.capture_preview()
             image = Image.open(io.BytesIO(cam_file.get_data_and_size()))
-            # Crop to keep aspect ratio of the resolution
-            image = image.crop(sizing.new_size_by_croping_ratio(image.size, self.resolution))
-            # Resize to fit the available space in the window
-            image = image.resize(sizing.new_size_keep_aspect_ratio(image.size, (rect.width, rect.height), 'outer'))
+            crop = sizing.new_size_by_croping_ratio(image.size, self.resolution)
+            image = image.resize((rect.width, rect.height), resample=Image.NEAREST, box=crop, reducing_gap=1.5)
 
             if self._preview_hflip:
                 image = image.transpose(Image.FLIP_LEFT_RIGHT)
