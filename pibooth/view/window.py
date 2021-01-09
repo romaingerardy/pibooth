@@ -16,6 +16,9 @@ from pibooth.pictures import sizing
 
 class PtbWindow(object):
 
+    width = 1920
+    height = 1080
+
     CENTER = 'center'
     RIGHT = 'right'
     LEFT = 'left'
@@ -35,11 +38,12 @@ class PtbWindow(object):
         self.arrow_offset = arrow_offset
 
         # Save the desktop mode, shall be done before `setmode` (SDL 1.2.10, and pygame 1.8.0)
-        info = pygame.display.Info()
+        #info = pygame.display.Info() TODO Removed from origin for pygame 1.9.6
 
         pygame.display.set_caption(title)
         self.is_fullscreen = False
-        self.display_size = (info.current_w, info.current_h)
+        #self.display_size = (info.current_w, info.current_h) TODO Removed from origin for pygame 1.9.6
+        self.display_size = (self.width, self.height)
         self.surface = pygame.display.set_mode(self.__size, pygame.RESIZABLE)
 
         self._buffered_images = {}
