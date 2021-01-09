@@ -165,12 +165,12 @@ source ./venv/bin/activate
 
 sudo pip3 install -e .[dslr,printer]
 
-# Si pygame 2.0.1
+# Si pygame 2.0.1 (setup.py pygame >=1.9.6)
 sudo apt-get install libsdl2-dev
 sudo apt-get install libsdl2-ttf-2.0-0
 sudo apt-get install libsdl2-mixer-2.0-0
 
-# Si pygame 1.9.6
+# Si pygame 1.9.6 (setup.py pygame ==1.9.6)
 sudo apt-get install libsdl1.2-dev
 sudo apt-get install libsdl-ttf2.0-dev
 sudo apt-get install libsdl-mixer1.2
