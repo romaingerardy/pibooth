@@ -71,6 +71,43 @@ config.set('PICTURE', 'text_alignments', picture['text_alignments'])
 config.set('PICTURE', 'overlays', picture['overlays'])
 config.set('PICTURE', 'backgrounds', picture['backgrounds'])
 
+# **************
+# CAMERA
+# **************
+
+camera = config_dict['camera']
+
+config.set('CAMERA', 'iso', camera['iso'])
+config.set('CAMERA', 'flip', camera['flip'])
+config.set('CAMERA', 'rotation', camera['rotation'])
+config.set('CAMERA', 'resolution', camera['resolution'])
+config.set('CAMERA', 'delete_internal_memory', camera['delete_internal_memory'])
+
+# **************
+# PRINTER
+# **************
+
+printer = config_dict['printer']
+
+config.set('PRINTER', 'printer_name', printer['printer_name'])
+config.set('PRINTER', 'printer_delay', printer['printer_delay'])
+config.set('PRINTER', 'max_pages', printer['max_pages'])
+config.set('PRINTER', 'max_duplicates', printer['max_duplicates'])
+config.set('PRINTER', 'pictures_per_page', printer['pictures_per_page'])
+
+# **************
+# CONTROLS
+# **************
+
+controls = config_dict['controls']
+
+config.set('CONTROLS', 'debounce_delay', controls['debounce_delay'])
+config.set('CONTROLS', 'multi_press_delay', controls['multi_press_delay'])
+config.set('CONTROLS', 'picture_btn_pin', controls['picture_btn_pin'])
+config.set('CONTROLS', 'picture_led_pin', controls['picture_led_pin'])
+config.set('CONTROLS', 'print_btn_pin', controls['print_btn_pin'])
+config.set('CONTROLS', 'print_led_pin', controls['print_led_pin'])
+
 
 
 config.save()
