@@ -46,7 +46,7 @@ def state_processing_exit(app, cfg):
     """
     qr = qrcode.QRCode(version=1,
                        error_correction=qrcode.constants.ERROR_CORRECT_L,
-                       box_size=3,
+                       box_size=10,
                        border=1)
 
     if cfg.getboolean("QRCODE", 'unique_url'):
