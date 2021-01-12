@@ -71,5 +71,5 @@ def state_print_enter(app, win):
     """
     win_rect = win.get_rect()
     qr_rect = app.previous_qr.get_rect()
-    win.surface.blit(app.previous_qr, (win_rect.width - qr_rect.width - 10,
-                                       win_rect.height - qr_rect.height - 10))
+    win.surface.blit(app.previous_qr, (0,
+                                       100))
