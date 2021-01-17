@@ -8,6 +8,11 @@ def im_gray_scale(original_path, output_path):
     print(cmd)
     os.system(cmd)
 
+def im_sepia(original_path, output_path):
+    cmd = 'convert {} -set colorspace RGB -sepia-tone 80% {}'.format(original_path, output_path)
+    print(cmd)
+    os.system(cmd)
+
 
 def gray_scale(source_name, result_name):
     source = source_name  # Image.open(source_name)
