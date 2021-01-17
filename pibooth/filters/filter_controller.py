@@ -4,7 +4,9 @@ from PIL import Image
 
 
 def im_gray_scale(original_path, output_path):
-    os.system('convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path))
+    cmd = 'convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path)
+    print(cmd)
+    os.system(cmd)
 
 
 def gray_scale(source_name, result_name):
