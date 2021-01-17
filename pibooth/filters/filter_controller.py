@@ -13,6 +13,11 @@ def im_sepia(original_path, output_path):
     print(cmd)
     os.system(cmd)
 
+def im_color_temp(temperature, original_path, output_path):
+    cmd = './colortemp {} {} -t {}'.format(original_path, output_path, temperature)
+    print(cmd)
+    os.system(cmd)
+
 
 def gray_scale(source_name, result_name):
     source = source_name  # Image.open(source_name)
