@@ -471,6 +471,7 @@ class FiltersBackground(Background):
                                                     text='Say Hello',
                                                     manager=manager)
         manager.draw_ui(surface)
+        hello_button.draw(surface)
 
     def resize_texts(self):
         """Update text surfaces.
