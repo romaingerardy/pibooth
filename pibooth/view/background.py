@@ -463,8 +463,14 @@ class ProcessingBackground(Background):
 
 class FiltersBackground(Background):
 
-    def __init__(self):
+    def __init__(self, surface):
         Background.__init__(self, "filters")
+
+        manager = pygame_gui.UIManager((1024, 600))
+        hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
+                                                    text='Say Hello',
+                                                    manager=manager)
+        manager.draw_ui(surface)
 
     def resize_texts(self):
         """Update text surfaces.
