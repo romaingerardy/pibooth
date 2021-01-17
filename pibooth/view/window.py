@@ -16,8 +16,8 @@ from pibooth.pictures import sizing
 
 class PtbWindow(object):
 
-    width = 1920
-    height = 1080
+    width = 1024#1920
+    height = 600#1080
 
     CENTER = 'center'
     RIGHT = 'right'
