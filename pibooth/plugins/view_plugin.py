@@ -142,13 +142,13 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_filter_enter(self, win):
         print("state_filter_enter")
-        win.show_work_in_progress()
+        win.show_filters()
         self.filters_timer.start()
 
     @pibooth.hookimpl
     def state_filter_validate(self, cfg, app):
-        print("state_filter_validate")
         if self.filters_timer.is_timeout():
+            print("state_filter_validate")
             if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0 \
                     and app.count.remaining_duplicates > 0:
                 return 'print'
