@@ -7,6 +7,7 @@ import pibooth
 from pibooth.utils import timeit, PoolingTimer
 from pibooth.pictures import get_picture_factory
 from pibooth.pictures.pool import PicturesFactoryPool
+from pibooth.filters import filter_controller
 
 
 class PicturePlugin(object):
@@ -106,6 +107,7 @@ class PicturePlugin(object):
                 for capture in captures:
                     count = captures.index(capture)
                     capture.save(osp.join(rawdir, "pibooth{:03}.jpg".format(count)))
+                    filter_controller.gray_scale(capture, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))
