@@ -14,7 +14,7 @@ def im_sepia(original_path, output_path):
     os.system(cmd)
 
 def im_color_temp(temperature, original_path, output_path):
-    cmd = './colortemp -t {} {} {}'.format(temperature, original_path, output_path)
+    cmd = 'colortemp -t {} {} {}'.format(temperature, original_path, output_path)
     print(cmd)
     os.system(cmd)
 

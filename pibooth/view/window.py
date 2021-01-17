@@ -245,6 +245,12 @@ class PtbWindow(object):
         self._capture_number = (0, self._capture_number[1])
         self._update_background(background.ProcessingBackground())
 
+    def show_filters(self):
+        """Show filters view.
+        """
+        self._capture_number = (0, self._capture_number[1])
+        self._update_background(background.FiltersBackground())
+
     def show_print(self, pil_image=None):
         """Show print view.
         """

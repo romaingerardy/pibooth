@@ -97,6 +97,7 @@ DEFAULT = {
         'print': "Imprimer la photo ?",
         'print_forget': "Oublie\ncette photo\ns'il te plait",
         'finished': "Merci",
+        'filters': "Sélectionnez un filtre",
         'oops': "Oups quelque chose s'est mal passé",
     },
     'hu': {

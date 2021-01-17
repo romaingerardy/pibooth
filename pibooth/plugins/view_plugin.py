@@ -24,6 +24,8 @@ class ViewPlugin(object):
         self.print_view_timer = PoolingTimer(0)
         # Seconds to display the selected layout
         self.finish_timer = PoolingTimer(0.5)
+        # Seconds to display the selected layout
+        self.filters_timer = PoolingTimer(2)
 
     @pibooth.hookimpl
     def state_failsafe_enter(self, win):
@@ -135,6 +137,21 @@ class ViewPlugin(object):
                 and app.count.remaining_duplicates > 0:
             return 'print'
         return 'finish'  # Can not print
+
+    @pibooth.hookimpl
+    def state_filter_enter(self, win):
+        print("state_filter_enter")
+        win.show_work_in_progress()
+        self.filters_timer.start()
+
+    @pibooth.hookimpl
+    def state_filter_validate(self, cfg, app):
+        print("state_filter_validate")
+        if self.finish_timer.is_timeout():
+            if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0 \
+                    and app.count.remaining_duplicates > 0:
+                return 'print'
+            return 'finish'  # Can not print
 
     @pibooth.hookimpl
     def state_print_enter(self, cfg, app, win):

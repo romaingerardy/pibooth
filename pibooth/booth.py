@@ -89,6 +89,7 @@ class PiApplication(object):
         self._machine.add_state('preview')
         self._machine.add_state('capture')
         self._machine.add_state('processing')
+        self._machine.add_state('filter')
         self._machine.add_state('print')
         self._machine.add_state('finish')
 
