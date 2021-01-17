@@ -1,8 +1,14 @@
+import os
+import os.path as osp
 from PIL import Image
 
 
+def im_gray_scale(original_path, output_path):
+    os.system('convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path))
+
+
 def gray_scale(source_name, result_name):
-    source = source_name #Image.open(source_name)
+    source = source_name  # Image.open(source_name)
     result = Image.new('RGB', source.size)
     for x in range(source.size[0]):
         for y in range(source.size[1]):

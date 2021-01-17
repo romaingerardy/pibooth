@@ -107,7 +107,10 @@ class PicturePlugin(object):
                 for capture in captures:
                     count = captures.index(capture)
                     capture.save(osp.join(rawdir, "pibooth{:03}.jpg".format(count)))
-                    filter_controller.gray_scale(capture, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
+
+                for capture in captures:
+                    count = captures.index(capture)
+                    filter_controller.im_gray_scale(capture, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))
