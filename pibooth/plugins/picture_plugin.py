@@ -113,7 +113,7 @@ class PicturePlugin(object):
                     count = captures.index(capture)
                     img_path = osp.join(rawdir, "pibooth{:03}.jpg".format(count))
                     #filter_controller.im_gray_scale(img_path, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
-                    filter_controller.im_color_temp(3000, img_path, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
+                    filter_controller.im_color_temp(4000, img_path, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))
