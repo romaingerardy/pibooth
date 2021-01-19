@@ -359,11 +359,11 @@ class PictureFactory(object):
             with timeit("Use {} to concatenate images".format(self.name)):
                 image = self._build_matrix(image)
 
-            with timeit("Filtering"):
-                filter_controller.doFilterPIL('inkwell', image)
-
             with timeit("Use {} to assemble final image".format(self.name)):
                 self._final = self._build_final_image(image)
+
+            with timeit("Filtering"):
+                filter_controller.doFilterPIL('inkwell', self._final)
 
             with timeit("Use {} to draw texts".format(self.name)):
                 self._build_texts(self._final)
