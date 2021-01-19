@@ -112,7 +112,7 @@ class PicturePlugin(object):
                 for capture in captures:
                     count = captures.index(capture)
                     filter_count = 1
-                    for filterName in cfg.gettuple('FILTERS', 'filters_list'):
+                    for filterName in cfg.gettyped('FILTERS', 'filters_list'):
                         print("Filter " + filterName)
                         filter_controller.doFilter(filterName, capture,
                                                    osp.join(rawdir, "pibooth{:03}-f{}.jpg".format(count, filter_count)))
