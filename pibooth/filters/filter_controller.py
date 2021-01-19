@@ -3,6 +3,14 @@ import pilgram
 from PIL import Image
 
 
+def doFilterPIL(filter_name, pil_image):
+    if filter_name == 'inkwell':
+        return pilgram.inkwell(pil_image)
+    elif filter_name == 'aden':
+        return pilgram.aden(pil_image)
+    elif filter_name == 'clarendon':
+        return pilgram.clarendon(pil_image)
+
 def doFilter(filter_name, pil_image, output_path):
     if filter_name == 'inkwell':
         pilgram.inkwell(pil_image).save(output_path)

@@ -5,6 +5,7 @@ import os.path as osp
 from pibooth import fonts
 from pibooth.utils import timeit
 from pibooth.pictures import sizing
+from pibooth.filters import filter_controller
 from PIL import Image, ImageDraw
 
 try:
@@ -357,6 +358,9 @@ class PictureFactory(object):
 
             with timeit("Use {} to concatenate images".format(self.name)):
                 image = self._build_matrix(image)
+
+            with timeit("Filtering"):
+                image = filter_controller.doFilterPIL('inkwell', image)
 
             with timeit("Use {} to assemble final image".format(self.name)):
                 self._final = self._build_final_image(image)

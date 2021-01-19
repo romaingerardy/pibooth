@@ -26,9 +26,6 @@ class PicturePlugin(object):
         """
         self.factory_pool.clear()
         app.previous_picture = None
-        app.previous_picture_f1 = None
-        app.previous_picture_f2 = None
-        app.previous_picture_f3 = None
         app.previous_animated = None
         app.previous_picture_file = None
 
