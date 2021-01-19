@@ -321,7 +321,9 @@ class PiApplication(object):
                 return event
             if event.type == pygame.MOUSEBUTTONUP and event.button in (1, 2, 3):
                 # Don't consider the mouse wheel (button 4 & 5):
+                print("MOUSEBUTTONUP")
                 rect = self._window.get_rect()
+                x, y = event.pos
                 if pygame.Rect(0, 0, rect.width // 2, rect.height).collidepoint(event.pos):
                     event.key = pygame.K_LEFT
                 else:

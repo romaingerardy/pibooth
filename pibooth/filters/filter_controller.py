@@ -1,7 +1,9 @@
 import os
-import os.path as osp
 from PIL import Image
+import pilgram
 
+def pilgram_aden(pil_image, output_path):
+    pilgram.aden(pil_image).save(output_path)
 
 def im_gray_scale(original_path, output_path):
     cmd = 'convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path)
