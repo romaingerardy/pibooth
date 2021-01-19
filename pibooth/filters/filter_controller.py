@@ -5,11 +5,11 @@ from PIL import Image
 
 def doFilterPIL(filter_name, pil_image):
     if filter_name == 'inkwell':
-        pilgram.inkwell(pil_image)
+        return pilgram.inkwell(pil_image)
     elif filter_name == 'aden':
-        pilgram.aden(pil_image)
+        return pilgram.aden(pil_image)
     elif filter_name == 'clarendon':
-        pilgram.clarendon(pil_image)
+        return pilgram.clarendon(pil_image)
 
 def doFilter(filter_name, pil_image, output_path):
     if filter_name == 'inkwell':

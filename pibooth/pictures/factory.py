@@ -363,7 +363,7 @@ class PictureFactory(object):
                 self._final = self._build_final_image(image)
 
             with timeit("Filtering"):
-                filter_controller.doFilterPIL('inkwell', self._final)
+                self._final = filter_controller.doFilterPIL('inkwell', self._final)
 
             with timeit("Use {} to draw texts".format(self.name)):
                 self._build_texts(self._final)
