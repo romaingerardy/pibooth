@@ -360,7 +360,7 @@ class PictureFactory(object):
                 image = self._build_matrix(image)
 
             with timeit("Filtering"):
-                image = filter_controller.doFilterPIL('inkwell', image)
+                filter_controller.doFilterPIL('inkwell', image)
 
             with timeit("Use {} to assemble final image".format(self.name)):
                 self._final = self._build_final_image(image)
