@@ -14,7 +14,7 @@ def pibooth_configure(cfg):
 
 
 @pibooth.hookimpl
-def state_processing_do(self, cfg, app):
+def state_processing_do(cfg, app):
     with timeit("Saving filtered raw captures"):
         captures = app.camera.get_captures()
 
