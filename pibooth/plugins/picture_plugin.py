@@ -109,6 +109,8 @@ class PicturePlugin(object):
                     img_path = osp.join(rawdir, "pibooth{:03}.jpg".format(count))
                     capture.save(img_path)
                     filter_controller.pilgram_aden(capture, osp.join(rawdir, "pibooth{:03}-aden.jpg".format(count)))
+                    filter_controller.pilgram_inkwell(capture, osp.join(rawdir, "pibooth{:03}-inkwell.jpg".format(count)))
+                    filter_controller.pilgram_clarendon(capture, osp.join(rawdir, "pibooth{:03}-clarendon.jpg".format(count)))
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))

@@ -5,6 +5,12 @@ import pilgram
 def pilgram_aden(pil_image, output_path):
     pilgram.aden(pil_image).save(output_path)
 
+def pilgram_inkwell(pil_image, output_path):
+    pilgram.inkwell(pil_image).save(output_path)
+
+def pilgram_clarendon(pil_image, output_path):
+    pilgram.clarendon(pil_image).save(output_path)
+
 def im_gray_scale(original_path, output_path):
     cmd = 'convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path)
     print(cmd)
