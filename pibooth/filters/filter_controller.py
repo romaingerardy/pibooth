@@ -1,25 +1,40 @@
 import os
-from PIL import Image
 import pilgram
+from PIL import Image
+
+
+def doFilter(filter_name, pil_image, output_path):
+    if filter_name == 'inkwell':
+        pilgram.inkwell(pil_image).save(output_path)
+    elif filter_name == 'aden':
+        pilgram.aden(pil_image).save(output_path)
+    elif filter_name == 'clarendon':
+        pilgram.clarendon(pil_image).save(output_path)
+
 
 def pilgram_aden(pil_image, output_path):
     pilgram.aden(pil_image).save(output_path)
 
+
 def pilgram_inkwell(pil_image, output_path):
     pilgram.inkwell(pil_image).save(output_path)
 
+
 def pilgram_clarendon(pil_image, output_path):
     pilgram.clarendon(pil_image).save(output_path)
+
 
 def im_gray_scale(original_path, output_path):
     cmd = 'convert {} -set colorspace Gray -separate -average {}'.format(original_path, output_path)
     print(cmd)
     os.system(cmd)
 
+
 def im_sepia(original_path, output_path):
     cmd = 'convert {} -set colorspace RGB -sepia-tone 80% {}'.format(original_path, output_path)
     print(cmd)
     os.system(cmd)
+
 
 def im_color_temp(temperature, original_path, output_path):
     cmd = 'colortemp -t {} {} {}'.format(temperature, original_path, output_path)

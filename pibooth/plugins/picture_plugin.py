@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
+import itertools
 import os
 import os.path as osp
-import itertools
+
 import pibooth
-from pibooth.utils import timeit, PoolingTimer
+from pibooth.filters import filter_controller
 from pibooth.pictures import get_picture_factory
 from pibooth.pictures.pool import PicturesFactoryPool
-from pibooth.filters import filter_controller
+from pibooth.utils import timeit, PoolingTimer
 
 
 class PicturePlugin(object):
-
     """Plugin to build the final picture.
     """
 
@@ -84,7 +84,7 @@ class PicturePlugin(object):
 
     @pibooth.hookimpl
     def state_wait_do(self, cfg, app):
-        if cfg.getfloat('WINDOW', 'final_image_delay') > 0 and self.picture_destroy_timer.is_timeout()\
+        if cfg.getfloat('WINDOW', 'final_image_delay') > 0 and self.picture_destroy_timer.is_timeout() \
                 and app.previous_picture_file:
             self._reset_vars(app)
 
@@ -108,9 +108,14 @@ class PicturePlugin(object):
                     count = captures.index(capture)
                     img_path = osp.join(rawdir, "pibooth{:03}.jpg".format(count))
                     capture.save(img_path)
-                    filter_controller.pilgram_aden(capture, osp.join(rawdir, "pibooth{:03}-aden.jpg".format(count)))
-                    filter_controller.pilgram_inkwell(capture, osp.join(rawdir, "pibooth{:03}-inkwell.jpg".format(count)))
-                    filter_controller.pilgram_clarendon(capture, osp.join(rawdir, "pibooth{:03}-clarendon.jpg".format(count)))
+
+                for capture in captures:
+                    count = captures.index(capture)
+                    filter_count = 1
+                    for filterName in cfg.gettuple('FILTERS', 'filters_list', 'path'):
+                        filter_controller.doFilter(filterName, capture,
+                                                   osp.join(rawdir, "pibooth{:03}-f{}.jpg".format(count, filter_count)))
+                        filter_count = filter_count + 1
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))
@@ -126,7 +131,8 @@ class PicturePlugin(object):
         if cfg.getboolean('WINDOW', 'animate') and app.capture_nbr > 1:
             with timeit("Asyncronously generate pictures for animation"):
                 for capture in captures:
-                    default_factory = get_picture_factory((capture,), cfg.get('PICTURE', 'orientation'), force_pil=True, dpi=200)
+                    default_factory = get_picture_factory((capture,), cfg.get('PICTURE', 'orientation'), force_pil=True,
+                                                          dpi=200)
                     factory = self._pm.hook.pibooth_setup_picture_factory(cfg=cfg,
                                                                           opt_index=idx,
                                                                           factory=default_factory)
