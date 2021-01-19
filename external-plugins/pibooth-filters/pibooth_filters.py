@@ -21,8 +21,10 @@ def state_processing_do(cfg, app):
         for savedir in cfg.gettuple('GENERAL', 'directory', 'path'):
             rawdir = osp.join(savedir, "raw", app.capture_date)
 
+            print(">> " + rawdir)
             for capture in captures:
                 count = captures.index(capture)
+                print(count)
                 # img_path = osp.join(rawdir, "pibooth{:03}.jpg".format(count))
                 filter_controller.pilgram_aden(capture, osp.join(rawdir, "pibooth{:03}-aden.jpg".format(count)))
                 # filter_controller.im_color_temp(4000, img_path, osp.join(rawdir, "pibooth{:03}-filter.jpg".format(count)))
