@@ -26,6 +26,9 @@ class PicturePlugin(object):
         """
         self.factory_pool.clear()
         app.previous_picture = None
+        app.previous_picture_f1 = None
+        app.previous_picture_f2 = None
+        app.previous_picture_f3 = None
         app.previous_animated = None
         app.previous_picture_file = None
 
@@ -109,6 +112,7 @@ class PicturePlugin(object):
                     img_path = osp.join(rawdir, "pibooth{:03}.jpg".format(count))
                     capture.save(img_path)
 
+                # Color Filtering...
                 for capture in captures:
                     count = captures.index(capture)
                     filter_count = 1
@@ -117,6 +121,9 @@ class PicturePlugin(object):
                         filter_controller.doFilter(filterName, capture,
                                                    osp.join(rawdir, "pibooth{:03}-f{}.jpg".format(count, filter_count)))
                         filter_count = filter_count + 1
+                        if filter_count > 3 :
+                            break # 3 filters max allowed
+                    break # Only preview on the first picture for performance
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))

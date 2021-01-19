@@ -100,6 +100,9 @@ class PiApplication(object):
         self.capture_date = None
         self.capture_choices = (4, 1)
         self.previous_picture = None
+        app.previous_picture_f1 = None
+        app.previous_picture_f2 = None
+        app.previous_picture_f3 = None
         self.previous_animated = None
         self.previous_picture_file = None
 
