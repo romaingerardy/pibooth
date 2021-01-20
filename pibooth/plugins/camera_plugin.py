@@ -3,7 +3,7 @@
 import os
 import os.path as osp
 import time
-import pygame
+# import pygame
 import pibooth
 from pibooth.utils import LOGGER, timeit
 
@@ -37,11 +37,11 @@ class CameraPlugin(object):
     @pibooth.hookimpl
     def state_choose_do(self, app, events):
         event = app.find_choice_event(events)
-        if event:
-            if event.key == pygame.K_LEFT:
-                app.capture_nbr = app.capture_choices[0]
-            elif event.key == pygame.K_RIGHT:
-                app.capture_nbr = app.capture_choices[1]
+        #if event:
+        #    if event.key == pygame.K_LEFT:
+        #        app.capture_nbr = app.capture_choices[0]
+        #    elif event.key == pygame.K_RIGHT:
+        #        app.capture_nbr = app.capture_choices[1]
 
     @pibooth.hookimpl
     def state_preview_enter(self, cfg, app, win):
@@ -54,11 +54,11 @@ class CameraPlugin(object):
 
     @pibooth.hookimpl
     def state_preview_do(self, cfg, app):
-        pygame.event.pump()  # Before blocking actions
-        if cfg.getboolean('WINDOW', 'preview_countdown'):
-            app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'))
-        else:
-            app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
+        #pygame.event.pump()  # Before blocking actions
+        #if cfg.getboolean('WINDOW', 'preview_countdown'):
+        #    app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'))
+        #else:
+        #    app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
 
     @pibooth.hookimpl
     def state_preview_exit(self, cfg, app):
