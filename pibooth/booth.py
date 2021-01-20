@@ -4,8 +4,13 @@
 """Pibooth main module.
 """
 
+from pgi import require_version
+require_version('Gtk', '3.0')
+from pgi.repository import Gtk, GObject
+
 import os
 import os.path as osp
+import sys
 import tempfile
 import shutil
 import logging
@@ -13,7 +18,6 @@ import argparse
 import multiprocessing
 from warnings import filterwarnings
 
-import pygame
 from gpiozero import Device, ButtonBoard, LEDBoard, pi_info
 from gpiozero.exc import BadPinFactory, PinFactoryFallback
 
@@ -25,7 +29,7 @@ from pibooth.utils import (LOGGER, PoolingTimer, configure_logging, get_crash_me
                            set_logging_level, print_columns_words)
 from pibooth.states import StateMachine
 from pibooth.plugins import create_plugin_manager, load_plugins, list_plugin_names
-from pibooth.view import PtbWindow
+from pibooth.view import PtbWindow, GtkWindow
 from pibooth.config import PiConfigParser, PiConfigMenu
 from pibooth import camera
 from pibooth.fonts import get_available_fonts
@@ -42,7 +46,7 @@ except BadPinFactory:
     GPIO_INFO = "without physical GPIO, fallback to GPIO mock"
 
 
-BUTTONDOWN = pygame.USEREVENT + 1
+#BUTTONDOWN = pygame.USEREVENT + 1
 
 
 class PiApplication(object):
@@ -60,7 +64,7 @@ class PiApplication(object):
 
         # Prepare the pygame module for use
         os.environ['SDL_VIDEO_CENTERED'] = '1'
-        pygame.init()
+        #pygame.init()
 
         # Create window of (width, height)
         init_size = self._config.gettyped('WINDOW', 'size')
@@ -70,12 +74,12 @@ class PiApplication(object):
         if not isinstance(init_color, (tuple, list)):
             init_color = self._config.getpath('WINDOW', 'background')
 
-        title = 'Pibooth v{}'.format(pibooth.__version__)
+        title = 'Pix Me Box Gtk v{}'.format(pibooth.__version__)
         if not isinstance(init_size, str):
-            self._window = PtbWindow(title, init_size, color=init_color,
+            self._window = GtkWindow(title, init_size, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
         else:
-            self._window = PtbWindow(title, color=init_color,
+            self._window = GtkWindow(title, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
 
         self._menu = None
@@ -157,12 +161,12 @@ class PiApplication(object):
 
         # Handle window size
         size = self._config.gettyped('WINDOW', 'size')
-        if isinstance(size, str) and size.lower() == 'fullscreen':
-            if not self._window.is_fullscreen:
-                self._window.toggle_fullscreen()
-        else:
-            if self._window.is_fullscreen:
-                self._window.toggle_fullscreen()
+        #if isinstance(size, str) and size.lower() == 'fullscreen':
+        #    if not self._window.is_fullscreen:
+        #        self._window.toggle_fullscreen()
+        #else:
+        #    if self._window.is_fullscreen:
+        #        self._window.toggle_fullscreen()
         self._window.debug = self._config.getboolean('GENERAL', 'debug')
 
         # Handle debug mode
@@ -176,58 +180,6 @@ class PiApplication(object):
         # Reset the print counter (in case of max_pages is reached)
         self.printer.max_pages = self._config.getint('PRINTER', 'max_pages')
 
-    def _on_button_capture_held(self):
-        """Called when the capture button is pressed.
-        """
-        if all(self.buttons.value):
-            self.buttons.capture.hold_repeat = True
-            if self._multipress_timer.elapsed() == 0:
-                self._multipress_timer.start()
-            if self._multipress_timer.is_timeout():
-                # Capture was held while printer was pressed
-                if self._menu and self._menu.is_shown():
-                    # Convert HW button events to keyboard events for menu
-                    event = self._menu.create_back_event()
-                    LOGGER.debug("BUTTONDOWN: generate MENU-ESC event")
-                else:
-                    event = pygame.event.Event(BUTTONDOWN, capture=1, printer=1,
-                                               button=self.buttons)
-                    LOGGER.debug("BUTTONDOWN: generate DOUBLE buttons event")
-                self.buttons.capture.hold_repeat = False
-                self._multipress_timer.reset()
-                pygame.event.post(event)
-        else:
-            # Capture was held but printer not pressed
-            if self._menu and self._menu.is_shown():
-                # Convert HW button events to keyboard events for menu
-                event = self._menu.create_next_event()
-                LOGGER.debug("BUTTONDOWN: generate MENU-NEXT event")
-            else:
-                event = pygame.event.Event(BUTTONDOWN, capture=1, printer=0,
-                                           button=self.buttons.capture)
-                LOGGER.debug("BUTTONDOWN: generate CAPTURE button event")
-            self.buttons.capture.hold_repeat = False
-            self._multipress_timer.reset()
-            pygame.event.post(event)
-
-    def _on_button_printer_held(self):
-        """Called when the printer button is pressed.
-        """
-        if all(self.buttons.value):
-            # Printer was held while capture was pressed
-            # but don't do anything here, let capture_held handle it instead
-            pass
-        else:
-            # Printer was held but capture not pressed
-            if self._menu and self._menu.is_shown():
-                # Convert HW button events to keyboard events for menu
-                event = self._menu.create_click_event()
-                LOGGER.debug("BUTTONDOWN: generate MENU-APPLY event")
-            else:
-                event = pygame.event.Event(BUTTONDOWN, capture=0, printer=1,
-                                           button=self.buttons.printer)
-                LOGGER.debug("BUTTONDOWN: generate PRINTER event")
-            pygame.event.post(event)
 
     @property
     def picture_filename(self):
@@ -237,154 +189,30 @@ class PiApplication(object):
             raise EnvironmentError("The 'capture_date' attribute is not set yet")
         return "{}_pibooth.jpg".format(self.capture_date)
 
-    def find_quit_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.QUIT:
-                return event
-        return None
 
-    def find_settings_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                return event
-            if event.type == BUTTONDOWN and event.capture and event.printer:
-                return event
-        return None
-
-    def find_fullscreen_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.KEYDOWN and \
-                    event.key == pygame.K_f and pygame.key.get_mods() & pygame.KMOD_CTRL:
-                return event
-        return None
-
-    def find_resize_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.VIDEORESIZE:
-                return event
-        return None
-
-    def find_capture_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-                return event
-            if event.type == pygame.MOUSEBUTTONUP and event.button in (1, 2, 3):
-                # Don't consider the mouse wheel (button 4 & 5):
-                rect = self._window.get_rect()
-                if pygame.Rect(0, 0, rect.width // 2, rect.height).collidepoint(event.pos):
-                    return event
-            if event.type == BUTTONDOWN and event.capture:
-                return event
-        return None
-
-    def find_print_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_e\
-                        and pygame.key.get_mods() & pygame.KMOD_CTRL:
-                return event
-            if event.type == pygame.MOUSEBUTTONUP and event.button in (1, 2, 3):
-                # Don't consider the mouse wheel (button 4 & 5):
-                rect = self._window.get_rect()
-                if pygame.Rect(rect.width // 2, 0, rect.width // 2, rect.height).collidepoint(event.pos):
-                    return event
-            if event.type == BUTTONDOWN and event.printer:
-                return event
-        return None
-
-    def find_print_status_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == PRINTER_TASKS_UPDATED:
-                return event
-        return None
-
-    def find_choice_event(self, events):
-        """Return the first found event if found in the list.
-        """
-        for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
-                return event
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                return event
-            if event.type == pygame.MOUSEBUTTONUP and event.button in (1, 2, 3):
-                # Don't consider the mouse wheel (button 4 & 5):
-                print("MOUSEBUTTONUP")
-                rect = self._window.get_rect()
-                x, y = event.pos
-                if pygame.Rect(0, 0, rect.width // 2, rect.height).collidepoint(event.pos):
-                    event.key = pygame.K_LEFT
-                else:
-                    event.key = pygame.K_RIGHT
-                return event
-            if event.type == BUTTONDOWN:
-                if event.capture:
-                    event.key = pygame.K_LEFT
-                else:
-                    event.key = pygame.K_RIGHT
-                return event
-        return None
 
     def main_loop(self):
         """Run the main game loop.
         """
         try:
             fps = 40
-            clock = pygame.time.Clock()
+            #clock = pygame.time.Clock()
             self._initialize()
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
             self._machine.set_state('wait')
 
-            while True:
-                events = list(pygame.event.get())
+            self._machine.process(None)
 
-                if self.find_quit_event(events):
-                    break
-
-                if self.find_fullscreen_event(events):
-                    self._window.toggle_fullscreen()
-
-                event = self.find_resize_event(events)
-                if event:
-                    self._window.resize(event.size)
-
-                if not self._menu and self.find_settings_event(events):
-                    self.camera.stop_preview()
-                    self.leds.off()
-                    self._menu = PiConfigMenu(self._window, self._config, self.count)
-                    self._menu.show()
-                    self.leds.blink(on_time=0.1, off_time=1)
-                elif self._menu and self._menu.is_shown():
-                    self._menu.process(events)
-                elif self._menu and not self._menu.is_shown():
-                    self.leds.off()
-                    self._initialize()
-                    self._machine.set_state('wait')
-                    self._menu = None
-                else:
-                    self._machine.process(events)
-
-                pygame.display.update()
-                clock.tick(fps)  # Ensure the program will never run at more than <fps> frames per second
+            self._window.show_all()
+            Gtk.main()
+            sys.exit(self._window.return_value)
 
         except Exception as ex:
             LOGGER.error(str(ex), exc_info=True)
             LOGGER.error(get_crash_message())
         finally:
             self._pm.hook.pibooth_cleanup(app=self)
-            pygame.quit()
+            #pygame.quit()
 
 
 def main():
