@@ -60,7 +60,8 @@ def main():
             'psutil>=5.5.1',
             'pluggy>=0.13.1',
             'gpiozero>=1.5.1',
-            'pgi>=0.0.11.2'
+            'pgi>=0.0.11.2',
+            'pilgram>=1.2.0'
         ],
         extras_require={
             'dslr': ['gphoto2>=2.0.0'],
