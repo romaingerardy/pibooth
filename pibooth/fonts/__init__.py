@@ -4,7 +4,7 @@ import os
 import os.path as osp
 import fnmatch
 from difflib import SequenceMatcher
-import pygame
+# import pygame
 from PIL import ImageFont
 
 
@@ -19,7 +19,7 @@ def get_available_fonts():
         if fnmatch.fnmatch(font_file, '*.ttf'):
             fonts_list.append(osp.splitext(osp.basename(font_file))[0])
 
-    fonts_list.extend(pygame.font.get_fonts())
+    # fonts_list.extend(pygame.font.get_fonts())
 
     return sorted(fonts_list, key=lambda s: s.lower())
 

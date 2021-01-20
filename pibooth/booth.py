@@ -34,10 +34,10 @@ from pibooth.utils import (LOGGER, PoolingTimer, configure_logging, get_crash_me
                            set_logging_level, print_columns_words)
 from pibooth.states import StateMachine
 from pibooth.plugins import create_plugin_manager, load_plugins, list_plugin_names
-from pibooth.view import PtbWindow, GtkWindow
-from pibooth.config import PiConfigParser, PiConfigMenu
+from pibooth.view import GtkWindow
+from pibooth.config import PiConfigParser
 from pibooth import camera
-from pibooth.fonts import get_available_fonts
+# from pibooth.fonts import get_available_fonts
 from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 
 
