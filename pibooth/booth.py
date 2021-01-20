@@ -22,14 +22,8 @@ from gpiozero import Device, ButtonBoard, LEDBoard, pi_info
 from gpiozero.exc import BadPinFactory, PinFactoryFallback
 
 
-if __name__ == '__main__' and __package__ is None:
-    DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), './'))
-    if DIR_PATH != '/usr':
-        print('insert ' + DIR_PATH)
-        sys.path.insert(1, DIR_PATH)
-        LOCALE_PATH = os.path.join(DIR_PATH, 'locale')
-    else:
-        LOCALE_PATH = None
+HERE = osp.abspath(osp.dirname('../'))
+sys.path.insert(0, HERE)
 
 
 import pibooth
