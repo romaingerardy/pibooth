@@ -59,7 +59,8 @@ def main():
             'pygame-vkeyboard>=2.0.7',
             'psutil>=5.5.1',
             'pluggy>=0.13.1',
-            'gpiozero>=1.5.1'
+            'gpiozero>=1.5.1',
+            'pgi>=0.0.11.2'
         ],
         extras_require={
             'dslr': ['gphoto2>=2.0.0'],
