@@ -25,7 +25,7 @@ class ViewPlugin(object):
         # Seconds to display the selected layout
         self.finish_timer = PoolingTimer(0.5)
         # Seconds to display the selected layout
-        self.filters_timer = PoolingTimer(10)
+        self.filters_timer = PoolingTimer(5)
 
     @pibooth.hookimpl
     def state_failsafe_enter(self, win):

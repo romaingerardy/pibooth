@@ -9,7 +9,7 @@ from pibooth.filters import filter_controller
 from pibooth.pictures import get_picture_factory
 from pibooth.pictures.pool import PicturesFactoryPool
 from pibooth.utils import timeit, PoolingTimer
-
+from PIL import Image
 
 class PicturePlugin(object):
     """Plugin to build the final picture.
@@ -127,7 +127,7 @@ class PicturePlugin(object):
             factory = self._pm.hook.pibooth_setup_picture_factory(cfg=cfg,
                                                                   opt_index=idx,
                                                                   factory=default_factory)
-            app.previous_picture = factory.build()
+            app.previous_picture = Image.open('test.gif') #factory.build()
 
         for savedir in cfg.gettuple('GENERAL', 'directory', 'path'):
             app.previous_picture_file = osp.join(savedir, app.picture_filename)
