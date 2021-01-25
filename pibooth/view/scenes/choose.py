@@ -22,4 +22,6 @@ class ChooseScene(Scene):
                             common_media_path('BG-Blank.png'))
 
         # Add choices
-        
+        if choices & len(choices) == 2:
+            LOGGER.info(choices[0])
+            LOGGER.info(choices[1])
