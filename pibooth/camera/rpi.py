@@ -94,7 +94,7 @@ class RpiCamera(BaseCamera):
             return
 
         self._window = window
-        rect = self.get_rect()
+        #rect = self.get_rect()
         if self._cam.hflip:
             if flip:
                  # Don't flip again, already done at init
@@ -102,8 +102,12 @@ class RpiCamera(BaseCamera):
             else:
                 # Flip again because flipped once at init
                 flip = True
-        self._cam.start_preview(resolution=(rect.width, rect.height), hflip=flip,
-                                fullscreen=False, window=tuple(rect))
+
+        self._cam.start_preview()
+        time.sleep(2)
+        self._cam.capture('output.jpg')
+        #self._cam.start_preview(resolution=(rect.width, rect.height), hflip=flip,
+        #                        fullscreen=False, window=tuple(rect))
 
     def preview_countdown(self, timeout, alpha=60):
         """Show a countdown of `timeout` seconds on the preview.
