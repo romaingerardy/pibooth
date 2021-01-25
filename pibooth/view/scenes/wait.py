@@ -11,9 +11,12 @@ from pibooth.utils import LOGGER
 
 class WaitScene(Scene):
 
-    def __init__(self):
+    app = None
+
+    def __init__(self, app):
         super(WaitScene, self).__init__()
         LOGGER.info("new WaitScene")
+        self.app = app
         self._setup()
 
     def _setup(self):
@@ -29,5 +32,9 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
             Placement(0.8, 0.9, 1),
-            Placement(0.8, 0.9, 1)
+            Placement(0.8, 0.9, 1),
+            self._nextStep
         )
+
+    def _nextStep(self):
+        self.app.goToChooseStep()

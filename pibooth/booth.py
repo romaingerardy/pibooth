@@ -3,6 +3,7 @@
 
 """Pibooth main module.
 """
+from time import sleep
 
 from pgi import require_version
 require_version('Gtk', '3.0')
@@ -238,6 +239,11 @@ class PiApplication(object):
         """
         return None
 
+    def goToChooseStep(self):
+        LOGGER.info("goToChooseStep")
+        self._machine.set_state('choose')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """
@@ -247,12 +253,13 @@ class PiApplication(object):
             #clock = pygame.time.Clock()
             self._initialize()
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
-            self._machine.set_state('wait')
 
-            #self._machine.process(None)
+            self._machine.set_state('wait')
+            self._machine.process(None)
 
             self._window.show_all()
             Gtk.main()
+
             sys.exit(self._window.return_value)
 
         except Exception as ex:

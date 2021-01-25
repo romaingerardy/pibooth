@@ -43,7 +43,7 @@ class ViewPlugin(object):
         LOGGER.info("state_wait_enter")
 
         # Add scene
-        scene = WaitScene()
+        scene = WaitScene(app)
         win.push(scene)
 
         # if app.previous_animated:
