@@ -4,6 +4,7 @@ import time
 import subprocess
 from io import BytesIO
 from PIL import Image
+
 try:
     import picamera
 except ImportError:
@@ -31,7 +32,6 @@ def rpi_camera_connected():
 
 
 class RpiCamera(BaseCamera):
-
     """Camera management
     """
 
@@ -66,10 +66,10 @@ class RpiCamera(BaseCamera):
             # rect = self.get_rect()
 
             # Create an image padded to the required size (required by picamera)
-            #size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
+            # size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
 
-            #image = self.build_overlay(size, str(text), alpha)
-            #self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
+            # image = self.build_overlay(size, str(text), alpha)
+            # self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
 
     def _hide_overlay(self):
         """Remove any existing overlay.
@@ -96,17 +96,17 @@ class RpiCamera(BaseCamera):
             return
 
         self._window = window
-        #rect = self.get_rect()
+        # rect = self.get_rect()
         if self._cam.hflip:
             if flip:
-                 # Don't flip again, already done at init
+                # Don't flip again, already done at init
                 flip = False
             else:
                 # Flip again because flipped once at init
                 flip = True
 
         self._cam.start_preview()
-        #self._cam.start_preview(resolution=(rect.width, rect.height), hflip=flip,
+        # self._cam.start_preview(resolution=(rect.width, rect.height), hflip=flip,
         #                        fullscreen=False, window=tuple(rect))
 
     def preview_countdown(self, timeout, alpha=60):
@@ -123,6 +123,7 @@ class RpiCamera(BaseCamera):
             self._show_overlay(timeout, alpha)
             time.sleep(1)
             timeout -= 1
+            print("Timeout " + str(timeout))
             self._hide_overlay()
 
         self._show_overlay(get_translated_text('smile'), alpha)
