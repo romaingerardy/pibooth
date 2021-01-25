@@ -260,6 +260,11 @@ class PiApplication(object):
         self._machine.set_state('capture')
         self._machine.process(None)
 
+    def goToProcessingStep(self):
+        LOGGER.info("goToProcessingStep")
+        self._machine.set_state('processing')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """

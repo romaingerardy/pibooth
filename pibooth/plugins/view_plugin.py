@@ -141,8 +141,9 @@ class ViewPlugin(object):
     def state_capture_validate(self, app):
         LOGGER.info("state_capture_validate")
         if self.count >= app.capture_nbr:
-            return 'processing'
-        return 'preview'
+            app.goToProcessingStep()
+            #return 'processing'
+        #return 'preview'
 
     @pibooth.hookimpl
     def state_processing_enter(self, win):
