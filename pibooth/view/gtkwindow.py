@@ -195,7 +195,6 @@ class GtkWindow(Gtk.Window):
         """Show the choice view.
         """
         LOGGER.info("show_choice")
-        LOGGER.info(choices)
         scene = ChooseScene(self.app, choices)
 
         self._capture_number = (0, self._capture_number[1])
