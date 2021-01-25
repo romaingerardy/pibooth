@@ -56,10 +56,10 @@ class CameraPlugin(object):
     def state_preview_do(self, cfg, app):
         print("state_preview_do")
         #pygame.event.pump()  # Before blocking actions
-        #if cfg.getboolean('WINDOW', 'preview_countdown'):
-        #    app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'))
-        #else:
-        #    app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
+        if cfg.getboolean('WINDOW', 'preview_countdown'):
+            app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'))
+        else:
+            app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
 
     @pibooth.hookimpl
     def state_preview_exit(self, cfg, app):
@@ -82,8 +82,8 @@ class CameraPlugin(object):
 
         with timeit("Take a capture"):
             if cfg.getboolean('WINDOW', 'flash'):
-                with win.flash(2):  # Manage the window here, have no choice
-                    app.camera.capture(effect)
+                #with win.flash(2):  # Manage the window here, have no choice
+                app.camera.capture(effect)
             else:
                 app.camera.capture(effect)
 

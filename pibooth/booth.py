@@ -255,6 +255,11 @@ class PiApplication(object):
         self._machine.set_state('preview')
         self._machine.process(None)
 
+    def goToCaptureStep(self):
+        LOGGER.info("goToCaptureStep")
+        self._machine.set_state('capture')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """

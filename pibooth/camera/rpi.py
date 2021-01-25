@@ -60,14 +60,16 @@ class RpiCamera(BaseCamera):
         """Add an image as an overlay.
         """
         if self._window:  # No window means no preview displayed
-            rect = self.get_rect()
+
+            self._window.preview_scene.add_text(text)
+
+            # rect = self.get_rect()
 
             # Create an image padded to the required size (required by picamera)
-            size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
+            #size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
 
-            image = self.build_overlay(size, str(text), alpha)
-            self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3,
-                                                  window=tuple(rect), fullscreen=False)
+            #image = self.build_overlay(size, str(text), alpha)
+            #self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
 
     def _hide_overlay(self):
         """Remove any existing overlay.

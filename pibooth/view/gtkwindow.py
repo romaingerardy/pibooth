@@ -66,6 +66,8 @@ class GtkWindow(Gtk.Window):
         self._to_id_counter = 0
         self._timeouts = []
 
+        self.preview_scene = None
+
         apply_common_to_screen()
         # apply_styling_to_screen(init_flow_css_path('scene.css'))
 
@@ -214,9 +216,15 @@ class GtkWindow(Gtk.Window):
         if self._capture_number and self._capture_number[0] == 1:
             LOGGER.info("show_preview")
             scene = PreviewScene(self.app)
-            self.push(scene)
+            self.preview_scene = scene
+            self.push(self.preview_scene)
+
         else:
             LOGGER.info("show_preview but no new scene")
+
+    def show_work_in_progress(self):
+        LOGGER.info("show_work_in_progress")
+
 
     def set_capture_number(self, current_nbr, total_nbr):
         """Set the current number of captures taken.
