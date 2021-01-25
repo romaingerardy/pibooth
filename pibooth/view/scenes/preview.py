@@ -22,10 +22,13 @@ class PreviewScene(Scene):
     def _setup(self):
         self.set_background(preview_media_path('BG-Preview.png'),
                             preview_media_path('BG-Preview.png'))
-
-    def add_text(self, text):
+        self.text = Gtk.Label('TEST')
         self.add_widget(
-            Gtk.Label(str(text)),
+            self.text,
             Placement(0.5, 0.5, 1),
             Placement(0.5, 0.5, 1)
         )
+
+    def add_text(self, text):
+        self.text.set_text(str(text))
+
