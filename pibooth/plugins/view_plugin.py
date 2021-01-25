@@ -2,10 +2,10 @@
 
 import pibooth
 from pibooth.utils import LOGGER, get_crash_message, timeit, PoolingTimer
+from pibooth.view.scenes.wait import WaitScene
 
 
 class ViewPlugin(object):
-
     """Plugin to manage the pibooth window dans transitions.
     """
 
@@ -41,6 +41,13 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_enter(self, cfg, app, win):
         LOGGER.info("state_wait_enter")
+
+        # Add scene
+        scene = WaitScene()
+        win.push(scene)
+        LOGGER.info("WaitScene pushed")
+
+
         # if app.previous_animated:
         #     previous_picture = next(app.previous_animated)
         #     # Reset timeout in case of settings changed
@@ -84,8 +91,8 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_exit(self, win):
         LOGGER.info("state_wait_exit")
-        #self.count = 0
-        #win.show_image(None)  # Clear currently displayed image
+        # self.count = 0
+        # win.show_image(None)  # Clear currently displayed image
 
     @pibooth.hookimpl
     def state_choose_enter(self, app, win):
@@ -138,10 +145,10 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_processing_validate(self, cfg, app):
         return 'filter'
-        #if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
+        # if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
         #        and app.count.remaining_duplicates > 0:
         #    return 'print'
-        #return 'finish'  # Can not print
+        # return 'finish'  # Can not print
 
     @pibooth.hookimpl
     def state_filter_enter(self, win):

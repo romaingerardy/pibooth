@@ -5,17 +5,14 @@
 
 from pgi import require_version
 
-require_version('Gtk', '3.0')
-from pgi.repository import Gtk, GLib, GObject, Gdk
+from pibooth.view.scene import Scene
 
-import time
-import contextlib
-from PIL import Image
-from pibooth import pictures, fonts
+require_version('Gtk', '3.0')
+from pgi.repository import Gtk, GLib, Gdk
+
 from pibooth.view import background
 from pibooth.utils import LOGGER
-from pibooth.pictures import sizing
-from pibooth.common.apply_styles import apply_styling_to_screen, apply_common_to_screen
+from pibooth.common.apply_styles import apply_common_to_screen
 
 
 class GtkWindow(Gtk.Window):
@@ -93,6 +90,35 @@ class GtkWindow(Gtk.Window):
         debug_button.connect('button-release-event', Gtk.main_quit)
         overlay.add_overlay(debug_button)
 
+    def push(self, child):
+        GLib.idle_add(self._do_push, child)
+
+    def _do_push(self, child):
+        # Cleans up any pending scheduled events
+        for i, src in enumerate(self._timeouts):
+            del self._timeouts[i]
+            # print GLib.source_remove_by_funcs_user_data(src.source_funcs,
+            #                                            src.callback_data)
+            # src.destroy()
+            # if not src.is_destroyed():
+            #    GLib.source_remove(src.get_id())
+
+        if issubclass(child.__class__, Scene):
+            for event in child.scheduled_events:
+                self.schedule_event(event)
+
+            child.set_active()
+            child = child.widget
+
+        if self._child:
+            self._container.remove(self._child)
+            self._child.destroy()
+
+        self._child = child
+        self._container.add(child)
+        child.show_all()
+        return False
+
     def _key_emergency_exit(self, widget, event):
         if (hasattr(event, 'keyval') and
                 event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
@@ -108,7 +134,7 @@ class GtkWindow(Gtk.Window):
                 event.state & Gdk.ModifierType.SHIFT_MASK and
                 event.state & Gdk.ModifierType.CONTROL_MASK):
             LOGGER.info("Next Stage...")
-            #self._ctl.next_stage()
+            # self._ctl.next_stage()
 
     def _emergency_exit_cb(self, widget, data=None):
         self._emergency_counter += 1
@@ -135,14 +161,13 @@ class GtkWindow(Gtk.Window):
         """Show failure view in case of exception.
         """
         LOGGER.error("OOPS !! erreur")
-        #self._capture_number = (0, self._capture_number[1])
-        #self._update_background(background.OopsBackground())
+        # self._capture_number = (0, self._capture_number[1])
+        # self._update_background(background.OopsBackground())
 
     def show_intro(self, pil_image=None, with_print=True):
         """Show introduction view.
         """
         LOGGER.info("show_intro")
-
 
     def show_image(self, pil_image=None, pos=CENTER):
         """Show PIL image as it (no resize).
@@ -151,4 +176,4 @@ class GtkWindow(Gtk.Window):
 
     @property
     def return_value(self):
-        return 1#self._ctl.return_value
+        return 1  # self._ctl.return_value
