@@ -93,6 +93,11 @@ class GtkWindow(Gtk.Window):
     def push(self, child):
         GLib.idle_add(self._do_push, child)
 
+    def set_print_number(self, current_nbr=None, failure=None):
+        """Set the current number of tasks in the printer queue.
+        """
+        LOGGER.info("set_print_number no code...")
+
     def _do_push(self, child):
         # Cleans up any pending scheduled events
         for i, src in enumerate(self._timeouts):
