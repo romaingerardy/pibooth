@@ -31,17 +31,17 @@ class ShareScene(Scene):
         )
 
         # Add share buttons
-        print_button = OrangeButton('Imprimer')
-        quit_button = OrangeButton('Terminer')
+        #print_button = OrangeButton('Imprimer')
+        #quit_button = OrangeButton('Terminer')
 
-        self.add_widget(
-            print_button,
-            Placement(0.7, 0.7, 1),
-            Placement(0.7, 0.7, 1)
-        )
-        self.add_widget(
-            quit_button,
-            Placement(0.7, 0.8, 1),
-            Placement(0.7, 0.8, 1)
-        )
+        #self.add_widget(
+        #    print_button,
+        #    Placement(0.7, 0.7, 1),
+        #    Placement(0.7, 0.7, 1)
+        #)
+        #self.add_widget(
+        #    quit_button,
+        #    Placement(0.7, 0.8, 1),
+        #    Placement(0.7, 0.8, 1)
+        #)
 
