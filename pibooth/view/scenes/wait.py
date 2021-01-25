@@ -4,7 +4,6 @@ from pibooth.view.scenes.paths import wait_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, GLib, GObject, Gdk
-#from pibooth.common.message_dialog import MessageDialog
 
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
@@ -27,8 +26,7 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
             Placement(0.9, 0.9, 1),
-            Placement(0.9, 0.9, 1),
-            self._shutdown
+            Placement(0.9, 0.9, 1)
         )
 
         self.add_widget(
