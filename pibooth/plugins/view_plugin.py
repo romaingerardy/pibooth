@@ -46,6 +46,10 @@ class ViewPlugin(object):
         scene = WaitScene()
         win.push(scene)
 
+        LOGGER.info("Camera preview")
+        app.camera.preview(win)
+        LOGGER.info("Camera preview end")
+
 
         # if app.previous_animated:
         #     previous_picture = next(app.previous_animated)
