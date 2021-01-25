@@ -1,5 +1,6 @@
 from pgi import require_version
 
+from pibooth.common.message_dialog import MessageDialog
 from pibooth.view.scenes.paths import wait_media_path
 
 require_version('Gtk', '3.0')
@@ -26,7 +27,8 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
             Placement(0.9, 0.9, 1),
-            Placement(0.9, 0.9, 1)
+            Placement(0.9, 0.9, 1),
+            self._shutdown
         )
 
         self.add_widget(
@@ -38,3 +40,9 @@ class WaitScene(Scene):
 
     def _nextStep(self):
         self.app.goToChooseStep()
+
+    def _shutdown(self):
+        LOGGER.info("Shutdown")
+        win = MessageDialog()
+        win.connect("destroy", Gtk.main_quit)
+        win.show_all()
