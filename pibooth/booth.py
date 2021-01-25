@@ -197,7 +197,10 @@ class PiApplication(object):
             raise EnvironmentError("The 'capture_date' attribute is not set yet")
         return "{}_pibooth.jpg".format(self.capture_date)
 
-
+    def find_print_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
 
     def main_loop(self):
         """Run the main game loop.
