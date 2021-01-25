@@ -112,9 +112,9 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_chosen_validate(self):
         LOGGER.info("state_chosen_validate")
-        if self.layout_timer.is_timeout():
-            LOGGER.info("timeout")
-            return 'preview'
+        #if self.layout_timer.is_timeout():
+        #    LOGGER.info("timeout")
+        #    return 'preview'
 
     @pibooth.hookimpl
     def state_preview_enter(self, app, win):

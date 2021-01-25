@@ -1,3 +1,5 @@
+import time
+
 from pgi import require_version
 
 from pibooth.view.scenes.paths import common_media_path, choose_media_path
@@ -36,13 +38,14 @@ class ChosenScene(Scene):
         )
 
     def startTimer(self):
+        time.sleep(4)
         #threading.Timer(5, lambda: self._startPreview).start()
-        self.timer.start()
+        #self.timer.start()
         #while True:
         #    if self.timer.is_timeout():
         #        LOGGER.info("timeout")
         #        break
-        #self._startPreview()
+        self._startPreview()
 
     def _startPreview(self):
         self.app.goToPreviewStep()
