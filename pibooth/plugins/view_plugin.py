@@ -125,8 +125,9 @@ class ViewPlugin(object):
         win.show_preview()
 
     @pibooth.hookimpl
-    def state_preview_validate(self):
+    def state_preview_validate(self, app):
         LOGGER.info("state_preview_validate")
+        app.goToCaptureStep()
 
         # Change step to capture to take the picture
         #return 'capture'
