@@ -244,6 +244,12 @@ class PiApplication(object):
         self._machine.set_state('choose')
         self._machine.process(None)
 
+    def goToChosenStep(self, choice):
+        LOGGER.info("goToChosenStep")
+        LOGGER.info(choice)
+        self._machine.set_state('chosen')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """

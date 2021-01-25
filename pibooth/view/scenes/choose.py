@@ -26,17 +26,23 @@ class ChooseScene(Scene):
 
         # Add choices
         if choices and len(choices) == 2:
-            x = 0.2
+            x = 0.25
             for choice in choices:
                 self.add_widget(
                     Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
-                    Placement(x, 0.6, 1),
-                    Placement(x, 0.6, 1)
+                    Placement(x, 0.65, 1),
+                    Placement(x, 0.65, 1),
+                    self._chooseTemplate(choice)
                 )
-                x = x + 0.5
+                x = x + 0.45
         elif choices and len(choices) == 1:
             self.add_widget(
                 Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choices[0]) + '.png')),
-                Placement(0.3, 0.6, 1),
-                Placement(0.3, 0.6, 1)
+                Placement(0.35, 0.65, 1),
+                Placement(0.35, 0.65, 1),
+                self._chooseTemplate(choices[0])
             )
+
+    def _chooseTemplate(self, template):
+        self.app.capture_nbr = template
+        self.app.goToChosenStep(template)
