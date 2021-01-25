@@ -15,11 +15,6 @@ require_version('Gtk', '3.0')
 
 from pgi.repository import Gtk
 
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '../../'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
 
 #from kano.gtk3 import cursor
 from pibooth.common.apply_styles import apply_styling_to_widget, apply_colours_to_widget
@@ -206,8 +201,3 @@ class TestWindow(Gtk.Window):
             widget.start_spinner()
             widget.set_sensitive(False)
 
-
-if __name__ == "__main__":
-    win = TestWindow()
-    win.connect("delete-event", Gtk.main_quit)
-    Gtk.main()
