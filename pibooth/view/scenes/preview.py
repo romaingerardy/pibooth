@@ -25,7 +25,7 @@ class PreviewScene(Scene):
 
     def add_text(self, text):
         self.add_widget(
-            Gtk.Label(text),
+            Gtk.Label(str(text)),
             Placement(0.5, 0.5, 1),
             Placement(0.5, 0.5, 1)
         )
