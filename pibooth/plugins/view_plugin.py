@@ -187,12 +187,12 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_print_validate(self, app, win, events):
-        printed = app.find_print_event(events)
-        forgotten = app.find_capture_event(events)
-        if self.print_view_timer.is_timeout() or printed or forgotten:
-            if printed:
-                win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
-            return 'finish'
+        #printed = app.find_print_event(events)
+        #forgotten = app.find_capture_event(events)
+        #if self.print_view_timer.is_timeout() or printed or forgotten:
+        #    if printed:
+        #        win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
+        #    return 'finish'
 
     @pibooth.hookimpl
     def state_finish_enter(self, win):
