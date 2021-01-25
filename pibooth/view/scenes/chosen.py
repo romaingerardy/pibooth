@@ -1,4 +1,4 @@
-import time
+import threading
 
 from pgi import require_version
 
@@ -38,7 +38,9 @@ class ChosenScene(Scene):
         )
 
     def startTimer(self):
-        time.sleep(4)
+        #time.sleep(4)
+        t = threading.Timer(4, self._startPreview)
+        t.start()
         #threading.Timer(5, lambda: self._startPreview).start()
         #self.timer.start()
         #while True:
