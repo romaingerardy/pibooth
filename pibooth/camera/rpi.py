@@ -104,8 +104,6 @@ class RpiCamera(BaseCamera):
                 flip = True
 
         self._cam.start_preview()
-        time.sleep(2)
-        self._cam.capture('output.jpg')
         #self._cam.start_preview(resolution=(rect.width, rect.height), hflip=flip,
         #                        fullscreen=False, window=tuple(rect))
 

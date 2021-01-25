@@ -249,7 +249,7 @@ class PiApplication(object):
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
             self._machine.set_state('wait')
 
-            self._machine.process(None)
+            #self._machine.process(None)
 
             self._window.show_all()
             Gtk.main()
