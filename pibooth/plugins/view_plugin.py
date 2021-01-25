@@ -77,10 +77,10 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_validate(self, app, events):
         LOGGER.info("state_wait_validate")
-        if app.find_capture_event(events):
-            if len(app.capture_choices) > 1:
-                return 'choose'
-            return 'preview'  # No choice
+        #if app.find_capture_event(events):
+        #    if len(app.capture_choices) > 1:
+        #        return 'choose'
+        #    return 'preview'  # No choice
 
     @pibooth.hookimpl
     def state_wait_exit(self, win):
@@ -97,10 +97,11 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_choose_validate(self, app):
-        if app.capture_nbr:
-            return 'chosen'
-        elif self.choose_timer.is_timeout():
-            return 'wait'
+        LOGGER.info("state_choose_validate")
+        # if app.capture_nbr:
+        #    return 'chosen'
+        #elif self.choose_timer.is_timeout():
+        #    return 'wait'
 
     @pibooth.hookimpl
     def state_chosen_enter(self, app, win):
@@ -110,24 +111,30 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_chosen_validate(self):
+        LOGGER.info("state_chosen_validate")
         if self.layout_timer.is_timeout():
+            LOGGER.info("timeout")
             return 'preview'
 
     @pibooth.hookimpl
     def state_preview_enter(self, app, win):
+        LOGGER.info("state_preview_enter")
         self.count += 1
         win.set_capture_number(self.count, app.capture_nbr)
 
     @pibooth.hookimpl
     def state_preview_validate(self):
+        LOGGER.info("state_preview_validate")
         return 'capture'
 
     @pibooth.hookimpl
     def state_capture_do(self, app, win):
+        LOGGER.info("state_capture_do")
         win.set_capture_number(self.count, app.capture_nbr)
 
     @pibooth.hookimpl
     def state_capture_validate(self, app):
+        LOGGER.info("state_capture_validate")
         if self.count >= app.capture_nbr:
             return 'processing'
         return 'preview'
