@@ -128,3 +128,10 @@ class GtkWindow(Gtk.Window):
         self._current_background = None
         self._current_foreground = None
         self._buffered_images = {}
+
+    def show_oops(self):
+        """Show failure view in case of exception.
+        """
+        self._capture_number = (0, self._capture_number[1])
+        LOGGER.error("OOPS !! erreur")
+        #self._update_background(background.OopsBackground())
