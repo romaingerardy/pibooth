@@ -84,10 +84,10 @@ class PiApplication(object):
         title = 'Pix Me Box Gtk v{}'.format(pibooth.__version__)
         LOGGER.info(title)
         if not isinstance(init_size, str):
-            self._window = GtkWindow(title, init_size, color=init_color,
+            self._window = GtkWindow(self, title, init_size, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
         else:
-            self._window = GtkWindow(title, color=init_color,
+            self._window = GtkWindow(self, title, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
 
         LOGGER.info("after instance GtkWindow")

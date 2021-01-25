@@ -7,6 +7,7 @@
 
 import os
 
+BASE_PATH = "../../../assets/scenes"
 
 def wait_media_path(filename):
     '''
@@ -14,7 +15,15 @@ def wait_media_path(filename):
         :type filename: str
     '''
 
-    return get_asset_path(__file__, "../../../assets/scenes/wait/media", filename)
+    return get_asset_path(__file__, BASE_PATH + "/wait/media", filename)
+
+def choose_media_path(filename):
+    '''
+        :params filename: the name of the file
+        :type filename: str
+    '''
+
+    return get_asset_path(__file__, BASE_PATH + "/choose/media", filename)
 
 
 def get_asset_path(stage_path, directory, filename):

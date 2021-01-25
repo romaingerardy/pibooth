@@ -6,6 +6,7 @@
 from pgi import require_version
 
 from pibooth.view.scene import Scene
+from pibooth.view.scenes.choose import ChooseScene
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, GLib, Gdk
@@ -24,7 +25,10 @@ class GtkWindow(Gtk.Window):
     RIGHT = 'right'
     LEFT = 'left'
 
-    def __init__(self, title,
+    app = None
+
+    def __init__(self, app,
+                 title,
                  size=(800, 480),
                  color=(0, 0, 0),
                  text_color=(255, 255, 255),
@@ -36,12 +40,17 @@ class GtkWindow(Gtk.Window):
 
         LOGGER.info("GtkWindow")
 
+        self.app = app
         self.__size = size
         self.debug = debug
         self.bg_color = color
         self.text_color = text_color
         self.arrow_location = arrow_location
         self.arrow_offset = arrow_offset
+
+        self._print_number = 0
+        self._print_failure = False
+        self._capture_number = (0, 4)  # (current, max)
 
         # self._ctl = DesktopController(self)
         self.connect("delete-event", Gtk.main_quit)
@@ -178,6 +187,20 @@ class GtkWindow(Gtk.Window):
         """Show PIL image as it (no resize).
         """
         LOGGER.info("show_image")
+
+    def show_choice(self, choices, selected=None):
+        """Show the choice view.
+        """
+        LOGGER.info("show_choice")
+        scene = ChooseScene(self.app)
+
+        self._capture_number = (0, self._capture_number[1])
+        if not selected:
+            LOGGER.info("show_choice not selected")
+            self.push(scene)
+        else:
+            LOGGER.info("show_choice selected")
+            self.push(scene)
 
     @property
     def return_value(self):
