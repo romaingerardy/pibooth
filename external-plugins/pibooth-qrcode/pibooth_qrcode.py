@@ -3,7 +3,7 @@
 
 import os
 import qrcode
-import pygame
+#import pygame
 
 import pibooth
 
@@ -61,7 +61,7 @@ def state_processing_exit(app, cfg):
     qrcode_background_color = '#%02x%02x%02x' % cfg.gettyped("QRCODE", 'code_background')
 
     image = qr.make_image(fill_color=qrcode_fill_color, back_color=qrcode_background_color)
-    app.previous_qr = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
+    #app.previous_qr = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
 
 
 @pibooth.hookimpl

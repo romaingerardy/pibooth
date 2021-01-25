@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pygame
+#import pygame
 from PIL import Image, ImageDraw
 
 from pibooth import fonts
@@ -41,7 +41,8 @@ class BaseCamera(object):
         rect = self._window.get_rect()
         res = sizing.new_size_keep_aspect_ratio(self.resolution,
                                                 (rect.width - 2 * self._border, rect.height - 2 * self._border))
-        return pygame.Rect(rect.centerx - res[0] // 2, rect.centery - res[1] // 2, res[0], res[1])
+        #return pygame.Rect(rect.centerx - res[0] // 2, rect.centery - res[1] // 2, res[0], res[1])
+        return None
 
     def build_overlay(self, size, text, alpha):
         """Return a PIL image with the given text that can be used

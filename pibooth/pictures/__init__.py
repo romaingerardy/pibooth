@@ -2,7 +2,7 @@
 
 import os.path as osp
 from PIL import Image, ImageOps
-import pygame
+#import pygame
 from pibooth import language
 from pibooth import fonts
 from pibooth.pictures import factory
@@ -48,7 +48,7 @@ def colorize_pil_image(pil_image, color, bg_color=None):
 def get_pygame_main_color(surface):
     """Return the main color of the given pygame surface.
     """
-    monopixel_surface = pygame.transform.scale(surface, (1, 1))
+    monopixel_surface = surface#pygame.transform.scale(surface, (1, 1))
     return tuple(monopixel_surface.get_at((0, 0)))
 
 
