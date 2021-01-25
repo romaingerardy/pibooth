@@ -25,7 +25,7 @@ class ShareScene(Scene):
         # Show final picture
         self.add_widget(
             Gtk.Image.new_from_file(self.previous_picture),
-            Placement(0.1, 0.69, 0.23),
-            Placement(0.1, 0.69, 0.23)
+            Placement(0.1, 0.71, 0.23),
+            Placement(0.1, 0.71, 0.23)
         )
 
