@@ -26,7 +26,7 @@ class ProcessingScene(Scene):
         anim = GdkPixbuf.PixbufAnimation.new_from_file(processing_media_path('processing.gif'))
 
         self.add_widget(
-            Gtk.Image.set_from_animation(anim),
+            Gtk.Image().set_from_animation(anim),
             Placement(0.5, 0.5, 1),
             Placement(0.5, 0.5, 1)
         )
