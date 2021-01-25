@@ -93,6 +93,15 @@ class GtkWindow(Gtk.Window):
         debug_button.connect('button-release-event', Gtk.main_quit)
         overlay.add_overlay(debug_button)
 
+    def _key_emergency_exit(self, widget, event):
+        if (hasattr(event, 'keyval') and
+           event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
+           event.state & Gdk.ModifierType.SHIFT_MASK and
+           event.state & Gdk.ModifierType.CONTROL_MASK):
+            self._emergency_exit_cb(widget)
+
+        return False
+
     def _emergency_exit_cb(self, widget, data=None):
         self._emergency_counter += 1
         msg = "Emergency button pressed {}x".format(self._emergency_counter)
