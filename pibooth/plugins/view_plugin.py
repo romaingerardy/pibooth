@@ -146,6 +146,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_processing_enter(self, win):
+        LOGGER.info("state_processing_enter")
         win.show_work_in_progress()
 
     @pibooth.hookimpl

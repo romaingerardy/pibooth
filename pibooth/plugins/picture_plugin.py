@@ -8,7 +8,7 @@ import pibooth
 from pibooth.filters import filter_controller
 from pibooth.pictures import get_picture_factory
 from pibooth.pictures.pool import PicturesFactoryPool
-from pibooth.utils import timeit, PoolingTimer
+from pibooth.utils import timeit, PoolingTimer, LOGGER
 from PIL import Image
 
 class PicturePlugin(object):
@@ -90,11 +90,13 @@ class PicturePlugin(object):
 
     @pibooth.hookimpl
     def state_processing_enter(self, app):
+        LOGGER.info("state_processing_enter 2")
         self.second_previous_picture = app.previous_picture
         self._reset_vars(app)
 
     @pibooth.hookimpl
     def state_processing_do(self, cfg, app):
+        LOGGER.info("state_processing_do")
         idx = app.capture_choices.index(app.capture_nbr)
 
         with timeit("Saving raw captures"):
@@ -146,6 +148,7 @@ class PicturePlugin(object):
 
     @pibooth.hookimpl
     def state_processing_exit(self, app):
+        LOGGER.info("state_processing_exit")
         app.count.taken += 1  # Do it here because 'print' state can be skipped
 
     @pibooth.hookimpl
