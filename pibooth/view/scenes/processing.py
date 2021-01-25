@@ -19,5 +19,5 @@ class ProcessingScene(Scene):
         self._setup()
 
     def _setup(self):
-        self.set_background(processing_media_path('BG-Chosen.png'),
-                            processing_media_path('BG-Chosen.png'))
+        self.set_background(processing_media_path('BG-Processing.png'),
+                            processing_media_path('BG-Processing.png'))
