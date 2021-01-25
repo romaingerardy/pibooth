@@ -14,7 +14,7 @@ from pgi import require_version
 require_version('Gtk', '3.0')
 
 from pgi.repository import Gtk, Gdk
-from common.common_paths import common_css_dir
+from pibooth.common.common_paths import common_css_dir
 
 
 # Apply the general CSS files to the screen
