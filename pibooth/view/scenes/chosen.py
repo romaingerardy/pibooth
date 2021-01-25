@@ -8,7 +8,7 @@ from pgi.repository import Gtk
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER, PoolingTimer
 
-import threading
+#import threading
 
 class ChosenScene(Scene):
     app = None
@@ -36,8 +36,8 @@ class ChosenScene(Scene):
         )
 
     def startTimer(self):
-        threading.Timer(5, lambda: self._startPreview).start()
-        #self.timer.start()
+        #threading.Timer(5, lambda: self._startPreview).start()
+        self.timer.start()
         #while True:
         #    if self.timer.is_timeout():
         #        LOGGER.info("timeout")
