@@ -34,8 +34,8 @@ class ChosenScene(Scene):
             Placement(0.5, 0.65, 1)
         )
 
+    def startTimer(self):
         self.timer.start()
-
         while True:
             if self.timer.is_timeout():
                 LOGGER.info("timeout")

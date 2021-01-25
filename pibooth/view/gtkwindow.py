@@ -207,6 +207,7 @@ class GtkWindow(Gtk.Window):
             LOGGER.info("show_choice selected")
             scene = ChosenScene(self.app, self.app.capture_nbr)
             self.push(scene)
+            scene.startTimer()
 
     @property
     def return_value(self):
