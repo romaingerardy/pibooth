@@ -14,7 +14,7 @@ from pibooth import pictures, fonts
 from pibooth.view import background
 from pibooth.utils import LOGGER
 from pibooth.pictures import sizing
-from pibooth.common.apply_styles import apply_styling_to_screen
+from pibooth.common.apply_styles import apply_styling_to_screen, apply_common_to_screen
 
 class GtkWindow(Gtk.Window):
 
