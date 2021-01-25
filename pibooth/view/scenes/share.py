@@ -11,11 +11,11 @@ from pibooth.utils import LOGGER
 
 class ShareScene(Scene):
 
-    def __init__(self, app, previous_picture):
+    def __init__(self, app, previous_picture_file):
         super(ShareScene, self).__init__()
         LOGGER.info("new ShareScene")
         self.app = app
-        self.previous_picture = previous_picture
+        self.previous_picture = previous_picture_file
         self._setup()
 
     def _setup(self):
@@ -23,9 +23,9 @@ class ShareScene(Scene):
                             share_media_path('BG-Share.png'))
 
         # Show final picture
-        #self.add_widget(
-        #    Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
-        #    Placement(1, 0.65, 1),
-        #    Placement(1, 0.65, 1)
-        #)
+        self.add_widget(
+            Gtk.Image.new_from_file(self.previous_picture),
+            Placement(0.1, 0.65, 1),
+            Placement(0.1, 0.65, 1)
+        )
 
