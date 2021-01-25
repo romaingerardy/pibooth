@@ -23,14 +23,20 @@ class ChooseScene(Scene):
                             common_media_path('BG-Blank.png'))
 
         LOGGER.info(choices)
-        
+
         # Add choices
         if choices and len(choices) == 2:
-            x = 0.3
+            x = 0.2
             for choice in choices:
                 self.add_widget(
                     Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
-                    Placement(x, 0.5, 1),
-                    Placement(x, 0.5, 1)
+                    Placement(x, 0.6, 1),
+                    Placement(x, 0.6, 1)
                 )
-                x = x + 0.4
+                x = x + 0.5
+        elif choices and len(choices) == 1:
+            self.add_widget(
+                Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choices[0]) + '.png')),
+                Placement(0.3, 0.6, 1),
+                Placement(0.3, 0.6, 1)
+            )
