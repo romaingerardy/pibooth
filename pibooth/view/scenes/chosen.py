@@ -27,6 +27,6 @@ class ChosenScene(Scene):
         # Summary of choice
         self.add_widget(
             Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
-            Placement(0.35, 0.65, 1),
-            Placement(0.35, 0.65, 1)
+            Placement(0.5, 0.65, 1),
+            Placement(0.5, 0.65, 1)
         )
