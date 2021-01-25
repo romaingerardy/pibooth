@@ -16,8 +16,10 @@ from pibooth.utils import LOGGER
 from pibooth.pictures import sizing
 from pibooth.common.apply_styles import apply_styling_to_screen, apply_common_to_screen
 
+
 class GtkWindow(Gtk.Window):
 
+    EMERGENCY_EXIT_CLICKS = 5
     width = 1024#1920
     height = 600#1080
 
@@ -91,6 +93,16 @@ class GtkWindow(Gtk.Window):
         debug_button.connect('button-release-event', Gtk.main_quit)
         overlay.add_overlay(debug_button)
 
+    def _emergency_exit_cb(self, widget, data=None):
+        self._emergency_counter += 1
+        msg = "Emergency button pressed {}x".format(self._emergency_counter)
+        #logger.warn(msg)
+        print(msg)
+        if self._emergency_counter >= self.EMERGENCY_EXIT_CLICKS:
+            #logger.warn("Emergency exiting the init flow")
+            print("Emergency exiting the init flow")
+            #self._ctl.complete()
+            Gtk.main_quit()
 
     def drop_cache(self):
         """Drop all cached background and foreground to force
