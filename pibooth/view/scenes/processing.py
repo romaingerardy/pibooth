@@ -23,10 +23,12 @@ class ProcessingScene(Scene):
         self.set_background(processing_media_path('BG-Processing.png'),
                             processing_media_path('BG-Processing.png'))
 
+        spinner = Gtk.Image()
         anim = GdkPixbuf.PixbufAnimation.new_from_file(processing_media_path('processing.gif'))
+        spinner.set_from_animation(anim)
 
         self.add_widget(
-            Gtk.Image().set_from_animation(anim),
+            spinner,
             Placement(0.5, 0.5, 1),
             Placement(0.5, 0.5, 1)
         )
