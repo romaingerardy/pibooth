@@ -187,6 +187,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_print_validate(self, app, win, events):
+        LOGGER.info("state_print_validate")
         #printed = app.find_print_event(events)
         #forgotten = app.find_capture_event(events)
         #if self.print_view_timer.is_timeout() or printed or forgotten:
