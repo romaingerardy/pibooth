@@ -211,7 +211,7 @@ class GtkWindow(Gtk.Window):
             scene.startTimer()
 
     def show_preview(self):
-        if self._capture_number:
+        if self._capture_number and self._capture_number[0] == 1:
             LOGGER.info("show_preview")
             scene = PreviewScene(self.app)
             self.push(scene)
