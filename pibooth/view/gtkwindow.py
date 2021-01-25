@@ -198,7 +198,6 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("show_choice")
 
         self._capture_number = (0, self._capture_number[1])
-        LOGGER.info(self._capture_number)
 
         if not selected:
             LOGGER.info("show_choice not selected")

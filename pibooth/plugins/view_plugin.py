@@ -107,7 +107,7 @@ class ViewPlugin(object):
     def state_chosen_enter(self, app, win):
         with timeit("Show picture choice ({} captures selected)".format(app.capture_nbr)):
             win.show_choice(app.capture_choices, selected=app.capture_nbr)
-        self.layout_timer.start()
+        #self.layout_timer.start()
 
     @pibooth.hookimpl
     def state_chosen_validate(self):
