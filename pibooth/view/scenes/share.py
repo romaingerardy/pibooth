@@ -4,9 +4,7 @@ from pibooth.view.scenes.paths import share_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk
-#from pibooth.common.buttons import OrangeButton
-from pibooth.common.apply_styles import apply_styling_to_widget, apply_colours_to_widget
-from pibooth.common.common_paths import common_css_dir
+from pibooth.common.buttons import GenericButton
 
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
