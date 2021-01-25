@@ -153,6 +153,7 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_processing_validate(self, cfg, app):
         LOGGER.info("state_processing_validate")
+        app.goToShareStep()
         #return 'filter'
         # if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
         #        and app.count.remaining_duplicates > 0:

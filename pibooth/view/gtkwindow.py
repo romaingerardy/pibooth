@@ -10,6 +10,7 @@ from pibooth.view.scenes.choose import ChooseScene
 from pibooth.view.scenes.chosen import ChosenScene
 from pibooth.view.scenes.preview import PreviewScene
 from pibooth.view.scenes.processing import ProcessingScene
+from pibooth.view.scenes.share import ShareScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
@@ -226,6 +227,11 @@ class GtkWindow(Gtk.Window):
     def show_work_in_progress(self):
         LOGGER.info("show_work_in_progress")
         scene = ProcessingScene(self.app)
+        self.push(scene)
+
+    def show_print(self, previous_picture):
+        LOGGER.info("show_print")
+        scene = ShareScene(self.app, previous_picture)
         self.push(scene)
 
     def set_capture_number(self, current_nbr, total_nbr):

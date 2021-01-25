@@ -265,6 +265,11 @@ class PiApplication(object):
         self._machine.set_state('processing')
         self._machine.process(None)
 
+    def goToShareStep(self):
+        LOGGER.info("goToShareStep")
+        self._machine.set_state('print')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """
