@@ -4,6 +4,7 @@
 """
 
 from pgi import require_version
+
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, GLib, GObject, Gdk
 
@@ -18,10 +19,9 @@ from pibooth.common.apply_styles import apply_styling_to_screen, apply_common_to
 
 
 class GtkWindow(Gtk.Window):
-
     EMERGENCY_EXIT_CLICKS = 5
-    width = 1024#1920
-    height = 600#1080
+    width = 1024  # 1920
+    height = 600  # 1080
 
     CENTER = 'center'
     RIGHT = 'right'
@@ -46,7 +46,7 @@ class GtkWindow(Gtk.Window):
         self.arrow_location = arrow_location
         self.arrow_offset = arrow_offset
 
-        #self._ctl = DesktopController(self)
+        # self._ctl = DesktopController(self)
         self.connect("delete-event", Gtk.main_quit)
         self._child = None
 
@@ -58,7 +58,7 @@ class GtkWindow(Gtk.Window):
         self._timeouts = []
 
         apply_common_to_screen()
-        #apply_styling_to_screen(init_flow_css_path('scene.css'))
+        # apply_styling_to_screen(init_flow_css_path('scene.css'))
 
         self.set_decorated(False)
 
@@ -95,22 +95,30 @@ class GtkWindow(Gtk.Window):
 
     def _key_emergency_exit(self, widget, event):
         if (hasattr(event, 'keyval') and
-           event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
-           event.state & Gdk.ModifierType.SHIFT_MASK and
-           event.state & Gdk.ModifierType.CONTROL_MASK):
+                event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
+                event.state & Gdk.ModifierType.SHIFT_MASK and
+                event.state & Gdk.ModifierType.CONTROL_MASK):
             self._emergency_exit_cb(widget)
 
         return False
 
+    def _key_skip_stage(self, widget, event):
+        if (hasattr(event, 'keyval') and
+                event.keyval in [Gdk.KEY_N, Gdk.KEY_n] and
+                event.state & Gdk.ModifierType.SHIFT_MASK and
+                event.state & Gdk.ModifierType.CONTROL_MASK):
+            LOGGER.info("Next Stage...")
+            #self._ctl.next_stage()
+
     def _emergency_exit_cb(self, widget, data=None):
         self._emergency_counter += 1
         msg = "Emergency button pressed {}x".format(self._emergency_counter)
-        #logger.warn(msg)
+        # logger.warn(msg)
         print(msg)
         if self._emergency_counter >= self.EMERGENCY_EXIT_CLICKS:
-            #logger.warn("Emergency exiting the init flow")
+            # logger.warn("Emergency exiting the init flow")
             print("Emergency exiting the init flow")
-            #self._ctl.complete()
+            # self._ctl.complete()
             Gtk.main_quit()
 
     def drop_cache(self):
