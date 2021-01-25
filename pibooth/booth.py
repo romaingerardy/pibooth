@@ -58,6 +58,7 @@ except BadPinFactory:
 class PiApplication(object):
 
     def __init__(self, config, plugin_manager):
+        LOGGER.info("PiApplication")
         self._pm = plugin_manager
         self._config = config
 
@@ -72,6 +73,7 @@ class PiApplication(object):
         os.environ['SDL_VIDEO_CENTERED'] = '1'
         #pygame.init()
 
+        LOGGER.info("PiApplication2")
         # Create window of (width, height)
         init_size = self._config.gettyped('WINDOW', 'size')
         init_debug = self._config.getboolean('GENERAL', 'debug')
@@ -81,6 +83,7 @@ class PiApplication(object):
             init_color = self._config.getpath('WINDOW', 'background')
 
         title = 'Pix Me Box Gtk v{}'.format(pibooth.__version__)
+        LOGGER.info(title)
         if not isinstance(init_size, str):
             self._window = GtkWindow(title, init_size, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
@@ -88,6 +91,7 @@ class PiApplication(object):
             self._window = GtkWindow(title, color=init_color,
                                      text_color=init_text_color, debug=init_debug)
 
+        LOGGER.info("after instance GtkWindow")
         self._menu = None
         self._multipress_timer = PoolingTimer(config.getfloat('CONTROLS', 'multi_press_delay'), False)
 

@@ -35,6 +35,8 @@ class GtkWindow(Gtk.Window):
 
         super(GtkWindow, self).__init__()
 
+        LOGGER.info("GtkWindow")
+
         self.__size = size
         self.debug = debug
         self.bg_color = color
