@@ -50,6 +50,6 @@ class ShareScene(Scene):
             Placement(0.7, 0.8, 1)
         )
 
-    def on_click_quit(self):
+    def on_click_quit(self, button):
         # Go to wait screen
         self.app.goToWaitStep()
