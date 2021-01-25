@@ -1,6 +1,6 @@
 from pgi import require_version
 
-from pibooth.view.scenes.paths import wait_media_path
+from pibooth.view.scenes.paths import choose_media_path
 
 require_version('Gtk', '3.0')
 
@@ -18,5 +18,5 @@ class ChooseScene(Scene):
         self._setup()
 
     def _setup(self):
-        self.set_background(wait_media_path('BG-Layout.png'),
-                            wait_media_path('BG-Layout.png'))
+        self.set_background(choose_media_path('BG-Layout.png'),
+                            choose_media_path('BG-Layout.png'))
