@@ -42,10 +42,6 @@ class ViewPlugin(object):
     def state_wait_enter(self, cfg, app, win):
         LOGGER.info("state_wait_enter")
 
-        # Add scene
-        scene = WaitScene(app)
-        win.push(scene)
-
         # if app.previous_animated:
         #     previous_picture = next(app.previous_animated)
         #     # Reset timeout in case of settings changed
@@ -54,8 +50,8 @@ class ViewPlugin(object):
         # else:
         #     previous_picture = app.previous_picture
         #
-        # win.show_intro(previous_picture, app.printer.is_available()
-        #                and app.count.remaining_duplicates > 0)
+        #win.show_intro(previous_picture, app.printer.is_available() and app.count.remaining_duplicates > 0)
+        win.show_intro(None, app.printer.is_available() and app.count.remaining_duplicates > 0)
         # if app.printer.is_installed():
         #     win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
 
