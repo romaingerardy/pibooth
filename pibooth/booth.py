@@ -197,7 +197,43 @@ class PiApplication(object):
             raise EnvironmentError("The 'capture_date' attribute is not set yet")
         return "{}_pibooth.jpg".format(self.capture_date)
 
+
+    def find_quit_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_settings_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_fullscreen_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_resize_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_capture_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
     def find_print_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_print_status_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        return None
+
+    def find_choice_event(self, events):
         """Return the first found event if found in the list.
         """
         return None
