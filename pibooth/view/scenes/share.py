@@ -1,7 +1,7 @@
 from pgi import require_version
 
-from pibooth.common.buttons import OrangeButton
-from pibooth.view.scenes.paths import choose_media_path, share_media_path
+#from pibooth.common.buttons import OrangeButton
+from pibooth.view.scenes.paths import share_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk
