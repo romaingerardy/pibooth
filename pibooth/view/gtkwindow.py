@@ -14,7 +14,7 @@ from pibooth import pictures, fonts
 from pibooth.view import background
 from pibooth.utils import LOGGER
 from pibooth.pictures import sizing
-from common.apply_styles import apply_styling_to_screen
+from pibooth.common.apply_styles import apply_styling_to_screen
 
 class GtkWindow(Gtk.Window):
 
@@ -32,7 +32,7 @@ class GtkWindow(Gtk.Window):
                  arrow_location=background.ARROW_BOTTOM,
                  arrow_offset=0,
                  debug=False):
-        LOGGER.info("GtkWindow before")
+
         super(GtkWindow, self).__init__()
 
         LOGGER.info("GtkWindow")
