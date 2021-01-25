@@ -47,7 +47,7 @@ class ChosenScene(Scene):
         #    if self.timer.is_timeout():
         #        LOGGER.info("timeout")
         #        break
-        self._startPreview()
+        #self._startPreview()
 
     def _startPreview(self):
         self.app.goToPreviewStep()
