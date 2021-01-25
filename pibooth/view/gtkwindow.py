@@ -7,6 +7,7 @@ from pgi import require_version
 
 from pibooth.view.scene import Scene
 from pibooth.view.scenes.choose import ChooseScene
+from pibooth.view.scenes.chosen import ChosenScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
@@ -195,14 +196,17 @@ class GtkWindow(Gtk.Window):
         """Show the choice view.
         """
         LOGGER.info("show_choice")
-        scene = ChooseScene(self.app, choices)
 
         self._capture_number = (0, self._capture_number[1])
+        LOGGER.info(self._capture_number)
+
         if not selected:
             LOGGER.info("show_choice not selected")
+            scene = ChooseScene(self.app, choices)
             self.push(scene)
         else:
             LOGGER.info("show_choice selected")
+            scene = ChosenScene(self.app, self.app.capture_nbr)
             self.push(scene)
 
     @property
