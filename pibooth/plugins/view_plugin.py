@@ -152,7 +152,8 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_processing_validate(self, cfg, app):
-        return 'filter'
+        LOGGER.info("state_processing_validate")
+        #return 'filter'
         # if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
         #        and app.count.remaining_duplicates > 0:
         #    return 'print'
@@ -160,7 +161,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_filter_enter(self, win):
-        print("state_filter_enter")
+        LOGGER.info("state_filter_enter")
         win.show_filters()
         self.filters_timer.start()
 
