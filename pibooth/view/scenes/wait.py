@@ -1,10 +1,10 @@
 from pgi import require_version
 
-#from pibooth.common.message_dialog import MessageDialog
 from pibooth.view.scenes.paths import wait_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, GLib, GObject, Gdk
+from pibooth.common.message_dialog import MessageDialog
 
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
