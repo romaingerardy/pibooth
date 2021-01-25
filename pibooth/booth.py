@@ -58,7 +58,6 @@ except BadPinFactory:
 class PiApplication(object):
 
     def __init__(self, config, plugin_manager):
-        LOGGER.info("PiApplication")
         self._pm = plugin_manager
         self._config = config
 
@@ -73,7 +72,6 @@ class PiApplication(object):
         os.environ['SDL_VIDEO_CENTERED'] = '1'
         #pygame.init()
 
-        LOGGER.info("PiApplication2")
         # Create window of (width, height)
         init_size = self._config.gettyped('WINDOW', 'size')
         init_debug = self._config.getboolean('GENERAL', 'debug')
