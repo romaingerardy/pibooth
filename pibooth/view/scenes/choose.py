@@ -1,6 +1,6 @@
 from pgi import require_version
 
-from pibooth.view.scenes.paths import choose_media_path
+from pibooth.view.scenes.paths import common_media_path
 
 require_version('Gtk', '3.0')
 
@@ -11,12 +11,15 @@ from pibooth.utils import LOGGER
 class ChooseScene(Scene):
     app = None
 
-    def __init__(self, app):
+    def __init__(self, app, choices):
         super(ChooseScene, self).__init__()
         LOGGER.info("new ChooseScene")
         self.app = app
-        self._setup()
+        self._setup(choices)
 
-    def _setup(self):
-        self.set_background(choose_media_path('BG-Layout.png'),
-                            choose_media_path('BG-Layout.png'))
+    def _setup(self, choices):
+        self.set_background(common_media_path('BG-Blank.png'),
+                            common_media_path('BG-Blank.png'))
+
+        # Add choices
+        

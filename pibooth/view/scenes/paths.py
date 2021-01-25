@@ -9,6 +9,14 @@ import os
 
 BASE_PATH = "../../../assets/scenes"
 
+def common_media_path(filename):
+    '''
+        :params filename: the name of the file
+        :type filename: str
+    '''
+
+    return get_asset_path(__file__, BASE_PATH + "/common/media", filename)
+
 def wait_media_path(filename):
     '''
         :params filename: the name of the file
