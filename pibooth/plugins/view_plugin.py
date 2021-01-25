@@ -41,18 +41,18 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_enter(self, cfg, app, win):
         LOGGER.info("state_wait_enter")
-        if app.previous_animated:
-            previous_picture = next(app.previous_animated)
-            # Reset timeout in case of settings changed
-            self.animated_frame_timer.timeout = cfg.getfloat('WINDOW', 'animate_delay')
-            self.animated_frame_timer.start()
-        else:
-            previous_picture = app.previous_picture
-
-        win.show_intro(previous_picture, app.printer.is_available()
-                       and app.count.remaining_duplicates > 0)
-        if app.printer.is_installed():
-            win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
+        # if app.previous_animated:
+        #     previous_picture = next(app.previous_animated)
+        #     # Reset timeout in case of settings changed
+        #     self.animated_frame_timer.timeout = cfg.getfloat('WINDOW', 'animate_delay')
+        #     self.animated_frame_timer.start()
+        # else:
+        #     previous_picture = app.previous_picture
+        #
+        # win.show_intro(previous_picture, app.printer.is_available()
+        #                and app.count.remaining_duplicates > 0)
+        # if app.printer.is_installed():
+        #     win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
 
     @pibooth.hookimpl
     def state_wait_do(self, app, win, events):
@@ -84,8 +84,8 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_exit(self, win):
         LOGGER.info("state_wait_exit")
-        self.count = 0
-        win.show_image(None)  # Clear currently displayed image
+        #self.count = 0
+        #win.show_image(None)  # Clear currently displayed image
 
     @pibooth.hookimpl
     def state_choose_enter(self, app, win):
