@@ -8,6 +8,7 @@ from pgi import require_version
 from pibooth.view.scene import Scene
 from pibooth.view.scenes.choose import ChooseScene
 from pibooth.view.scenes.chosen import ChosenScene
+from pibooth.view.scenes.preview import PreviewScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
@@ -208,6 +209,14 @@ class GtkWindow(Gtk.Window):
             scene = ChosenScene(self.app, self.app.capture_nbr)
             self.push(scene)
             scene.startTimer()
+
+    def show_preview(self):
+        if self._capture_number == 1:
+            LOGGER.info("show_preview")
+            scene = PreviewScene(self.app)
+            self.push(scene)
+        else:
+            LOGGER.info("show_preview but no new scene")
 
     def set_capture_number(self, current_nbr, total_nbr):
         """Set the current number of captures taken.

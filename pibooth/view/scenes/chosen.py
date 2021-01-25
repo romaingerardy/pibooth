@@ -2,31 +2,32 @@ import threading
 
 from pgi import require_version
 
-from pibooth.view.scenes.paths import common_media_path, choose_media_path
+from pibooth.view.scenes.paths import choose_media_path, chosen_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk
 
 from pibooth.view.scene import Scene, Placement
-from pibooth.utils import LOGGER, PoolingTimer
+from pibooth.utils import LOGGER
 
-#import threading
 
 class ChosenScene(Scene):
     app = None
+
+    TIMEOUT = 3
 
     def __init__(self, app, choices):
         super(ChosenScene, self).__init__()
         LOGGER.info("new ChosenScene")
 
-        self.timer = PoolingTimer(10)
+        # self.timer = PoolingTimer(10)
 
         self.app = app
         self._setup(choices)
 
     def _setup(self, choice):
-        self.set_background(common_media_path('BG-Blank.png'),
-                            common_media_path('BG-Blank.png'))
+        self.set_background(chosen_media_path('BG-Chosen.png'),
+                            chosen_media_path('BG-Chosen.png'))
 
         LOGGER.info(choice)
 
@@ -38,16 +39,8 @@ class ChosenScene(Scene):
         )
 
     def startTimer(self):
-        #time.sleep(4)
-        t = threading.Timer(4, self._startPreview)
+        t = threading.Timer(self.TIMEOUT, self._startPreview)
         t.start()
-        #threading.Timer(5, lambda: self._startPreview).start()
-        #self.timer.start()
-        #while True:
-        #    if self.timer.is_timeout():
-        #        LOGGER.info("timeout")
-        #        break
-        #self._startPreview()
 
     def _startPreview(self):
         self.app.goToPreviewStep()

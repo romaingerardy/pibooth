@@ -18,20 +18,16 @@ def common_media_path(filename):
     return get_asset_path(__file__, BASE_PATH + "/common/media", filename)
 
 def wait_media_path(filename):
-    '''
-        :params filename: the name of the file
-        :type filename: str
-    '''
-
     return get_asset_path(__file__, BASE_PATH + "/wait/media", filename)
 
 def choose_media_path(filename):
-    '''
-        :params filename: the name of the file
-        :type filename: str
-    '''
-
     return get_asset_path(__file__, BASE_PATH + "/choose/media", filename)
+
+def chosen_media_path(filename):
+    return get_asset_path(__file__, BASE_PATH + "/chosen/media", filename)
+
+def preview_media_path(filename):
+    return get_asset_path(__file__, BASE_PATH + "/preview/media", filename)
 
 
 def get_asset_path(stage_path, directory, filename):
