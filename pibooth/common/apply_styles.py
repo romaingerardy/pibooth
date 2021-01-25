@@ -19,6 +19,7 @@ from common.common_paths import common_css_dir
 
 # Apply the general CSS files to the screen
 def apply_common_to_screen():
+    print("apply_common_to_screen")
     apply_colours_to_screen()
     apply_base_to_screen()
 
@@ -35,6 +36,7 @@ def apply_base_to_screen():
 
 # Apply the styling from a filename to the screen
 def apply_styling_to_screen(css_file, priority="USER"):
+    print("apply_styling_to_screen")
     css = Gtk.CssProvider()
 
     if not os.path.exists(css_file):
@@ -56,6 +58,7 @@ def apply_styling_to_screen(css_file, priority="USER"):
     elif priority == "USER":
         gtk_priority = Gtk.STYLE_PROVIDER_PRIORITY_USER
 
+    print(gtk_priority)
     styleContext.add_provider_for_screen(screen, css, gtk_priority)
 
 

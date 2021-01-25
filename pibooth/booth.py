@@ -200,6 +200,7 @@ class PiApplication(object):
     def main_loop(self):
         """Run the main game loop.
         """
+        LOGGER.info("main_loop")
         try:
             fps = 40
             #clock = pygame.time.Clock()
