@@ -16,7 +16,7 @@ class ChosenScene(Scene):
         super(ChosenScene, self).__init__()
         LOGGER.info("new ChosenScene")
 
-        self.timer = PoolingTimer(4)
+        self.timer = PoolingTimer(10)
 
         self.app = app
         self._setup(choices)
