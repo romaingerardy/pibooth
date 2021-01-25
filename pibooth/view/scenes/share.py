@@ -1,5 +1,6 @@
 from pgi import require_version
 
+from pibooth.common.buttons import OrangeButton
 from pibooth.view.scenes.paths import choose_media_path, share_media_path
 
 require_version('Gtk', '3.0')
@@ -27,5 +28,20 @@ class ShareScene(Scene):
             Gtk.Image.new_from_file(self.previous_picture),
             Placement(0.1, 0.71, 0.23),
             Placement(0.1, 0.71, 0.23)
+        )
+
+        # Add share buttons
+        print_button = OrangeButton('Imprimer')
+        quit_button = OrangeButton('Terminer')
+
+        self.add_widget(
+            print_button,
+            Placement(0.7, 0.7, 1),
+            Placement(0.7, 0.7, 1)
+        )
+        self.add_widget(
+            quit_button,
+            Placement(0.7, 0.8, 1),
+            Placement(0.7, 0.8, 1)
         )
 
