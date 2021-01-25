@@ -14,7 +14,7 @@ from pibooth import pictures, fonts
 from pibooth.view import background
 from pibooth.utils import LOGGER
 from pibooth.pictures import sizing
-
+from common.apply_styles import apply_styling_to_screen
 
 class GtkWindow(Gtk.Window):
 
@@ -53,7 +53,7 @@ class GtkWindow(Gtk.Window):
         self._to_id_counter = 0
         self._timeouts = []
 
-        #apply_common_to_screen()
+        apply_common_to_screen()
         #apply_styling_to_screen(init_flow_css_path('scene.css'))
 
         self.set_decorated(False)

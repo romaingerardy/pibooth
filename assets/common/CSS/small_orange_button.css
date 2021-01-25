@@ -1,0 +1,41 @@
+/**
+ * small_orange_button.css
+ *
+ * Copyright (C) 2014 - 2018 Kano Computing Ltd.
+ * License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+ *
+ * The main button that updates the changes made in each level
+ */
+
+
+.small_orange_button {
+    background: transparent;
+    padding: 0px;
+}
+
+.small_orange_button label {
+    color: @kano_orange;
+    font-family: Bariol Bold;
+    font-size: 13px;
+}
+
+.small_orange_button label:disabled {
+    color: @kano_grey;
+    background: transparent;
+}
+
+.small_orange_button:hover {
+    background: transparent;
+}
+
+buttonbox .small_orange_button {
+    background: transparent;
+    border-color: transparent;
+    padding: 0px;
+}
+
+buttonbox .small_orange_button:hover {
+    background: transparent;
+    border-color: transparent;
+    padding: 0px;
+}

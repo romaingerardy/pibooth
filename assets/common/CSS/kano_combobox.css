@@ -1,0 +1,71 @@
+/**
+ * kano_combobox.css
+ *
+ * Copyright (C) 2014 - 2018 Kano Computing Ltd.
+ * License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+ *
+ * Combo-box styling
+ */
+
+
+menuitem.KanoComboBox, menuitem.KanoComboBox.up_button, menuitem.KanoComboBox.down_button {
+    background: #ffffff;
+    border-width: 2px;
+    border-color: @active_border;
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+
+menuitem.KanoComboBox {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+menuitem.KanoComboBox.up_button {
+    border-top-style: solid;
+    border-bottom-style: none;
+}
+
+menuitem.KanoComboBox.down_button {
+    border-top-style: none;
+    border-bottom-style: solid;
+}
+
+menuitem.KanoComboBox label {
+    color: @active_writing;
+    font-family: Bariol;
+    font-size: 14pt;
+}
+
+menuitem.KanoComboBox:hover {
+    background: @kano_green;
+    color: #ffffff;
+}
+
+/* These control the arrow button styling */
+imagemenuitem.KanoComboBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+imagemenuitem.KanoComboBox:hover {
+    background: @kano_green;
+}
+
+button.KanoComboBox {
+    background: #ffffff;
+    border-color: @active_border;
+    border-style: solid;
+    border-width: 2px;
+    border-radius:3px;
+    padding: 9px;
+}
+
+button.KanoComboBox label {
+    color: @active_writing;
+    font-family: Bariol;
+    font-size: 14pt;
+}

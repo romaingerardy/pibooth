@@ -1,0 +1,39 @@
+/**
+ * kano_progress.css
+ *
+ * Copyright (C) 2014 - 2018 Kano Computing Ltd.
+ * License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+ *
+ * Progress bar styling
+ */
+
+
+* {
+    -GtkProgressBar-min-horizontal-bar-height: 30;
+    -GtkProgressBar-min-vertical-bar-width: 60;
+}
+
+progressbar.KanoProgressBar {
+    border-style: solid;
+    border-color: #dddddd;
+    border-width: 3px;
+    border-radius: 3px;
+}
+
+/* background bar */
+progressbar.KanoProgressBar trough {
+    background: #ffffff;
+}
+
+/* Moving part*/
+progressbar.KanoProgressBar progress {
+    background: @kano_green;
+    border-radius: 3px;
+    border-color: transparent;
+}
+
+label.KanoProgressBar {
+    font-family: Bariol Bold;
+    font-size: 15pt;
+    color: @active_writing;
+}

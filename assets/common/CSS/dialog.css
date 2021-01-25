@@ -1,0 +1,60 @@
+/**
+ * dialog.css
+ *
+ * Copyright (C) 2014 - 2018 Kano Computing Ltd.
+ * License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+ *
+ * This controls the dialog style
+ */
+
+dialog {
+    background: #e7e7e7;
+}
+
+.white {
+    color: #ffffff;
+    background: #ffffff;
+}
+
+.grey {
+    background: #e5e5e5;
+}
+
+entry {
+    border-color: @active_border;
+    color: @active_writing;
+    border-style: solid;
+    border-width: 2px;
+    border-radius:3px;
+    padding: 10px;
+    font-family: Bariol;
+    font-size: 13pt;
+}
+
+
+checkbutton,
+radiobutton {
+    border-style: solid;
+    border-color: @active_border;
+    border-width: 2px;
+    font-family: Bariol;
+    font-size: 13pt;
+    background: #ffffff;
+}
+
+/**
+ * Do we want this?
+ */
+checkbutton:active,
+radiobutton:active {
+    color: @kano_green;
+}
+
+checkbutton:hover {
+    background: transparent;
+}
+
+radiobutton
+label {
+    color: @active_writing;
+}
