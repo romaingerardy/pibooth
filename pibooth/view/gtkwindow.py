@@ -120,6 +120,8 @@ class GtkWindow(Gtk.Window):
             print("Emergency exiting the init flow")
             # self._ctl.complete()
             Gtk.main_quit()
+        else:
+            Gtk.main_quit()
 
     def drop_cache(self):
         """Drop all cached background and foreground to force
@@ -135,3 +137,15 @@ class GtkWindow(Gtk.Window):
         LOGGER.error("OOPS !! erreur")
         #self._capture_number = (0, self._capture_number[1])
         #self._update_background(background.OopsBackground())
+
+    def show_intro(self, pil_image=None, with_print=True):
+        """Show introduction view.
+        """
+        LOGGER.info("show_intro")
+
+
+    def show_image(self, pil_image=None, pos=CENTER):
+        """Show PIL image as it (no resize).
+        """
+        LOGGER.info("show_image")
+
