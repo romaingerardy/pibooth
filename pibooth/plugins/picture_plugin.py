@@ -112,17 +112,17 @@ class PicturePlugin(object):
                     capture.save(img_path)
 
                 # Color Filtering...
-                for capture in captures:
-                    count = captures.index(capture)
-                    filter_count = 1
-                    for filterName in cfg.gettyped('FILTERS', 'filters_list'):
-                        print("Filter " + filterName)
-                        filter_controller.doFilter(filterName, capture,
-                                                   osp.join(rawdir, "pibooth{:03}-f{}.jpg".format(count, filter_count)))
-                        filter_count = filter_count + 1
-                        if filter_count > 3 :
-                            break # 3 filters max allowed
-                    break # Only preview on the first picture for performance
+                #for capture in captures:
+                #    count = captures.index(capture)
+                #    filter_count = 1
+                #    for filterName in cfg.gettyped('FILTERS', 'filters_list'):
+                #        print("Filter " + filterName)
+                #        filter_controller.doFilter(filterName, capture,
+                #                                   osp.join(rawdir, "pibooth{:03}-f{}.jpg".format(count, filter_count)))
+                #        filter_count = filter_count + 1
+                #        if filter_count > 3 :
+                #            break # 3 filters max allowed
+                #    break # Only preview on the first picture for performance
 
         with timeit("Creating the final picture"):
             default_factory = get_picture_factory(captures, cfg.get('PICTURE', 'orientation'))
