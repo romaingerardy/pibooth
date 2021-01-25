@@ -129,8 +129,8 @@ class PiApplication(object):
                                    printer="BOARD" + config.get('CONTROLS', 'print_btn_pin'),
                                    hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=True)
-        self.buttons.capture.when_held = self._on_button_capture_held
-        self.buttons.printer.when_held = self._on_button_printer_held
+        #self.buttons.capture.when_held = self._on_button_capture_held
+        #self.buttons.printer.when_held = self._on_button_printer_held
 
         self.leds = LEDBoard(capture="BOARD" + config.get('CONTROLS', 'picture_led_pin'),
                              printer="BOARD" + config.get('CONTROLS', 'print_led_pin'))
