@@ -149,3 +149,6 @@ class GtkWindow(Gtk.Window):
         """
         LOGGER.info("show_image")
 
+    @property
+    def return_value(self):
+        return 1#self._ctl.return_value
