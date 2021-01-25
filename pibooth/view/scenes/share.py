@@ -1,6 +1,6 @@
 from pgi import require_version
 
-from pibooth.common.buttons import OrangeButton
+#from pibooth.common.buttons import OrangeButton
 from pibooth.view.scenes.paths import share_media_path
 
 require_version('Gtk', '3.0')
@@ -31,4 +31,4 @@ class ShareScene(Scene):
         )
 
         # Add share buttons
-        
+
