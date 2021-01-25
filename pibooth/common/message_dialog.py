@@ -1,7 +1,7 @@
-import gi
+import pgi
 
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+pgi.require_version("Gtk", "3.0")
+from pgi.repository import Gtk
 
 
 class MessageDialog(Gtk.Window):
