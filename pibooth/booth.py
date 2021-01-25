@@ -239,6 +239,11 @@ class PiApplication(object):
         """
         return None
 
+    def goToWaitStep(self):
+        LOGGER.info("goToWaitStep")
+        self._machine.set_state('wait')
+        self._machine.process(None)
+
     def goToChooseStep(self):
         LOGGER.info("goToChooseStep")
         self._machine.set_state('choose')
@@ -280,8 +285,9 @@ class PiApplication(object):
             self._initialize()
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
 
-            self._machine.set_state('wait')
-            self._machine.process(None)
+            self.goToWaitStep()
+            #self._machine.set_state('wait')
+            #self._machine.process(None)
 
             self._window.show_all()
             Gtk.main()

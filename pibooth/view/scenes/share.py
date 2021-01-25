@@ -34,7 +34,7 @@ class ShareScene(Scene):
         print_button = Gtk.Button.new_with_label("Imprimer")
         #print_button.connect("clicked", self.on_click_me_clicked)
         quit_button = Gtk.Button.new_with_label("Terminer")
-        #quit_button.connect("clicked", self.on_click_me_clicked)
+        #quit_button.connect("clicked", self.on_click_quit)
 
 
         #print_button = OrangeButton('Imprimer')
@@ -49,3 +49,7 @@ class ShareScene(Scene):
             Placement(0.7, 0.8, 1),
             Placement(0.7, 0.8, 1)
         )
+
+    def on_click_quit(self):
+        # Go to wait screen
+        self.app.goToWaitStep()
