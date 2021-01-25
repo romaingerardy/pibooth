@@ -38,7 +38,8 @@ from pibooth.view import GtkWindow
 from pibooth.config import PiConfigParser
 from pibooth import camera
 # from pibooth.fonts import get_available_fonts
-from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
+#from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
+from pibooth.printer import Printer
 
 
 # Set the default pin factory to a mock factory if pibooth is not started a Raspberry Pi
