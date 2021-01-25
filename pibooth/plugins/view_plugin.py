@@ -40,6 +40,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_wait_enter(self, cfg, app, win):
+        LOGGER.info("state_wait_enter")
         if app.previous_animated:
             previous_picture = next(app.previous_animated)
             # Reset timeout in case of settings changed
@@ -55,24 +56,26 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_wait_do(self, app, win, events):
-        if app.previous_animated and self.animated_frame_timer.is_timeout():
-            previous_picture = next(app.previous_animated)
-            win.show_intro(previous_picture, app.printer.is_available()
-                           and app.count.remaining_duplicates > 0)
-            self.animated_frame_timer.start()
-        else:
-            previous_picture = app.previous_picture
-
-        event = app.find_print_status_event(events)
-        if event and app.printer.is_installed():
-            win.set_print_number(len(event.tasks), not app.printer.is_available())
-
-        if app.find_print_event(events) or (win.get_image() and not previous_picture):
-            win.show_intro(previous_picture, app.printer.is_available()
-                           and app.count.remaining_duplicates > 0)
+        LOGGER.info("state_wait_do")
+        # if app.previous_animated and self.animated_frame_timer.is_timeout():
+        #     previous_picture = next(app.previous_animated)
+        #     win.show_intro(previous_picture, app.printer.is_available()
+        #                    and app.count.remaining_duplicates > 0)
+        #     self.animated_frame_timer.start()
+        # else:
+        #     previous_picture = app.previous_picture
+        #
+        # event = app.find_print_status_event(events)
+        # if event and app.printer.is_installed():
+        #     win.set_print_number(len(event.tasks), not app.printer.is_available())
+        #
+        # if app.find_print_event(events) or (win.get_image() and not previous_picture):
+        #     win.show_intro(previous_picture, app.printer.is_available()
+        #                    and app.count.remaining_duplicates > 0)
 
     @pibooth.hookimpl
     def state_wait_validate(self, app, events):
+        LOGGER.info("state_wait_validate")
         if app.find_capture_event(events):
             if len(app.capture_choices) > 1:
                 return 'choose'
@@ -80,6 +83,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_wait_exit(self, win):
+        LOGGER.info("state_wait_exit")
         self.count = 0
         win.show_image(None)  # Clear currently displayed image
 
