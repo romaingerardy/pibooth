@@ -177,7 +177,7 @@ class GtkWindow(Gtk.Window):
         """Show failure view in case of exception.
         """
         LOGGER.error("OOPS !! erreur")
-        # self._capture_number = (0, self._capture_number[1])
+        self._capture_number = (0, self._capture_number[1])
         # self._update_background(background.OopsBackground())
 
     def show_intro(self, pil_image=None, with_print=True):
@@ -208,6 +208,16 @@ class GtkWindow(Gtk.Window):
             scene = ChosenScene(self.app, self.app.capture_nbr)
             self.push(scene)
             scene.startTimer()
+
+    def set_capture_number(self, current_nbr, total_nbr):
+        """Set the current number of captures taken.
+        """
+        if total_nbr < 1:
+            raise ValueError("Total number of captures shall be greater than 0")
+
+        self._capture_number = (current_nbr, total_nbr)
+
+        LOGGER.info("Capture number " + str(self._capture_number))
 
     @property
     def return_value(self):
