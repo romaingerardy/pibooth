@@ -17,8 +17,8 @@ class WaitScene(Scene):
         self._setup()
 
     def _setup(self):
-        self.set_background(wait_media_path('blueprint-bg-4-3.png'),
-                            wait_media_path('blueprint-bg-16-9.png'))
+        self.set_background(wait_media_path('BG-Start.png'),
+                            wait_media_path('BG-Start.png'))
 
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
