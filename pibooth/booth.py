@@ -44,6 +44,7 @@ from pibooth.printer import Printer
 GPIO_INFO = "on Raspberry pi 3B+"
 
 
+# !!! This code cause segmentation fault randomly !!!
 # Set the default pin factory to a mock factory if pibooth is not started a Raspberry Pi
 # try:
 #    filterwarnings("ignore", category=PinFactoryFallback)
