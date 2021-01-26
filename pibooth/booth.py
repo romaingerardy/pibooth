@@ -3,11 +3,16 @@
 
 """Pibooth main module.
 """
-import faulthandler; faulthandler.enable()
+import faulthandler;
+
+from pibooth.fonts import get_available_fonts
+
+faulthandler.enable()
 
 from pgi import require_version
+
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk, GObject
+from pgi.repository import Gtk
 
 import os
 import os.path as osp
@@ -17,15 +22,11 @@ import shutil
 import logging
 import argparse
 import multiprocessing
-from warnings import filterwarnings
 
-from gpiozero import Device, ButtonBoard, LEDBoard, pi_info
-from gpiozero.exc import BadPinFactory, PinFactoryFallback
-
+# from gpiozero import ButtonBoard, LEDBoard
 
 HERE = osp.abspath(osp.dirname('../'))
 sys.path.insert(0, HERE)
-
 
 import pibooth
 from pibooth import fonts
@@ -36,25 +37,26 @@ from pibooth.utils import (LOGGER, PoolingTimer, configure_logging, get_crash_me
 from pibooth.states import StateMachine
 from pibooth.plugins import create_plugin_manager, load_plugins, list_plugin_names
 from pibooth.view import GtkWindow
-from pibooth.view import dialog
 from pibooth.config import PiConfigParser
 from pibooth import camera
 # from pibooth.fonts import get_available_fonts
-#from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
+# from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 from pibooth.printer import Printer
+
+GPIO_INFO = "on Raspberry pi 3B+"
 
 
 # Set the default pin factory to a mock factory if pibooth is not started a Raspberry Pi
-try:
-    filterwarnings("ignore", category=PinFactoryFallback)
-    GPIO_INFO = "on Raspberry pi {0}".format(pi_info().model)
-except BadPinFactory:
-    from gpiozero.pins.mock import MockFactory
-    Device.pin_factory = MockFactory()
-    GPIO_INFO = "without physical GPIO, fallback to GPIO mock"
+# try:
+#    filterwarnings("ignore", category=PinFactoryFallback)
+#    GPIO_INFO = "on Raspberry pi {0}".format(pi_info().model)
+# except BadPinFactory:
+#    from gpiozero.pins.mock import MockFactory
+#    Device.pin_factory = MockFactory()
+#    GPIO_INFO = "without physical GPIO, fallback to GPIO mock"
 
 
-#BUTTONDOWN = pygame.USEREVENT + 1
+# BUTTONDOWN = pygame.USEREVENT + 1
 
 
 class PiApplication(object):
@@ -72,7 +74,7 @@ class PiApplication(object):
 
         # Prepare the pygame module for use
         os.environ['SDL_VIDEO_CENTERED'] = '1'
-        #pygame.init()
+        # pygame.init()
 
         # Create window of (width, height)
         init_size = self._config.gettyped('WINDOW', 'size')
@@ -127,15 +129,15 @@ class PiApplication(object):
                                         config.getboolean('CAMERA', 'flip'),
                                         config.getboolean('CAMERA', 'delete_internal_memory'))
 
-        self.buttons = ButtonBoard(capture="BOARD" + config.get('CONTROLS', 'picture_btn_pin'),
-                                   printer="BOARD" + config.get('CONTROLS', 'print_btn_pin'),
-                                   hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
-                                   pull_up=True)
-        #self.buttons.capture.when_held = self._on_button_capture_held
-        #self.buttons.printer.when_held = self._on_button_printer_held
+        # self.buttons = ButtonBoard(capture="BOARD" + config.get('CONTROLS', 'picture_btn_pin'),
+        #                           printer="BOARD" + config.get('CONTROLS', 'print_btn_pin'),
+        #                           hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
+        #                           pull_up=True)
+        # self.buttons.capture.when_held = self._on_button_capture_held
+        # self.buttons.printer.when_held = self._on_button_printer_held
 
-        self.leds = LEDBoard(capture="BOARD" + config.get('CONTROLS', 'picture_led_pin'),
-                             printer="BOARD" + config.get('CONTROLS', 'print_led_pin'))
+        # self.leds = LEDBoard(capture="BOARD" + config.get('CONTROLS', 'picture_led_pin'),
+        #                     printer="BOARD" + config.get('CONTROLS', 'print_led_pin'))
 
         self.printer = Printer(config.get('PRINTER', 'printer_name'),
                                config.getint('PRINTER', 'max_pages'),
@@ -171,10 +173,10 @@ class PiApplication(object):
 
         # Handle window size
         size = self._config.gettyped('WINDOW', 'size')
-        #if isinstance(size, str) and size.lower() == 'fullscreen':
+        # if isinstance(size, str) and size.lower() == 'fullscreen':
         #    if not self._window.is_fullscreen:
         #        self._window.toggle_fullscreen()
-        #else:
+        # else:
         #    if self._window.is_fullscreen:
         #        self._window.toggle_fullscreen()
         self._window.debug = self._config.getboolean('GENERAL', 'debug')
@@ -190,7 +192,6 @@ class PiApplication(object):
         # Reset the print counter (in case of max_pages is reached)
         self.printer.max_pages = self._config.getint('PRINTER', 'max_pages')
 
-
     @property
     def picture_filename(self):
         """Return the final picture file name.
@@ -198,7 +199,6 @@ class PiApplication(object):
         if not self.capture_date:
             raise EnvironmentError("The 'capture_date' attribute is not set yet")
         return "{}_pibooth.jpg".format(self.capture_date)
-
 
     def find_quit_event(self, events):
         """Return the first found event if found in the list.
@@ -282,7 +282,7 @@ class PiApplication(object):
         LOGGER.info("main_loop")
         try:
             fps = 40
-            #clock = pygame.time.Clock()
+            # clock = pygame.time.Clock()
             self._initialize()
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
 
@@ -301,7 +301,7 @@ class PiApplication(object):
             LOGGER.error(get_crash_message())
         finally:
             self._pm.hook.pibooth_cleanup(app=self)
-            #pygame.quit()
+            # pygame.quit()
 
 
 def main():
@@ -385,3 +385,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# def integrate_faulthandler():
+#    import faulthandler, signal
+#    fout = file('/var/canvas/website/run/faulthandler.log', 'a')
+#    faulthandler.register(signal.SIGUSR2, file=fout)
