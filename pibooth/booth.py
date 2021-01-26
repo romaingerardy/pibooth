@@ -287,10 +287,10 @@ class PiApplication(object):
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
 
             self._window.show_all()
-            Gtk.main()
 
             self.goToWaitStep()
 
+            Gtk.main()
 
             sys.exit(self._window.return_value)
 
