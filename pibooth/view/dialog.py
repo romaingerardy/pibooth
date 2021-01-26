@@ -5,6 +5,9 @@
 
 from pgi import require_version
 
+from pibooth.utils import LOGGER
+from pibooth.view import background
+
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, Gdk
 
@@ -20,10 +23,26 @@ class MyDialog(Gtk.Window):
 
     app = None
 
-    def __init__(self, app):
+    def __init__(self, app,
+                 title,
+                 size=(800, 480),
+                 color=(0, 0, 0),
+                 text_color=(255, 255, 255),
+                 arrow_location=background.ARROW_BOTTOM,
+                 arrow_offset=0,
+                 debug=False):
+
         super(MyDialog, self).__init__()
 
+        LOGGER.info("MyDialog")
+
         self.app = app
+        self.__size = size
+        self.debug = debug
+        self.bg_color = color
+        self.text_color = text_color
+        self.arrow_location = arrow_location
+        self.arrow_offset = arrow_offset
 
         self.connect("delete-event", Gtk.main_quit)
         self._child = None
