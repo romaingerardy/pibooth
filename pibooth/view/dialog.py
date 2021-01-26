@@ -9,6 +9,12 @@ from pibooth.common.apply_styles import apply_common_to_screen
 from pibooth.utils import LOGGER
 from pibooth.view import background
 from pibooth.view.scene import Scene
+from pibooth.view.scenes.choose import ChooseScene
+from pibooth.view.scenes.chosen import ChosenScene
+from pibooth.view.scenes.preview import PreviewScene
+from pibooth.view.scenes.processing import ProcessingScene
+from pibooth.view.scenes.share import ShareScene
+from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk, GLib, Gdk
@@ -170,6 +176,72 @@ class MyDialog(Gtk.Window):
         self._current_background = None
         self._current_foreground = None
         self._buffered_images = {}
+
+    def show_oops(self):
+        """Show failure view in case of exception.
+        """
+        LOGGER.error("OOPS !! erreur")
+        self._capture_number = (0, self._capture_number[1])
+        # self._update_background(background.OopsBackground())
+
+    def show_intro(self, pil_image=None, with_print=True):
+        """Show introduction view.
+        """
+        LOGGER.info("show_intro")
+        scene = WaitScene(self.app)
+        self.push(scene)
+
+    def show_image(self, pil_image=None, pos=CENTER):
+        """Show PIL image as it (no resize).
+        """
+        LOGGER.info("show_image")
+
+    def show_choice(self, choices, selected=None):
+        """Show the choice view.
+        """
+        LOGGER.info("show_choice")
+
+        self._capture_number = (0, self._capture_number[1])
+
+        if not selected:
+            LOGGER.info("show_choice not selected")
+            scene = ChooseScene(self.app, choices)
+            self.push(scene)
+        else:
+            LOGGER.info("show_choice selected")
+            scene = ChosenScene(self.app, self.app.capture_nbr)
+            self.push(scene)
+            scene.startTimer()
+
+    def show_preview(self):
+        if self._capture_number and self._capture_number[0] == 1:
+            LOGGER.info("show_preview")
+            scene = PreviewScene(self.app)
+            self.preview_scene = scene
+            self.push(self.preview_scene)
+
+        else:
+            LOGGER.info("show_preview but no new scene")
+
+    def show_work_in_progress(self):
+        LOGGER.info("show_work_in_progress")
+        scene = ProcessingScene(self.app)
+        self.push(scene)
+
+    def show_print(self, previous_picture):
+        LOGGER.info("show_print")
+        scene = ShareScene(self.app, previous_picture)
+        self.push(scene)
+
+    def set_capture_number(self, current_nbr, total_nbr):
+        """Set the current number of captures taken.
+        """
+        if total_nbr < 1:
+            raise ValueError("Total number of captures shall be greater than 0")
+
+        self._capture_number = (current_nbr, total_nbr)
+
+        LOGGER.info("Capture number " + str(self._capture_number))
 
     @property
     def return_value(self):
