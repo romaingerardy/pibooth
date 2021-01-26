@@ -196,43 +196,6 @@ class MyDialog(Gtk.Window):
         """
         LOGGER.info("show_image")
 
-    def show_choice(self, choices, selected=None):
-        """Show the choice view.
-        """
-        LOGGER.info("show_choice")
-
-        self._capture_number = (0, self._capture_number[1])
-
-        if not selected:
-            LOGGER.info("show_choice not selected")
-            scene = ChooseScene(self.app, choices)
-            self.push(scene)
-        else:
-            LOGGER.info("show_choice selected")
-            scene = ChosenScene(self.app, self.app.capture_nbr)
-            self.push(scene)
-            scene.startTimer()
-
-    def show_preview(self):
-        if self._capture_number and self._capture_number[0] == 1:
-            LOGGER.info("show_preview")
-            scene = PreviewScene(self.app)
-            self.preview_scene = scene
-            self.push(self.preview_scene)
-
-        else:
-            LOGGER.info("show_preview but no new scene")
-
-    def show_work_in_progress(self):
-        LOGGER.info("show_work_in_progress")
-        scene = ProcessingScene(self.app)
-        self.push(scene)
-
-    def show_print(self, previous_picture):
-        LOGGER.info("show_print")
-        scene = ShareScene(self.app, previous_picture)
-        self.push(scene)
-
 
     @property
     def return_value(self):
