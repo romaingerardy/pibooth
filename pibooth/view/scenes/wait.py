@@ -27,7 +27,8 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
             Placement(0.9, 0.9, 1),
-            Placement(0.9, 0.9, 1)
+            Placement(0.9, 0.9, 1),
+            self._shutdown
         )
 
         self.add_widget(
