@@ -290,7 +290,9 @@ class PiApplication(object):
 
             self.goToWaitStep()
 
+            LOGGER.info("Will Gtk.main()")
             Gtk.main()
+            LOGGER.info("Done Gtk.main()")
 
             sys.exit(self._window.return_value)
 
