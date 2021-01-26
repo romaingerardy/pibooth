@@ -286,7 +286,7 @@ class PiApplication(object):
             self._initialize()
             self._pm.hook.pibooth_startup(cfg=self._config, app=self)
 
-            #self.goToWaitStep()
+            self.goToWaitStep()
 
             self._window.show_all()
             Gtk.main()
