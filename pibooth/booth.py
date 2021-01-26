@@ -5,7 +5,7 @@
 """
 import faulthandler;
 
-from pibooth.fonts import get_available_fonts
+
 
 faulthandler.enable()
 
@@ -42,6 +42,7 @@ from pibooth import camera
 # from pibooth.fonts import get_available_fonts
 # from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 from pibooth.printer import Printer
+from pibooth.fonts import get_available_fonts
 
 GPIO_INFO = "on Raspberry pi 3B+"
 
