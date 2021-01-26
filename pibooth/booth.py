@@ -42,6 +42,7 @@ from pibooth import camera
 #from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 from pibooth.printer import Printer
 
+from pibooth.common.buttons import OrangeButton
 
 # Set the default pin factory to a mock factory if pibooth is not started a Raspberry Pi
 try:
