@@ -41,6 +41,7 @@ class GtkWindow(Gtk.Window):
                  arrow_offset=0,
                  debug=False):
 
+        LOGGER.info("GtkWindow before")
         super(GtkWindow, self).__init__()
 
         LOGGER.info("GtkWindow")
@@ -190,7 +191,9 @@ class GtkWindow(Gtk.Window):
         """
         LOGGER.info("show_intro")
         scene = WaitScene(self.app)
+        LOGGER.info("scene")
         self.push(scene)
+        LOGGER.info("pushed")
 
     def show_image(self, pil_image=None, pos=CENTER):
         """Show PIL image as it (no resize).
