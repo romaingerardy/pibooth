@@ -8,6 +8,9 @@ class MessageDialog(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="MessageDialog Example")
 
+        self.unfullscreen()
+        self.resize(400, 700)
+
         box = Gtk.Box(spacing=6)
         self.add(box)
 
