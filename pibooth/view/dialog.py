@@ -7,9 +7,10 @@ from pgi import require_version
 
 from pibooth.utils import LOGGER
 from pibooth.view import background
+from pibooth.view.scene import Scene
 
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk, Gdk
+from pgi.repository import Gtk, GLib, Gdk
 
 
 class MyDialog(Gtk.Window):
@@ -97,13 +98,39 @@ class MyDialog(Gtk.Window):
         debug_button.connect('button-release-event', Gtk.main_quit)
         overlay.add_overlay(debug_button)
 
-    # def push(self, child):
-    #    GLib.idle_add(self._do_push, child)
+    def push(self, child):
+        GLib.idle_add(self._do_push, child)
 
     def set_print_number(self, current_nbr=None, failure=None):
         """Set the current number of tasks in the printer queue.
         """
         LOGGER.info("set_print_number no code...")
+
+    def _do_push(self, child):
+        # Cleans up any pending scheduled events
+        for i, src in enumerate(self._timeouts):
+            del self._timeouts[i]
+            # print GLib.source_remove_by_funcs_user_data(src.source_funcs,
+            #                                            src.callback_data)
+            # src.destroy()
+            # if not src.is_destroyed():
+            #    GLib.source_remove(src.get_id())
+
+        if issubclass(child.__class__, Scene):
+            for event in child.scheduled_events:
+                self.schedule_event(event)
+
+            child.set_active()
+            child = child.widget
+
+        if self._child:
+            self._container.remove(self._child)
+            self._child.destroy()
+
+        self._child = child
+        self._container.add(child)
+        child.show_all()
+        return False
 
     def _key_emergency_exit(self, widget, event):
         if (hasattr(event, 'keyval') and
