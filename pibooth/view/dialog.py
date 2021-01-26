@@ -5,6 +5,7 @@
 
 from pgi import require_version
 
+from pibooth.common.apply_styles import apply_common_to_screen
 from pibooth.utils import LOGGER
 from pibooth.view import background
 from pibooth.view.scene import Scene
@@ -62,7 +63,7 @@ class MyDialog(Gtk.Window):
 
         self.preview_scene = None
 
-        # apply_common_to_screen()
+        apply_common_to_screen()
         # apply_styling_to_screen(init_flow_css_path('scene.css'))
 
         self.set_decorated(False)
