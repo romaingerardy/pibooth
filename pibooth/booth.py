@@ -3,7 +3,7 @@
 
 """Pibooth main module.
 """
-import faulthandler; faulthandler.enable()
+#import faulthandler; faulthandler.enable()
 
 from pgi import require_version
 require_version('Gtk', '3.0')
@@ -36,7 +36,7 @@ from pibooth.utils import (LOGGER, PoolingTimer, configure_logging, get_crash_me
 from pibooth.states import StateMachine
 from pibooth.plugins import create_plugin_manager, load_plugins, list_plugin_names
 from pibooth.view import GtkWindow
-from pibooth.view import message_dialog
+#from pibooth.view import message_dialog
 from pibooth.config import PiConfigParser
 from pibooth import camera
 # from pibooth.fonts import get_available_fonts
@@ -290,6 +290,12 @@ class PiApplication(object):
 
             self.goToWaitStep()
 
+            LOGGER.info("Will Gtk.main()")
+            Gtk.main()
+            LOGGER.info("Done Gtk.main()")
+
+            sys.exit(self._window.return_value)
+
         except Exception as ex:
             LOGGER.error(str(ex), exc_info=True)
             LOGGER.error(get_crash_message())
@@ -379,8 +385,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    LOGGER.info("Will Gtk.main()")
-    Gtk.main()
-    LOGGER.info("Done Gtk.main()")
-
-    #sys.exit(self._window.return_value)
