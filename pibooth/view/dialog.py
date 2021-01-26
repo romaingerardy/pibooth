@@ -44,6 +44,11 @@ class MyDialog(Gtk.Window):
         self.arrow_location = arrow_location
         self.arrow_offset = arrow_offset
 
+        self._print_number = 0
+        self._print_failure = False
+        self._capture_number = (0, 4)  # (current, max)
+
+        # self._ctl = DesktopController(self)
         self.connect("delete-event", Gtk.main_quit)
         self._child = None
 
@@ -53,6 +58,11 @@ class MyDialog(Gtk.Window):
 
         self._to_id_counter = 0
         self._timeouts = []
+
+        self.preview_scene = None
+
+        # apply_common_to_screen()
+        # apply_styling_to_screen(init_flow_css_path('scene.css'))
 
         self.set_decorated(False)
 
@@ -69,6 +79,69 @@ class MyDialog(Gtk.Window):
         self._container = overlay
         self._container.set_halign(Gtk.Align.CENTER)
         self._container.set_valign(Gtk.Align.CENTER)
+
+        emergency_exit = Gtk.EventBox()
+        emergency_exit.set_halign(Gtk.Align.START)
+        emergency_exit.set_valign(Gtk.Align.START)
+        emergency_exit.set_size_request(20, 20)
+        emergency_exit.connect('button-release-event', self._emergency_exit_cb)
+        overlay.add_overlay(emergency_exit)
+
+        self.connect('key-release-event', self._key_emergency_exit)
+        self.connect('key-release-event', self._key_skip_stage)
+
+        debug_button = Gtk.EventBox()
+        debug_button.add(Gtk.Label('Fermer'))
+        debug_button.set_halign(Gtk.Align.END)
+        debug_button.set_valign(Gtk.Align.START)
+        debug_button.connect('button-release-event', Gtk.main_quit)
+        overlay.add_overlay(debug_button)
+
+    # def push(self, child):
+    #    GLib.idle_add(self._do_push, child)
+
+    def set_print_number(self, current_nbr=None, failure=None):
+        """Set the current number of tasks in the printer queue.
+        """
+        LOGGER.info("set_print_number no code...")
+
+    def _key_emergency_exit(self, widget, event):
+        if (hasattr(event, 'keyval') and
+                event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
+                event.state & Gdk.ModifierType.SHIFT_MASK and
+                event.state & Gdk.ModifierType.CONTROL_MASK):
+            self._emergency_exit_cb(widget)
+
+        return False
+
+    def _key_skip_stage(self, widget, event):
+        if (hasattr(event, 'keyval') and
+                event.keyval in [Gdk.KEY_N, Gdk.KEY_n] and
+                event.state & Gdk.ModifierType.SHIFT_MASK and
+                event.state & Gdk.ModifierType.CONTROL_MASK):
+            LOGGER.info("Next Stage...")
+            # self._ctl.next_stage()
+
+    def _emergency_exit_cb(self, widget, data=None):
+        self._emergency_counter += 1
+        msg = "Emergency button pressed {}x".format(self._emergency_counter)
+        # logger.warn(msg)
+        print(msg)
+        if self._emergency_counter >= self.EMERGENCY_EXIT_CLICKS:
+            # logger.warn("Emergency exiting the init flow")
+            print("Emergency exiting the init flow")
+            # self._ctl.complete()
+            Gtk.main_quit()
+        else:
+            Gtk.main_quit()
+
+    def drop_cache(self):
+        """Drop all cached background and foreground to force
+        refreshing the view.
+        """
+        self._current_background = None
+        self._current_foreground = None
+        self._buffered_images = {}
 
     @property
     def return_value(self):
