@@ -40,7 +40,6 @@ from pibooth import camera
 from pibooth.fonts import get_available_fonts
 # from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 from pibooth.printer import Printer
-from pibooth.view import message_dialog
 
 GPIO_INFO = "on Raspberry pi 3B+"
 
