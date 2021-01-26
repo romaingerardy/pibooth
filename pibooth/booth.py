@@ -3,7 +3,7 @@
 
 """Pibooth main module.
 """
-#import faulthandler; faulthandler.enable()
+import faulthandler; faulthandler.enable()
 
 from pgi import require_version
 require_version('Gtk', '3.0')
