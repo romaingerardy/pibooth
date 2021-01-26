@@ -290,12 +290,6 @@ class PiApplication(object):
 
             self.goToWaitStep()
 
-            LOGGER.info("Will Gtk.main()")
-            Gtk.main()
-            LOGGER.info("Done Gtk.main()")
-
-            sys.exit(self._window.return_value)
-
         except Exception as ex:
             LOGGER.error(str(ex), exc_info=True)
             LOGGER.error(get_crash_message())
@@ -385,3 +379,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+    LOGGER.info("Will Gtk.main()")
+    Gtk.main()
+    LOGGER.info("Done Gtk.main()")
+
+    #sys.exit(self._window.return_value)
