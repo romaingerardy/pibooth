@@ -8,15 +8,12 @@
 #
 
 import os
-import sys
 
 from pgi import require_version
 require_version('Gtk', '3.0')
 
 from pgi.repository import Gtk
 
-
-#from kano.gtk3 import cursor
 from pibooth.common.apply_styles import apply_styling_to_widget, apply_colours_to_widget
 from pibooth.common.common_paths import common_css_dir
 
