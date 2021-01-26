@@ -31,25 +31,26 @@ class ShareScene(Scene):
         )
 
         # Add share buttons
-        print_button = Gtk.Button.new_with_label("Imprimer")
-        #print_button.connect("clicked", self.on_click_me_clicked)
-        quit_button = Gtk.Button.new_with_label("Terminer")
-        quit_button.connect("clicked", self.on_click_quit)
+        # print_button = Gtk.Button.new_with_label("Imprimer")
+        # print_button.connect("clicked", self.on_click_me_clicked)
+        # quit_button = Gtk.Button.new_with_label("Terminer")
+        # quit_button.connect("clicked", self.on_click_quit)
 
-
-        #print_button = OrangeButton('Imprimer')
-        #quit_button = OrangeButton('Terminer')
+        print_button = OrangeButton('Imprimer')
+        quit_button = OrangeButton('Terminer')
         self.add_widget(
             print_button,
             Placement(0.7, 0.7, 1),
-            Placement(0.7, 0.7, 1)
+            Placement(0.7, 0.7, 1),
+            self._on_click_quit
         )
         self.add_widget(
             quit_button,
             Placement(0.7, 0.8, 1),
-            Placement(0.7, 0.8, 1)
+            Placement(0.7, 0.8, 1),
+            self._on_click_quit
         )
 
-    def on_click_quit(self, button):
+    def _on_click_quit(self):
         # Go to wait screen
         self.app.goToWaitStep()
