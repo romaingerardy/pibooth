@@ -41,7 +41,6 @@ class GtkWindow(Gtk.Window):
                  arrow_offset=0,
                  debug=False):
 
-        LOGGER.info("GtkWindow before")
         super(GtkWindow, self).__init__()
 
         LOGGER.info("GtkWindow")
