@@ -5,8 +5,6 @@
 """
 import faulthandler;
 
-
-
 faulthandler.enable()
 
 from pgi import require_version
@@ -39,10 +37,10 @@ from pibooth.plugins import create_plugin_manager, load_plugins, list_plugin_nam
 from pibooth.view import GtkWindow
 from pibooth.config import PiConfigParser
 from pibooth import camera
-# from pibooth.fonts import get_available_fonts
+from pibooth.fonts import get_available_fonts
 # from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
 from pibooth.printer import Printer
-from pibooth.fonts import get_available_fonts
+from pibooth.view import message_dialog
 
 GPIO_INFO = "on Raspberry pi 3B+"
 
