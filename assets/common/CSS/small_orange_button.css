@@ -16,7 +16,7 @@
 .small_orange_button label {
     color: @kano_orange;
     font-family: Bariol Bold;
-    font-size: 13px;
+    font-size: 23px;
 }
 
 .small_orange_button label:disabled {
