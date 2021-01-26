@@ -233,15 +233,6 @@ class MyDialog(Gtk.Window):
         scene = ShareScene(self.app, previous_picture)
         self.push(scene)
 
-    def set_capture_number(self, current_nbr, total_nbr):
-        """Set the current number of captures taken.
-        """
-        if total_nbr < 1:
-            raise ValueError("Total number of captures shall be greater than 0")
-
-        self._capture_number = (current_nbr, total_nbr)
-
-        LOGGER.info("Capture number " + str(self._capture_number))
 
     @property
     def return_value(self):
