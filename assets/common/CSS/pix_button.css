@@ -1,7 +1,7 @@
 
 
 .pix_button {
-    background-color: @pix_brand_color;
+    background: @pix_brand_color;
     padding: 0px;
 }
 
