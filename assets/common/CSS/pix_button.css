@@ -2,7 +2,7 @@
 
 .pix_button {
     background: @pix_brand_color;
-    padding: 0px;
+    padding: 10px;
 }
 
 .pix_button label {
