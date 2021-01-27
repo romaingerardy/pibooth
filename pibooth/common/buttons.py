@@ -10,6 +10,7 @@
 import os
 
 from pgi import require_version
+
 require_version('Gtk', '3.0')
 
 from pgi.repository import Gtk
@@ -38,7 +39,7 @@ class GenericButton(Gtk.Button):
             self.label = Gtk.Label(text)
             self.internal_box.add(self.label)
 
-        #cursor.attach_cursor_events(self)
+        # cursor.attach_cursor_events(self)
 
     def set_label(self, text):
         self.label.set_text(text)
@@ -47,12 +48,10 @@ class GenericButton(Gtk.Button):
         return self.label.get_text()
 
 
-
 class OrangeButton(GenericButton):
     BUTTON_CSS = os.path.join(common_css_dir, 'small_orange_button.css')
 
     def __init__(self, text=""):
-
         # Create button
         GenericButton.__init__(self, text)
         apply_styling_to_widget(self, self.BUTTON_CSS)
@@ -60,11 +59,11 @@ class OrangeButton(GenericButton):
 
         self.get_style_context().add_class("small_orange_button")
 
+
 class PixButton(GenericButton):
     BUTTON_CSS = os.path.join(common_css_dir, 'pix_button.css')
 
     def __init__(self, text=""):
-
         # Create button
         GenericButton.__init__(self, text)
         apply_styling_to_widget(self, self.BUTTON_CSS)
@@ -72,3 +71,18 @@ class PixButton(GenericButton):
 
         self.get_style_context().add_class("pix_button")
 
+
+class RectButton(GenericButton):
+    BUTTON_CSS = os.path.join(common_css_dir, 'rect_button.css')
+
+    def __init__(self, text="", call_to_action=True):
+
+        # Create button
+        GenericButton.__init__(self, text)
+        apply_styling_to_widget(self, self.BUTTON_CSS)
+        apply_styling_to_widget(self.label, self.BUTTON_CSS)
+
+        if call_to_action:
+            self.get_style_context().add_class("pix_button_cta")
+        else:
+            self.get_style_context().add_class("pix_button")

@@ -11,6 +11,7 @@ from pibooth.view.scenes.chosen import ChosenScene
 from pibooth.view.scenes.preview import PreviewScene
 from pibooth.view.scenes.processing import ProcessingScene
 from pibooth.view.scenes.share import ShareScene
+from pibooth.view.scenes.shutdown import ShutdownScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
@@ -132,6 +133,7 @@ class GtkWindow(Gtk.Window):
             child = child.widget
 
         if self._child:
+            LOGGER.info("remove child before add")
             self._container.remove(self._child)
             self._child.destroy()
 
@@ -233,6 +235,15 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("show_print")
         scene = ShareScene(self.app, previous_picture)
         self.push(scene)
+
+    # Menus Scenes
+    def show_shutdown(self):
+        LOGGER.info("show_shutdown")
+        scene = ShutdownScene(self)
+        self.push(scene)
+    def hide_shutdown(self, scene):
+        LOGGER.info("hide_shutdown")
+        self._container.remove(scene)
 
     def set_capture_number(self, current_nbr, total_nbr):
         """Set the current number of captures taken.

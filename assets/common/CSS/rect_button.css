@@ -1,0 +1,39 @@
+
+
+.pix_button_cta {
+    background: @pix_brand_color;
+    padding: 10px;
+    border-radius: 0;
+    width: 300px;
+    height: 50px;
+}
+
+.pix_button {
+    background: @pix_white;
+    padding: 10px;
+    border-radius: 0;
+    width: 300px;
+    height: 50px;
+    border: solid @pix_black;
+}
+
+.pix_button label {
+    color: @pix_black;
+    font-family: Bariol Bold;
+    font-size: 30px;
+}
+
+.pix_button_cta label {
+    color: @pix_white;
+    font-family: Bariol Bold;
+    font-size: 30px;
+}
+
+.pix_button:hover {
+    background: transparent;
+}
+
+.pix_button_cta:hover {
+    background: transparent;
+}
+
