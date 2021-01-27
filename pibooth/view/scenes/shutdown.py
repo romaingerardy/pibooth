@@ -54,7 +54,7 @@ class ShutdownScene(Scene):
             # Clear console
             print(chr(27) + "[2J")
             # Shutdown command
-            os.system('sudo shutdown now')
+            #os.system('sudo shutdown now')
 
     def _on_cancel(self, widget):
         if self.clickable:
