@@ -27,11 +27,11 @@ class ShutdownScene(Scene):
                             common_media_path('BG-Blank.png'))
 
         # Add icon
-        self.add_widget(
-            Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
-            Placement(0.5, 0.1, 1),
-            Placement(0.5, 0.1, 1)
-        )
+        #self.add_widget(
+        #    Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
+        #    Placement(0.5, 0.1, 1),
+        #    Placement(0.5, 0.1, 1)
+        #)
 
         # Add Menu buttons
         cancel_button = RectButton('Annuler', False)
