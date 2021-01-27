@@ -129,10 +129,12 @@ class GtkWindow(Gtk.Window):
             for event in child.scheduled_events:
                 self.schedule_event(event)
 
+            LOGGER.info("set active child")
             child.set_active()
             child = child.widget
 
         if self._child:
+            LOGGER.info("remove before add")
             self._container.remove(self._child)
             self._child.destroy()
 
