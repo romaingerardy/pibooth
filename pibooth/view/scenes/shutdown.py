@@ -1,3 +1,5 @@
+from subprocess import call
+
 from pgi import require_version
 
 from pibooth.common.buttons import RectButton
@@ -49,7 +51,8 @@ class ShutdownScene(Scene):
     def _on_quit(self, widget):
         if self.clickable:
             LOGGER.info("!!! Shutdown asked !")
-            self.window.hide_shutdown()
+            #self.window.hide_shutdown()
+            call("sudo shutdown - -poweroff")
 
     def _on_cancel(self, widget):
         if self.clickable:
