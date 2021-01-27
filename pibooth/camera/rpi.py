@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import time
 import subprocess
+import time
 from io import BytesIO
-from PIL import Image
 
-from pibooth.view.scenes.paths import preview_media_path
+from PIL import Image
 
 try:
     import picamera
@@ -63,32 +62,15 @@ class RpiCamera(BaseCamera):
         """
         if self._window:  # No window means no preview displayed
 
-            self._window.preview_scene.add_text(text)
-
-            # rect = self.get_rect()
-
-            # Create an image padded to the required size (required by picamera)
-            # size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
-
-            #size = (10, 10)
-            #image = self.build_overlay(size, str(text), alpha)
-
-            # Load the arbitrarily sized image
-            img = Image.open(preview_media_path('countdown_3.png'))
-            # Create an image padded to the required size with
-            # mode 'RGB'
+            img = self._window.preview_scene.get_countdown_overlay(text)
             pad = Image.new('RGBA', (
-                            ((img.size[0] + 31) // 32) * 32,
-                            ((img.size[1] + 15) // 16) * 16,
-                            ))
-
+                ((img.size[0] + 31) // 32) * 32,
+                ((img.size[1] + 15) // 16) * 16,
+            ))
             pad.paste(img, (0, 0), img)
-            print(img.size)
-
             self._overlay = self._cam.add_overlay(pad.tobytes(), size=img.size)
             self._overlay.alpha = 255
             self._overlay.layer = 3
-            #self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
 
     def _hide_overlay(self):
         """Remove any existing overlay.
