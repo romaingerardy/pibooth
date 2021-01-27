@@ -1,0 +1,33 @@
+
+
+.pix_button {
+    background-color: @pix_brand_color;
+    padding: 0px;
+}
+
+.pix_button label {
+    color: @pix_white;
+    font-family: Bariol Bold;
+    font-size: 25px;
+}
+
+.pix_button label:disabled {
+    color: @kano_grey;
+    background: transparent;
+}
+
+.pix_button:hover {
+    background: transparent;
+}
+
+buttonbox .pix_button {
+    background: transparent;
+    border-color: transparent;
+    padding: 0px;
+}
+
+buttonbox .pix_button:hover {
+    background: transparent;
+    border-color: transparent;
+    padding: 0px;
+}

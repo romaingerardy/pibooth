@@ -9,6 +9,12 @@
 
 
 /* Define colours */
+@define-color pix_white #ffffff;
+@define-color pix_black #262626;
+@define-color pix_black_darker #000000;
+@define-color pix_black_lighter #4a4a4a;
+
+@define-color pix_brand_color #00b5ad;
 
 @define-color kano_green #7cc640;
 @define-color kano_green_darker #6DB038;

@@ -4,7 +4,7 @@ from pibooth.view.scenes.paths import share_media_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk
-from pibooth.common.buttons import OrangeButton
+from pibooth.common.buttons import OrangeButton, PixButton
 
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
@@ -36,8 +36,8 @@ class ShareScene(Scene):
         # quit_button = Gtk.Button.new_with_label("Terminer")
         # quit_button.connect("clicked", self.on_click_quit)
 
-        print_button = OrangeButton('Imprimer')
-        quit_button = OrangeButton('Terminer')
+        print_button = PixButton('Imprimer')
+        quit_button = PixButton('Terminer')
         self.add_widget(
             print_button,
             Placement(0.7, 0.7, 1),
