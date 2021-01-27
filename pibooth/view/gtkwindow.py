@@ -242,6 +242,7 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("show_shutdown")
         scene = ShutdownScene(self)
         self.push(scene)
+
     def hide_shutdown(self):
         LOGGER.info("hide_shutdown")
         self.show_intro()
