@@ -1,3 +1,5 @@
+import time
+
 from pgi import require_version
 
 from pibooth.common.buttons import RectButton
@@ -18,6 +20,7 @@ class ShutdownScene(Scene):
         self.window = window
         self._setup()
         self.clickable = True
+        time.sleep(1)
 
     def _setup(self):
         self.set_background(common_media_path('BG-Blank.png'),
