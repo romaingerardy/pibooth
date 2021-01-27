@@ -1,4 +1,4 @@
-from PIL.Image import Image
+from PIL import Image
 from pgi import require_version
 
 from pibooth.view.scenes.paths import preview_media_path
