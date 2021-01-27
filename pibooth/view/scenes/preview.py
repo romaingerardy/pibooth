@@ -33,6 +33,7 @@ class PreviewScene(Scene):
         elif str(text) == '0':
             img = Image.open(preview_media_path('countdown_0.png'))
         else:
+            LOGGER.warn("No countdown overlay for value '" + str(text) + "'")
             img = None
 
         return img

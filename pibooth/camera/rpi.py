@@ -63,14 +63,15 @@ class RpiCamera(BaseCamera):
         if self._window:  # No window means no preview displayed
 
             img = self._window.preview_scene.get_countdown_overlay(text)
-            pad = Image.new('RGBA', (
-                ((img.size[0] + 31) // 32) * 32,
-                ((img.size[1] + 15) // 16) * 16,
-            ))
-            pad.paste(img, (0, 0), img)
-            self._overlay = self._cam.add_overlay(pad.tobytes(), size=img.size)
-            self._overlay.alpha = 255
-            self._overlay.layer = 3
+            if img:
+                pad = Image.new('RGBA', (
+                    ((img.size[0] + 31) // 32) * 32,
+                    ((img.size[1] + 15) // 16) * 16,
+                ))
+                pad.paste(img, (0, 0), img)
+                self._overlay = self._cam.add_overlay(pad.tobytes(), size=img.size)
+                self._overlay.alpha = 255
+                self._overlay.layer = 3
 
     def _hide_overlay(self):
         """Remove any existing overlay.
