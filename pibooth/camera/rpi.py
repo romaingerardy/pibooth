@@ -77,19 +77,17 @@ class RpiCamera(BaseCamera):
             img = Image.open(preview_media_path('countdown_3.png'))
             # Create an image padded to the required size with
             # mode 'RGB'
-            print(img.size)
             pad = Image.new('RGBA', (
                             ((img.size[0] + 31) // 32) * 32,
                             ((img.size[1] + 15) // 16) * 16,
                             ))
 
-            print(img.size)
             pad.paste(img, (0, 0), img)
             print(img.size)
 
             self._overlay = self._cam.add_overlay(pad.tobytes(), size=img.size)
-            #self._overlay.alpha = 255
-            #self._overlay.layer = 3
+            self._overlay.alpha = 255
+            self._overlay.layer = 3
             #self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
 
     def _hide_overlay(self):
