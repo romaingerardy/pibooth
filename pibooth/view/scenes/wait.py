@@ -14,9 +14,10 @@ class WaitScene(Scene):
 
     app = None
 
-    def __init__(self, app):
+    def __init__(self, window, app):
         super(WaitScene, self).__init__()
         LOGGER.info("new WaitScene")
+        self.window = window
         self.app = app
         self._setup()
 
@@ -43,4 +44,4 @@ class WaitScene(Scene):
 
     def _shutdown(self):
         LOGGER.info("Shutdown")
-        MessageDialog()
+        self.window.show_shutdown()

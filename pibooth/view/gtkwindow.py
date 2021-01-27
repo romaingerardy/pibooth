@@ -191,7 +191,7 @@ class GtkWindow(Gtk.Window):
         """Show introduction view.
         """
         LOGGER.info("show_intro")
-        scene = WaitScene(self.app)
+        scene = WaitScene(self, self.app)
         self.push(scene)
 
     def show_image(self, pil_image=None, pos=CENTER):
