@@ -23,27 +23,27 @@ class ShutdownScene(Scene):
 
         # Add Menu buttons
         cancel_button = RectButton('Annuler', False)
+        cancel_button.connect("clicked", self._on_cancel)
         self.add_widget(
             cancel_button,
             Placement(0.4, 0.5, 1),
-            Placement(0.4, 0.5, 1),
-            self._on_cancel_quit
+            Placement(0.4, 0.5, 1)
         )
 
         quit_button = RectButton('Eteindre', True)
+        quit_button.connect("clicked", self._on_quit)
         self.add_widget(
             quit_button,
             Placement(0.6, 0.5, 1),
-            Placement(0.6, 0.5, 1),
-            self._on_click_quit
+            Placement(0.6, 0.5, 1)
         )
 
-    def _on_click_quit(self):
+    def _on_quit(self, widget):
         # Go to wait screen
-        LOGGER.info("Shutdown asked !")
+        LOGGER.info("!!! Shutdown asked !")
         self.window.hide_shutdown()
 
-    def _on_cancel_quit(self):
+    def _on_cancel(self, widget):
         # Go to wait screen
-        LOGGER.info("Cancel shutdown")
+        LOGGER.info("!!! Cancel shutdown")
         self.window.hide_shutdown()
