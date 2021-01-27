@@ -243,7 +243,7 @@ class GtkWindow(Gtk.Window):
         self.push(scene)
     def hide_shutdown(self, scene):
         LOGGER.info("hide_shutdown")
-        self._container.remove(scene)
+        self._container.remove(scene.widget)
 
     def set_capture_number(self, current_nbr, total_nbr):
         """Set the current number of captures taken.

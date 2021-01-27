@@ -23,18 +23,19 @@ class ShutdownScene(Scene):
                             common_media_path('BG-Blank.png'))
 
         # Add Menu buttons
+        cancel_button = RectButton('Annuler', False)
+        self.add_widget(
+            cancel_button,
+            Placement(0.3, 0.5, 1),
+            Placement(0.3, 0.5, 1),
+            self._on_click_quit
+        )
+
         quit_button = RectButton('Eteindre', True)
         self.add_widget(
             quit_button,
             Placement(0.5, 0.5, 1),
             Placement(0.5, 0.5, 1),
-            self._on_click_quit
-        )
-        cancel_button = RectButton('Annuler', False)
-        self.add_widget(
-            cancel_button,
-            Placement(0.7, 0.5, 1),
-            Placement(0.7, 0.5, 1),
             self._on_click_quit
         )
 

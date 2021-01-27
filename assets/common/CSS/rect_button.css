@@ -3,13 +3,13 @@
 .pix_button_cta {
     background: @pix_brand_color;
     padding: 10px;
-    border-radius: 0;
+    border-radius: 4px;
 }
 
 .pix_button {
     background: @pix_white;
     padding: 10px;
-    border-radius: 0;
+    border-radius: 4px;
     border: solid @pix_black;
 }
 
