@@ -4,16 +4,16 @@
     background: @pix_brand_color;
     padding: 10px;
     border-radius: 0;
-    width: 300px;
-    height: 50px;
+    outline-width: 300px;
+    outline-height: 50px;
 }
 
 .pix_button {
     background: @pix_white;
     padding: 10px;
     border-radius: 0;
-    width: 300px;
-    height: 50px;
+    outline-width: 300px;
+    outline-height: 50px;
     border: solid @pix_black;
 }
 
