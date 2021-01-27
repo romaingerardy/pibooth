@@ -28,7 +28,7 @@ class ShutdownScene(Scene):
             cancel_button,
             Placement(0.4, 0.5, 1),
             Placement(0.4, 0.5, 1),
-            self._on_click_quit
+            self._on_cancel_quit
         )
 
         quit_button = RectButton('Eteindre', True)
@@ -46,4 +46,5 @@ class ShutdownScene(Scene):
 
     def _on_cancel_quit(self):
         # Go to wait screen
+        LOGGER.info("Cancel shutdown")
         self.window.hide_shutdown()

@@ -133,7 +133,6 @@ class GtkWindow(Gtk.Window):
             child = child.widget
 
         if self._child:
-            LOGGER.info("remove child before add")
             self._container.remove(self._child)
             self._child.destroy()
 
