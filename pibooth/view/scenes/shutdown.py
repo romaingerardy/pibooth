@@ -10,12 +10,13 @@ from pibooth.utils import LOGGER
 
 
 class ShutdownScene(Scene):
-    app = None
 
     def __init__(self, window):
         super(ShutdownScene, self).__init__()
+        self.clickable = False
         self.window = window
         self._setup()
+        self.clickable = True
 
     def _setup(self):
         self.set_background(common_media_path('BG-Blank.png'),
@@ -39,11 +40,11 @@ class ShutdownScene(Scene):
         )
 
     def _on_quit(self, widget):
-        # Go to wait screen
-        LOGGER.info("!!! Shutdown asked !")
-        self.window.hide_shutdown()
+        if self.clickable:
+            LOGGER.info("!!! Shutdown asked !")
+            self.window.hide_shutdown()
 
     def _on_cancel(self, widget):
-        # Go to wait screen
-        LOGGER.info("!!! Cancel shutdown")
-        self.window.hide_shutdown()
+        if self.clickable:
+            LOGGER.info("!!! Cancel shutdown")
+            self.window.hide_shutdown()
