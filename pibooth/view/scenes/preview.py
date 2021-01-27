@@ -22,19 +22,25 @@ class PreviewScene(Scene):
     def _setup(self):
         self.set_background(preview_media_path('BG-Preview.png'),
                             preview_media_path('BG-Preview.png'))
-        self.text = Gtk.Label('TEST')
-        self.add_widget(
-            self.text,
-            Placement(0.5, 0.5, 1),
-            Placement(0.5, 0.5, 1)
-        )
+        #self.text = Gtk.Label('TEST')
+        #self.add_widget(
+        #    self.text,
+        #    Placement(0.5, 0.5, 1),
+        #    Placement(0.5, 0.5, 1)
+        #)
 
+    def add_text(self, text):
+        LOGGER.info(str(text))
         # Test add overlay
         self.add_widget(
             Gtk.Image.new_from_file(preview_media_path('countdown_3.png')),
             Placement(0, 0, 1),
             Placement(0, 0, 1)
         )
-
-    def add_text(self, text):
-        self.text.set_text(str(text))
+        #self.text.set_text(str(text))
+        self.text = Gtk.Label('TEST')
+        self.add_widget(
+            self.text,
+            Placement(0.5, 0.5, 1),
+            Placement(0.5, 0.5, 1)
+        )
