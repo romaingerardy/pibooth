@@ -26,24 +26,24 @@ class ShutdownScene(Scene):
         cancel_button = RectButton('Annuler', False)
         self.add_widget(
             cancel_button,
-            Placement(0.3, 0.5, 1),
-            Placement(0.3, 0.5, 1),
+            Placement(0.4, 0.5, 1),
+            Placement(0.4, 0.5, 1),
             self._on_click_quit
         )
 
         quit_button = RectButton('Eteindre', True)
         self.add_widget(
             quit_button,
-            Placement(0.5, 0.5, 1),
-            Placement(0.5, 0.5, 1),
+            Placement(0.6, 0.5, 1),
+            Placement(0.6, 0.5, 1),
             self._on_click_quit
         )
 
     def _on_click_quit(self):
         # Go to wait screen
         LOGGER.info("Shutdown asked !")
-        self.window.hide_shutdown(self)
+        self.window.hide_shutdown()
 
     def _on_cancel_quit(self):
         # Go to wait screen
-        self.window.hide_shutdown(self)
+        self.window.hide_shutdown()
