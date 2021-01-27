@@ -52,7 +52,7 @@ class ShutdownScene(Scene):
         if self.clickable:
             LOGGER.info("!!! Shutdown asked !")
             #self.window.hide_shutdown()
-            call("sudo shutdown --poweroff")
+            call("sudo shutdown now")
 
     def _on_cancel(self, widget):
         if self.clickable:
