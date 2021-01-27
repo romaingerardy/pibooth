@@ -80,7 +80,7 @@ class RpiCamera(BaseCamera):
             pad = Image.new('RGBA',
                             ((img.size[0] + 31) // 32) * 32,
                             ((img.size[1] + 15) // 16) * 16,
-                            ))
+                            )
 
             pad.paste(img, (0, 0), img)
 
