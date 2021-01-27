@@ -5,6 +5,8 @@ import subprocess
 from io import BytesIO
 from PIL import Image
 
+from pibooth.view.scenes.paths import preview_media_path
+
 try:
     import picamera
 except ImportError:
@@ -68,9 +70,21 @@ class RpiCamera(BaseCamera):
             # Create an image padded to the required size (required by picamera)
             # size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
 
-            size = (200, 200)
-            image = self.build_overlay(size, str(text), alpha)
-            self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, fullscreen=False)
+            #size = (10, 10)
+            #image = self.build_overlay(size, str(text), alpha)
+
+            # Load the arbitrarily sized image
+            img = Image.open(preview_media_path('countdown_3.png'))
+            # Create an image padded to the required size with
+            # mode 'RGB'
+            pad = Image.new('RGBA',
+                            ((img.size[0] + 31) // 32) * 32,
+                            ((img.size[1] + 15) // 16) * 16,
+                            ))
+
+            pad.paste(img, (0, 0), img)
+
+            self._overlay = self._cam.add_overlay(pad.tobytes(), size=img.size)
             #self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3, window=tuple(rect), fullscreen=False)
 
     def _hide_overlay(self):
