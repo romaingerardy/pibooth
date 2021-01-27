@@ -14,7 +14,6 @@ class ShutdownScene(Scene):
 
     def __init__(self, window):
         super(ShutdownScene, self).__init__()
-        LOGGER.info("new ShutdownScene")
         self.window = window
         self._setup()
 
