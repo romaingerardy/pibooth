@@ -43,6 +43,4 @@ class WaitScene(Scene):
 
     def _shutdown(self):
         LOGGER.info("Shutdown")
-        win = MessageDialog()
-        win.connect("destroy", Gtk.main_quit)
-        win.show_all()
+        MessageDialog()
