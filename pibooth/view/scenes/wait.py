@@ -24,11 +24,11 @@ class WaitScene(Scene):
         self.set_background(wait_media_path('BG-Start.png'),
                             wait_media_path('BG-Start.png'))
 
+
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
             Placement(0, 0, 1),
-            Placement(0, 0, 1),
-            self._nextStep
+            Placement(0, 0, 1)
         )
 
         self.add_widget(
