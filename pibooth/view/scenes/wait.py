@@ -31,20 +31,21 @@ class WaitScene(Scene):
             Placement(0, 0, 1),
             Placement(0, 0, 1),
             clicked_cb=self._nextStep,
-            transparent=True
-        )
-
-        self.add_widget(
-            Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
-            Placement(0.9, 0.9, 1),
-            Placement(0.9, 0.9, 1),
-            self._shutdown
+            transparent=False
         )
 
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
             Placement(0.8, 0.9, 1),
-            Placement(0.8, 0.9, 1)
+            Placement(0.8, 0.9, 1),
+            self._nextStep
+        )
+        
+        self.add_widget(
+            Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
+            Placement(0.9, 0.9, 1),
+            Placement(0.9, 0.9, 1),
+            self._shutdown
         )
 
     def _nextStep(self):
