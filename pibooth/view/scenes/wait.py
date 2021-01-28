@@ -31,7 +31,7 @@ class WaitScene(Scene):
             Placement(0, 0, 1),
             Placement(0, 0, 1),
             clicked_cb=self._nextStep,
-            transparent=False
+            transparent=True
         )
 
         self.add_widget(
