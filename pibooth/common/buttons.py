@@ -87,13 +87,14 @@ class RectButton(GenericButton):
         else:
             self.get_style_context().add_class("pix_button")
 
-class TransparentButton(GenericButton):
+class TransparentButton(Gtk.Button):
     BUTTON_CSS = os.path.join(common_css_dir, 'alpha_button.css')
 
     def __init__(self, text=""):
 
         # Create button
-        GenericButton.__init__(self, text)
+        Gtk.Button.__init__(self)
+        #GenericButton.__init__(self, text)
         apply_styling_to_widget(self, self.BUTTON_CSS)
         apply_styling_to_widget(self.label, self.BUTTON_CSS)
 
