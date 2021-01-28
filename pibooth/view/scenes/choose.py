@@ -28,13 +28,7 @@ class ChooseScene(Scene):
         if choices and len(choices) == 2:
             x = 0.25
             for choice in choices:
-       
-                self.add_widget(
-                    Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
-                    Placement(x, 0.65, 1),
-                    Placement(x, 0.65, 1),
-                    self._chooseTemplate
-                )
+                self._addTemplateChoice(choice, x)
                 x = x + 0.45
         elif choices and len(choices) == 1:
             self.add_widget(
@@ -43,6 +37,41 @@ class ChooseScene(Scene):
                 Placement(0.5, 0.65, 1),
                 self._chooseTemplate
             )
+
+    def _addTemplateChoice(self, nb, x):
+        if nb == 1:
+            self.add_widget(
+                Gtk.Image.new_from_file(choose_media_path('choice_po_1.png')),
+                Placement(x, 0.65, 1),
+                Placement(x, 0.65, 1),
+                self._chooseTemplate_1
+            )
+        elif nb == 2:
+            self.add_widget(
+                Gtk.Image.new_from_file(choose_media_path('choice_po_2.png')),
+                Placement(x, 0.65, 1),
+                Placement(x, 0.65, 1),
+                self._chooseTemplate_2
+            )
+        elif nb == 3:
+            self.add_widget(
+                Gtk.Image.new_from_file(choose_media_path('choice_po_3.png')),
+                Placement(x, 0.65, 1),
+                Placement(x, 0.65, 1),
+                self._chooseTemplate_3
+            )
+
+    def _chooseTemplate_1(self):
+        self.app.capture_nbr = 1
+        self.app.goToChosenStep(1)
+
+    def _chooseTemplate_2(self):
+        self.app.capture_nbr = 2
+        self.app.goToChosenStep(2)
+
+    def _chooseTemplate_3(self):
+        self.app.capture_nbr = 3
+        self.app.goToChosenStep(3)
 
     def _chooseTemplate(self, nb=1):
         self.app.capture_nbr = nb
