@@ -34,7 +34,8 @@ class ConfigurationScene(Scene):
         labelSsid = Gtk.Label(str(self.app.wifi_ssid))
         LOGGER.info(str(self.app.wifi_ssid))
 
-        apply_styling_to_widget(self, configuration_css_path('configuration.css'))
+        apply_styling_to_widget(labelWifi, configuration_css_path('configuration.css'))
+        apply_styling_to_widget(labelSsid, configuration_css_path('configuration.css'))
         labelWifi.get_style_context().add_class("title")
         labelSsid.get_style_context().add_class("item")
 
