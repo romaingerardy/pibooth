@@ -49,14 +49,6 @@ class ChooseScene(Scene):
                 self._chooseTemplate
             )
 
-    def _chooseTemplate_1(self):
-        self.app.capture_nbr = 1
-        self.app.goToChosenStep(1)
-
-    def _chooseTemplate_3(self):
-        self.app.capture_nbr = 3
-        self.app.goToChosenStep(3)
-
     def _chooseTemplate(self, nb=1):
         self.app.capture_nbr = nb
         self.app.goToChosenStep(nb)
