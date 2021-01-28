@@ -3,7 +3,7 @@
 
 """Pibooth main module.
 """
-import faulthandler;
+import faulthandler
 
 faulthandler.enable()
 

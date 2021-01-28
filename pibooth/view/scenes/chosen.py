@@ -10,6 +10,9 @@ from pgi.repository import Gtk
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
 
+import faulthandler
+
+faulthandler.enable()
 
 class ChosenScene(Scene):
     app = None
