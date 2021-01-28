@@ -9,7 +9,7 @@ import time
 
 from pgi.repository import Gtk, Gdk, GdkPixbuf, GLib
 #from kano.gtk3.cursor import attach_cursor_events
-
+from pibooth.common.buttons import TransparentButton
 from pibooth.view.utils import scale_image, scale_pixbuf, add_class, scale_gif
 
 #from kano_avatar.paths import AVATAR_DEFAULT_LOC, AVATAR_DEFAULT_NAME
@@ -164,7 +164,7 @@ class Scene(object):
 
 
     def add_widget(self, widget, p43, p169, clicked_cb=None, key=None,
-                   name=None, modal=False):
+                   name=None, modal=False, transparent=False):
         placement = p43 if self._screen_ratio == self.RATIO_4_3 else p169
 
         final_scale = placement.scale * self._scale_factor
@@ -188,7 +188,11 @@ class Scene(object):
         if clicked_cb:
             # ActiveImage already comes in a button wrapper
             if not issubclass(widget.__class__, ActiveImage):
-                button_wrapper = Gtk.Button()
+                if transparent:
+                    button_wrapper = TransparentButton()
+                else:
+                    button_wrapper = Gtk.Button()
+                #button_wrapper = Gtk.Button()
                 button_wrapper.add(root_widget)
                 root_widget = button_wrapper
 
