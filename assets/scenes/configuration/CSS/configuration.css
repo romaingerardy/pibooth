@@ -1,0 +1,12 @@
+
+.title label {
+    color: @pix_black;
+    font-family: Bariol Bold;
+    font-size: 25px;
+}
+
+.item label {
+    color: @pix_black;
+    font-family: Bariol;
+    font-size: 20px;
+}

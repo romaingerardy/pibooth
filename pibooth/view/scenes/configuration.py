@@ -1,7 +1,8 @@
 from pgi import require_version
 
+from pibooth.common.apply_styles import apply_styling_to_widget
 from pibooth.utils import LOGGER
-from pibooth.view.scenes.paths import configuration_media_path, common_media_path
+from pibooth.view.scenes.paths import configuration_media_path, common_media_path, configuration_css_path
 
 require_version('Gtk', '3.0')
 from pgi.repository import Gtk
@@ -32,6 +33,10 @@ class ConfigurationScene(Scene):
         labelWifi = Gtk.Label("WiFi")
         labelSsid = Gtk.Label(str(self.app.wifi_ssid))
         LOGGER.info(str(self.app.wifi_ssid))
+
+        apply_styling_to_widget(self, configuration_css_path('configuration.css'))
+        labelWifi.get_style_context().add_class("title")
+        labelSsid.get_style_context().add_class("item")
 
         self.add_widget(
             labelWifi,

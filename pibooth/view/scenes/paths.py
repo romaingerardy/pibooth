@@ -37,6 +37,8 @@ def share_media_path(filename):
 
 def configuration_media_path(filename):
     return get_asset_path(__file__, BASE_PATH + "/configuration/media", filename)
+def configuration_css_path(filename):
+    return get_asset_path(__file__, BASE_PATH + "/configuration/css", filename)
 
 
 def get_asset_path(stage_path, directory, filename):
