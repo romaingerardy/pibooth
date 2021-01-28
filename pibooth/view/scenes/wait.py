@@ -29,6 +29,7 @@ class WaitScene(Scene):
             Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
             Placement(0, 0, 1),
             Placement(0, 0, 1),
+            self._nextStep,
             transparent=True
         )
 
