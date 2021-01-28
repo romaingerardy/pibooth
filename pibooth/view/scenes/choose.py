@@ -28,11 +28,17 @@ class ChooseScene(Scene):
         if choices and len(choices) == 2:
             x = 0.25
             for choice in choices:
+                callback = None
+                if choice == 1:
+                    callback = id(self._chooseTemplate(1))
+                else:
+                    callback = id(self._chooseTemplate(3))
+
                 self.add_widget(
                     Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
                     Placement(x, 0.65, 1),
                     Placement(x, 0.65, 1),
-                    self._chooseTemplate
+                    callback
                 )
                 x = x + 0.45
         elif choices and len(choices) == 1:
