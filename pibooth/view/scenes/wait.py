@@ -25,6 +25,13 @@ class WaitScene(Scene):
                             wait_media_path('BG-Start.png'))
 
         self.add_widget(
+            Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
+            Placement(0, 0, 1),
+            Placement(0, 0, 1),
+            self._nextStep
+        )
+
+        self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
             Placement(0.9, 0.9, 1),
             Placement(0.9, 0.9, 1),
@@ -34,8 +41,7 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
             Placement(0.8, 0.9, 1),
-            Placement(0.8, 0.9, 1),
-            self._nextStep
+            Placement(0.8, 0.9, 1)
         )
 
     def _nextStep(self):
