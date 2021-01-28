@@ -44,35 +44,35 @@ class ChooseScene(Scene):
                 Gtk.Image.new_from_file(choose_media_path('choice_po_1.png')),
                 Placement(x, 0.65, 1),
                 Placement(x, 0.65, 1),
-                self._chooseTemplate_1
+                self._chooseTemplate
             )
         elif nb == 2:
             self.add_widget(
                 Gtk.Image.new_from_file(choose_media_path('choice_po_2.png')),
                 Placement(x, 0.65, 1),
                 Placement(x, 0.65, 1),
-                self._chooseTemplate_2
+                self._chooseTemplate
             )
         elif nb == 3:
             self.add_widget(
                 Gtk.Image.new_from_file(choose_media_path('choice_po_3.png')),
                 Placement(x, 0.65, 1),
                 Placement(x, 0.65, 1),
-                self._chooseTemplate_3
+                self._chooseTemplate
             )
         elif nb == 4:
             self.add_widget(
                 Gtk.Image.new_from_file(choose_media_path('choice_po_4.png')),
                 Placement(x, 0.65, 1),
                 Placement(x, 0.65, 1),
-                self._chooseTemplate_4
+                self._chooseTemplate
             )
         elif nb == 8:
             self.add_widget(
                 Gtk.Image.new_from_file(choose_media_path('choice_po_8.png')),
                 Placement(x, 0.65, 1),
                 Placement(x, 0.65, 1),
-                self._chooseTemplate_8
+                self._chooseTemplate
             )
 
     def _chooseTemplate_1(self):
