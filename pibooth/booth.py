@@ -197,7 +197,7 @@ class PiApplication(object):
 
         # Wifi
         self.wifi_ssid = self._find_ssid()
-        LOGGER.info("Connected to :" + self.wifi_ssid)
+        LOGGER.info("Connected to :" + str(self.wifi_ssid))
 
     @property
     def picture_filename(self):

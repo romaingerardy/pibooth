@@ -31,7 +31,7 @@ class ConfigurationScene(Scene):
 
         labelWifi = Gtk.Label("WiFi")
         labelSsid = Gtk.Label(self.app.wifi_ssid)
-        LOGGER.info(self.app.wifi_ssid)
+        LOGGER.info(str(self.app.wifi_ssid))
 
         self.add_widget(
             labelWifi,
