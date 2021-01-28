@@ -20,6 +20,7 @@ import shutil
 import logging
 import argparse
 import multiprocessing
+import subprocess
 
 # from gpiozero import ButtonBoard, LEDBoard
 
@@ -194,6 +195,9 @@ class PiApplication(object):
         # Reset the print counter (in case of max_pages is reached)
         self.printer.max_pages = self._config.getint('PRINTER', 'max_pages')
 
+        # Wifi
+        self.wifi_ssid = self._find_ssid()
+
     @property
     def picture_filename(self):
         """Return the final picture file name.
@@ -302,6 +306,10 @@ class PiApplication(object):
         finally:
             self._pm.hook.pibooth_cleanup(app=self)
             # pygame.quit()
+
+    def _find_ssid(self):
+        ssid = subprocess.check_output("iwgetid -r", shell = True)
+        return ssid
 
 
 def main():

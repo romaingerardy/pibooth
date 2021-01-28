@@ -249,7 +249,7 @@ class GtkWindow(Gtk.Window):
 
     def show_config(self):
         LOGGER.info("show_config")
-        scene = ConfigurationScene(self)
+        scene = ConfigurationScene(self.app, self)
         self.push(scene)
 
     def hide_config(self):

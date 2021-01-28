@@ -10,8 +10,9 @@ from pibooth.view.scene import Scene, Placement
 
 class ConfigurationScene(Scene):
 
-    def __init__(self, window):
+    def __init__(self, app, window):
         super(ConfigurationScene, self).__init__()
+        self.app = app
         self.window = window
         self._setup()
 
@@ -25,6 +26,21 @@ class ConfigurationScene(Scene):
             Placement(0.05, 0.05, 1),
             Placement(0.05, 0.05, 1),
             self._back
+        )
+
+        labelWifi = Gtk.Label("WiFi")
+        labelSsid = Gtk.Label(self.app.wifi_ssid)
+
+        self.add_widget(
+            labelWifi,
+            Placement(1, 1, 1),
+            Placement(1, 1, 1)
+        )
+
+        self.add_widget(
+            labelSsid,
+            Placement(1, 2, 1),
+            Placement(1, 2, 1)
         )
 
     def _back(self):
