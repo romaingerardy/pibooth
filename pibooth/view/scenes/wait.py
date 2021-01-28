@@ -28,7 +28,8 @@ class WaitScene(Scene):
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
             Placement(0, 0, 1),
-            Placement(0, 0, 1)
+            Placement(0, 0, 1),
+            transparent=True
         )
 
         self.add_widget(
