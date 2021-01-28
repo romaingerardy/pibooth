@@ -1,9 +1,9 @@
 from pgi import require_version
 
-from pibooth.view.scenes.paths import common_media_path, choose_media_path
+from pibooth.view.scenes.paths import choose_media_path
 
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk, GLib, GObject, Gdk
+from pgi.repository import Gtk
 
 from pibooth.view.scene import Scene, Placement
 from pibooth.utils import LOGGER
@@ -19,8 +19,8 @@ class ChooseScene(Scene):
         self._setup(choices)
 
     def _setup(self, choices):
-        self.set_background(common_media_path('BG-Choose.png'),
-                            common_media_path('BG-Choose.png'))
+        self.set_background(choose_media_path('BG-Choose.png'),
+                            choose_media_path('BG-Choose.png'))
 
         LOGGER.info(choices)
 
