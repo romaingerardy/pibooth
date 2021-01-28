@@ -35,14 +35,14 @@ class ConfigurationScene(Scene):
 
         self.add_widget(
             labelWifi,
-            Placement(2, 1, 1),
-            Placement(2, 1, 1)
+            Placement(0.2, 0.1, 1),
+            Placement(0.2, 0.1, 1)
         )
 
         self.add_widget(
             labelSsid,
-            Placement(2, 2, 1),
-            Placement(2, 2, 1)
+            Placement(0.2, 0.2, 1),
+            Placement(0.2, 0.2, 1)
         )
 
     def _back(self):
