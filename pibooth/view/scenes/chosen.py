@@ -32,8 +32,6 @@ class ChosenScene(Scene):
         self.set_background(chosen_media_path('BG-Chosen.png'),
                             chosen_media_path('BG-Chosen.png'))
 
-        LOGGER.info(choice)
-
         # Summary of choice
         self.add_widget(
             Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
