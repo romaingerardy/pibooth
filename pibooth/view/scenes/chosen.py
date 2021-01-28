@@ -41,6 +41,8 @@ class ChosenScene(Scene):
     def startTimer(self):
         t = threading.Timer(self.TIMEOUT, self._startPreview)
         t.start()
+        LOGGER.info("timer started")
 
     def _startPreview(self):
+        LOGGER.info("goToPreviewStep")
         self.app.goToPreviewStep()
