@@ -24,7 +24,8 @@ class WaitScene(Scene):
         self.set_background(wait_media_path('BG-Start.png'),
                             wait_media_path('BG-Start.png'))
 
-        LOGGER.info("before")
+        # Add the transparent image = the touch area to start the shooting
+        # Will be transformed to a transparent button
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
             Placement(0, 0, 1),
@@ -32,7 +33,6 @@ class WaitScene(Scene):
             clicked_cb=self._nextStep,
             transparent=True
         )
-        LOGGER.info("after")
 
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),

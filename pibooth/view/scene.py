@@ -192,7 +192,7 @@ class Scene(object):
                     button_wrapper = TransparentButton()
                 else:
                     button_wrapper = Gtk.Button()
-                #button_wrapper = Gtk.Button()
+
                 button_wrapper.add(root_widget)
                 root_widget = button_wrapper
 
