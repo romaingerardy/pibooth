@@ -35,6 +35,9 @@ def processing_media_path(filename):
 def share_media_path(filename):
     return get_asset_path(__file__, BASE_PATH + "/share/media", filename)
 
+def configuration_media_path(filename):
+    return get_asset_path(__file__, BASE_PATH + "/configuration/media", filename)
+
 
 def get_asset_path(stage_path, directory, filename):
     '''

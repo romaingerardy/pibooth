@@ -40,9 +40,16 @@ class WaitScene(Scene):
 
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
-            Placement(0.8, 0.9, 1),
-            Placement(0.8, 0.9, 1),
+            Placement(0.7, 0.9, 1),
+            Placement(0.7, 0.9, 1),
             self._nextStep
+        )
+
+        self.add_widget(
+            Gtk.Image.new_from_file(wait_media_path('config_icon.png')),
+            Placement(0.8, 0.9, 1),
+            Placement(0.8, 0.9, 1),
+            self._configStep
         )
 
         self.add_widget(
@@ -54,6 +61,9 @@ class WaitScene(Scene):
 
     def _nextStep(self):
         self.app.goToChooseStep()
+
+    def _configStep(self):
+        self.window.show_config()
 
     def _shutdown(self):
         self.window.show_shutdown()

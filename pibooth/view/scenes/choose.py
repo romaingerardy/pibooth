@@ -19,8 +19,8 @@ class ChooseScene(Scene):
         self._setup(choices)
 
     def _setup(self, choices):
-        self.set_background(common_media_path('BG-Blank.png'),
-                            common_media_path('BG-Blank.png'))
+        self.set_background(common_media_path('BG-Choose.png'),
+                            common_media_path('BG-Choose.png'))
 
         LOGGER.info(choices)
 

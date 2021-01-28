@@ -8,6 +8,7 @@ from pgi import require_version
 from pibooth.view.scene import Scene
 from pibooth.view.scenes.choose import ChooseScene
 from pibooth.view.scenes.chosen import ChosenScene
+from pibooth.view.scenes.configuration import ConfigurationScene
 from pibooth.view.scenes.preview import PreviewScene
 from pibooth.view.scenes.processing import ProcessingScene
 from pibooth.view.scenes.share import ShareScene
@@ -244,6 +245,15 @@ class GtkWindow(Gtk.Window):
 
     def hide_shutdown(self):
         LOGGER.info("hide_shutdown")
+        self.show_intro()
+
+    def show_config(self):
+        LOGGER.info("show_config")
+        scene = ConfigurationScene(self)
+        self.push(scene)
+
+    def hide_config(self):
+        LOGGER.info("hide_config")
         self.show_intro()
 
     def set_capture_number(self, current_nbr, total_nbr):
