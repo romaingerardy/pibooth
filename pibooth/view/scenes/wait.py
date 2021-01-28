@@ -26,13 +26,13 @@ class WaitScene(Scene):
 
         # Add the transparent image = the touch area to start the shooting
         # Will be transformed to a transparent button
-        self.add_widget(
-            Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
-            Placement(0, 0, 1),
-            Placement(0, 0, 1),
-            clicked_cb=self._nextStep,
-            transparent=False
-        )
+        #self.add_widget(
+        #    Gtk.Image.new_from_file(wait_media_path('touch_area.png')),
+        #    Placement(0, 0, 1),
+        #    Placement(0, 0, 1),
+        #    clicked_cb=self._nextStep,
+        #    transparent=False
+        #)
 
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
@@ -40,7 +40,7 @@ class WaitScene(Scene):
             Placement(0.8, 0.9, 1),
             self._nextStep
         )
-        
+
         self.add_widget(
             Gtk.Image.new_from_file(wait_media_path('shutdown_icon.png')),
             Placement(0.9, 0.9, 1),
