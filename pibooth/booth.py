@@ -197,7 +197,7 @@ class PiApplication(object):
 
         # Wifi
         self.wifi_ssid = self._find_ssid()
-        LOGGER.info("Connected to :" + str(self.wifi_ssid))
+        LOGGER.info("Connected to: " + str(self.wifi_ssid))
 
     @property
     def picture_filename(self):
@@ -310,7 +310,13 @@ class PiApplication(object):
 
     def _find_ssid(self):
         ssid = subprocess.check_output("iwgetid -r", shell = True)
-        return ssid
+        if ssid is None:
+            return "Déconnecté"
+        else:
+            ssid = ssid.replace("b'", "")
+            ssid = ssid.replace("'", "")
+            ssid = ssid.replace("\\", "")
+            return ssid
 
 
 def main():
