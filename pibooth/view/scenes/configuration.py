@@ -1,5 +1,6 @@
 from pgi import require_version
 
+from pibooth.utils import LOGGER
 from pibooth.view.scenes.paths import configuration_media_path, common_media_path
 
 require_version('Gtk', '3.0')
@@ -30,17 +31,18 @@ class ConfigurationScene(Scene):
 
         labelWifi = Gtk.Label("WiFi")
         labelSsid = Gtk.Label(self.app.wifi_ssid)
+        LOGGER.info(self.app.wifi_ssid)
 
         self.add_widget(
             labelWifi,
-            Placement(1, 1, 1),
-            Placement(1, 1, 1)
+            Placement(2, 1, 1),
+            Placement(2, 1, 1)
         )
 
         self.add_widget(
             labelSsid,
-            Placement(1, 2, 1),
-            Placement(1, 2, 1)
+            Placement(2, 2, 1),
+            Placement(2, 2, 1)
         )
 
     def _back(self):
