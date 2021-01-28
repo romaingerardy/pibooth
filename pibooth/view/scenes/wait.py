@@ -31,6 +31,9 @@ class WaitScene(Scene):
             Placement(0, 0, 1),
             Placement(0, 0, 1),
             clicked_cb=self._nextStep,
+            key=None,
+            name=None,
+            modal=False,
             transparent=True
         )
 
