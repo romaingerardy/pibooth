@@ -32,7 +32,7 @@ class ChooseScene(Scene):
                     Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
                     Placement(x, 0.65, 1),
                     Placement(x, 0.65, 1),
-                    self._chooseTemplate(choice)
+                    self._chooseTemplate(1)
                 )
                 x = x + 0.45
         elif choices and len(choices) == 1:
@@ -40,7 +40,7 @@ class ChooseScene(Scene):
                 Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choices[0]) + '.png')),
                 Placement(0.5, 0.65, 1),
                 Placement(0.5, 0.65, 1),
-                self._chooseTemplate(choices[0])
+                self._chooseTemplate(1)
             )
 
     def _chooseTemplate(self, nb):
