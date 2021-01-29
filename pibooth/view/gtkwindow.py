@@ -9,6 +9,7 @@ from pibooth.view.scene import Scene
 from pibooth.view.scenes.choose import ChooseScene
 from pibooth.view.scenes.chosen import ChosenScene
 from pibooth.view.scenes.configuration import ConfigurationScene
+from pibooth.view.scenes.finish import FinishScene
 from pibooth.view.scenes.preview import PreviewScene
 from pibooth.view.scenes.processing import ProcessingScene
 from pibooth.view.scenes.share import ShareScene
@@ -16,7 +17,7 @@ from pibooth.view.scenes.shutdown import ShutdownScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk, GLib, Gdk
+from pgi.repository import Gtk, Gdk
 
 from pibooth.view import background
 from pibooth.utils import LOGGER
@@ -109,7 +110,7 @@ class GtkWindow(Gtk.Window):
         overlay.add_overlay(debug_button)
 
     def push(self, child):
-        #GLib.idle_add(self._do_push, child)  -> original code but cause some strange issues
+        # GLib.idle_add(self._do_push, child)  -> original code but cause some strange issues
         self._do_push(child)
 
     def set_print_number(self, current_nbr=None, failure=None):
@@ -236,6 +237,11 @@ class GtkWindow(Gtk.Window):
     def show_print(self, previous_picture):
         LOGGER.info("show_print")
         scene = ShareScene(self.app, previous_picture)
+        self.push(scene)
+
+    def show_finished(self):
+        LOGGER.info("show_finished")
+        scene = FinishScene(self.app)
         self.push(scene)
 
     # Menus Scenes
