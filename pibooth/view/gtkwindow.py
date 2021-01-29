@@ -145,6 +145,25 @@ class GtkWindow(Gtk.Window):
         child.show_all()
         return False
 
+    def schedule_event(self, event):
+        LOGGER.info("Schedule event")
+        # The callback must always return False not to be rescheduled.
+        # This wrapper makes sure of that.
+        self._to_id_counter += 1
+        t_id = self._to_id_counter
+
+        def __wrapper1():
+            def __wrapper2():
+                if t_id in self._timeouts:
+                    event['callback'](*event['args'])
+                    idx = self._timeouts.index(t_id)
+                    del self._timeouts[idx]
+                return False
+            GLib.idle_add(__wrapper2)
+
+        GLib.timeout_add_seconds(event['delay'], __wrapper1)
+        self._timeouts.append(t_id)
+
     def _key_emergency_exit(self, widget, event):
         if (hasattr(event, 'keyval') and
                 event.keyval in [Gdk.KEY_Q, Gdk.KEY_q] and
