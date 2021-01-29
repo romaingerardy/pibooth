@@ -121,6 +121,7 @@ class GtkWindow(Gtk.Window):
     def _do_push(self, child):
         # Cleans up any pending scheduled events
         for i, src in enumerate(self._timeouts):
+            LOGGER.info("Cleans up any pending scheduled events")
             del self._timeouts[i]
             # print GLib.source_remove_by_funcs_user_data(src.source_funcs,
             #                                            src.callback_data)

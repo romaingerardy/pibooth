@@ -85,7 +85,7 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_exit(self, win):
         LOGGER.info("state_wait_exit")
-        # self.count = 0
+        self.count = 0
         # win.show_image(None)  # Clear currently displayed image
 
     @pibooth.hookimpl
