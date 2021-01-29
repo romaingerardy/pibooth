@@ -10,7 +10,7 @@ faulthandler.enable()
 from pgi import require_version
 
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk
+from pgi.repository import Gtk, GObject
 
 import os
 import os.path as osp
@@ -293,6 +293,8 @@ class PiApplication(object):
         """
         LOGGER.info("main_loop")
         try:
+            GObject.threads_init()
+
             fps = 40
             # clock = pygame.time.Clock()
             self._initialize()
