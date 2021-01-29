@@ -29,5 +29,4 @@ class FinishScene(Scene):
         #t.start()
 
     def _callable(self):
-        LOGGER.info("goToWaitStep")
         self.app.goToWaitStep()

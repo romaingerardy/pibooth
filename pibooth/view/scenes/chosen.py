@@ -36,11 +36,17 @@ class ChosenScene(Scene):
             Placement(0.5, 0.65, 1)
         )
 
+    #def startTimer(self):
+    #    t = threading.Timer(self.TIMEOUT, self._startPreview)
+    #    t.start()
+    #    LOGGER.info("timer started")
+
+    #def _startPreview(self):
+    #    self.app.goToPreviewStep()
+
     def startTimer(self):
-        t = threading.Timer(self.TIMEOUT, self._startPreview)
-        t.start()
+        self.schedule(self.TIMEOUT, callback=self._callable)
         LOGGER.info("timer started")
 
-    def _startPreview(self):
-        LOGGER.info("goToPreviewStep")
+    def _callable(self):
         self.app.goToPreviewStep()
