@@ -42,7 +42,7 @@ class WaitScene(Scene):
             Gtk.Image.new_from_file(wait_media_path('wifi_icon.png')),
             Placement(0.7, 0.9, 1),
             Placement(0.7, 0.9, 1),
-            self._nextStep()
+            self._nextStep
         )
 
         self.add_widget(
