@@ -23,9 +23,10 @@ class FinishScene(Scene):
                             finish_media_path('BG-ThankYou.png'))
 
     def startTimer(self):
-        t = threading.Timer(self.TIMEOUT, self._callable)
-        t.start()
         LOGGER.info("timer started")
+        self.schedule(self.TIMEOUT, callback=self._callable)
+        #t = threading.Timer(self.TIMEOUT, self._callable)
+        #t.start()
 
     def _callable(self):
         LOGGER.info("goToWaitStep")
