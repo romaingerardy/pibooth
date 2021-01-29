@@ -1,5 +1,4 @@
 import threading
-import time
 
 from pgi import require_version
 
@@ -24,12 +23,10 @@ class FinishScene(Scene):
                             finish_media_path('BG-ThankYou.png'))
 
     def startTimer(self):
-        LOGGER.info("timer started")
-        time.sleep(self.TIMEOUT)
-        self.app.goToWaitStep()
         #self.schedule(self.TIMEOUT, callback=self._callable)
-        #t = threading.Timer(self.TIMEOUT, self._callable)
-        #t.start()
+        t = threading.Timer(self.TIMEOUT, self._callable)
+        t.start()
+        LOGGER.info("timer started")
 
     def _callable(self):
         self.app.goToWaitStep()
