@@ -52,6 +52,8 @@ class ConfigurationScene(Scene):
             Placement(0.2, 0.3, 1)
         )
 
+        self._putUpdateButtons()
+
     def _putUpdateButtons(self):
         update_button = PixButton('Chercher des mises à jour')
         sync_button = PixButton('Synchroniser')
