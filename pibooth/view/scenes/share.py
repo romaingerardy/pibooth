@@ -24,11 +24,13 @@ class ShareScene(Scene):
                             share_media_path('BG-Share.png'))
 
         # Show final picture
+        LOGGER.info("show final picture")
         self.add_widget(
             Gtk.Image.new_from_file(self.previous_picture),
             Placement(0.1, 0.71, 0.23),
             Placement(0.1, 0.71, 0.23)
         )
+        LOGGER.info("after show final picture")
 
         # Add share buttons
         # print_button = Gtk.Button.new_with_label("Imprimer")

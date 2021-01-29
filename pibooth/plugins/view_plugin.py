@@ -50,7 +50,7 @@ class ViewPlugin(object):
         # else:
         #     previous_picture = app.previous_picture
         #
-        #win.show_intro(previous_picture, app.printer.is_available() and app.count.remaining_duplicates > 0)
+        # win.show_intro(previous_picture, app.printer.is_available() and app.count.remaining_duplicates > 0)
         win.show_intro(None, app.printer.is_available() and app.count.remaining_duplicates > 0)
         # if app.printer.is_installed():
         #     win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
@@ -77,7 +77,7 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_wait_validate(self, app, events):
         LOGGER.info("state_wait_validate")
-        #if app.find_capture_event(events):
+        # if app.find_capture_event(events):
         #    if len(app.capture_choices) > 1:
         #        return 'choose'
         #    return 'preview'  # No choice
@@ -100,19 +100,19 @@ class ViewPlugin(object):
         LOGGER.info("state_choose_validate")
         # if app.capture_nbr:
         #    return 'chosen'
-        #elif self.choose_timer.is_timeout():
+        # elif self.choose_timer.is_timeout():
         #    return 'wait'
 
     @pibooth.hookimpl
     def state_chosen_enter(self, app, win):
         with timeit("Show picture choice ({} captures selected)".format(app.capture_nbr)):
             win.show_choice(app.capture_choices, selected=app.capture_nbr)
-        #self.layout_timer.start()
+        # self.layout_timer.start()
 
     @pibooth.hookimpl
     def state_chosen_validate(self):
         LOGGER.info("state_chosen_validate")
-        #if self.layout_timer.is_timeout():
+        # if self.layout_timer.is_timeout():
         #    LOGGER.info("timeout")
         #    return 'preview'
 
@@ -130,7 +130,7 @@ class ViewPlugin(object):
         app.goToCaptureStep()
 
         # Change step to capture to take the picture
-        #return 'capture'
+        # return 'capture'
 
     @pibooth.hookimpl
     def state_capture_do(self, app, win):
@@ -142,10 +142,10 @@ class ViewPlugin(object):
         LOGGER.info("state_capture_validate")
         if self.count >= app.capture_nbr:
             app.goToProcessingStep()
-            #return 'processing'
+            # return 'processing'
         else:
             app.goToPreviewStep()
-        #return 'preview'
+        # return 'preview'
 
     @pibooth.hookimpl
     def state_processing_enter(self, win):
@@ -156,7 +156,7 @@ class ViewPlugin(object):
     def state_processing_validate(self, cfg, app):
         LOGGER.info("state_processing_validate")
         app.goToShareStep()
-        #return 'filter'
+        # return 'filter'
         # if app.printer.is_available() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
         #        and app.count.remaining_duplicates > 0:
         #    return 'print'
@@ -180,19 +180,20 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_print_enter(self, cfg, app, win):
         with timeit("Display the final picture"):
+            LOGGER.info("Final picture path: " + str(app.previous_picture_file))
             win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
             win.show_print(app.previous_picture_file)
 
         # Reset timeout in case of settings changed
-        #self.print_view_timer.timeout = cfg.getfloat('PRINTER', 'printer_delay')
-        #self.print_view_timer.start()
+        # self.print_view_timer.timeout = cfg.getfloat('PRINTER', 'printer_delay')
+        # self.print_view_timer.start()
 
     @pibooth.hookimpl
     def state_print_validate(self, app, win, events):
         LOGGER.info("state_print_validate")
-        #printed = app.find_print_event(events)
-        #forgotten = app.find_capture_event(events)
-        #if self.print_view_timer.is_timeout() or printed or forgotten:
+        # printed = app.find_print_event(events)
+        # forgotten = app.find_capture_event(events)
+        # if self.print_view_timer.is_timeout() or printed or forgotten:
         #    if printed:
         #        win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_available())
         #    return 'finish'
