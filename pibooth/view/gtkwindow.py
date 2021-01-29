@@ -276,7 +276,7 @@ class GtkWindow(Gtk.Window):
 
     def show_finished(self):
         LOGGER.info("show_finished")
-        scene = FinishScene(self.app)
+        scene = FinishScene(self.app, self)
         self.push(scene)
         scene.startTimer()
 

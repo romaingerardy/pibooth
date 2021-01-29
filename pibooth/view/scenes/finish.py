@@ -13,8 +13,8 @@ from pibooth.view.scene import Scene
 class FinishScene(Scene):
     TIMEOUT = 2
 
-    def __init__(self, app):
-        super(FinishScene, self).__init__()
+    def __init__(self, app, win):
+        super(FinishScene, self).__init__(win)
         self.app = app
         self._setup()
 
