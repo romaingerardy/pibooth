@@ -314,7 +314,7 @@ class PiApplication(object):
         if output is None:
             return "Déconnecté"
         else:
-            ssid = output.split('"')[1
+            ssid = output.split('"')[1]
             #ssid = ssid.replace("b'", "")
             #ssid = ssid.replace("'", "")
             #ssid = ssid.replace("\\", "")
