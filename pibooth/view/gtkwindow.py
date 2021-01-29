@@ -109,8 +109,7 @@ class GtkWindow(Gtk.Window):
         overlay.add_overlay(debug_button)
 
     def push(self, child):
-        LOGGER.info("Push")
-        #GLib.idle_add(self._do_push, child)
+        #GLib.idle_add(self._do_push, child)  -> original code but cause some strange issues
         self._do_push(child)
 
     def set_print_number(self, current_nbr=None, failure=None):
@@ -119,10 +118,8 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("set_print_number no code...")
 
     def _do_push(self, child):
-        LOGGER.info("_do_push")
         # Cleans up any pending scheduled events
         for i, src in enumerate(self._timeouts):
-            LOGGER.info("Cleans up any pending scheduled events")
             del self._timeouts[i]
             # print GLib.source_remove_by_funcs_user_data(src.source_funcs,
             #                                            src.callback_data)
