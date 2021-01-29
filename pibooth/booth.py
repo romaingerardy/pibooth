@@ -283,6 +283,11 @@ class PiApplication(object):
         self._machine.set_state('print')
         self._machine.process(None)
 
+    def goToFinishStep(self):
+        LOGGER.info("goToFinishStep")
+        self._machine.set_state('finish')
+        self._machine.process(None)
+
     def main_loop(self):
         """Run the main game loop.
         """
@@ -309,17 +314,17 @@ class PiApplication(object):
             # pygame.quit()
 
     def _find_ssid(self):
-        #output = subprocess.check_output("iwgetid -r", shell = True)
+        # output = subprocess.check_output("iwgetid -r", shell = True)
         output = subprocess.check_output(['sudo', 'iwgetid', '-r'])
-        #output = subprocess.check_output(['sudo', 'iwgetid'])
+        # output = subprocess.check_output(['sudo', 'iwgetid'])
         if output is None:
             return "Déconnecté"
         else:
             ssid = output
-            #ssid = output.split('"')[1]
-            #ssid = ssid.replace("b'", "")
-            #ssid = ssid.replace("'", "")
-            #ssid = ssid.replace("\\", "")
+            # ssid = output.split('"')[1]
+            # ssid = ssid.replace("b'", "")
+            # ssid = ssid.replace("'", "")
+            # ssid = ssid.replace("\\", "")
             return ssid
 
 

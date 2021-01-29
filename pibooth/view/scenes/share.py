@@ -54,5 +54,5 @@ class ShareScene(Scene):
         )
 
     def _on_click_quit(self):
-        # Go to wait screen
-        self.app.goToWaitStep()
+        # Go to finish screen
+        self.app.goToFinishStep()
