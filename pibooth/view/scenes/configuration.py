@@ -59,7 +59,7 @@ class ConfigurationScene(Scene):
             update_button,
             Placement(0.05, 0.5, 1),
             Placement(0.05, 0.5, 1),
-            self._update()
+            self._update
         )
         self.add_widget(
             sync_button,
