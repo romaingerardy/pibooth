@@ -18,8 +18,8 @@ faulthandler.enable()
 class ChosenScene(Scene):
     TIMEOUT = 3
 
-    def __init__(self, app, choices):
-        super(ChosenScene, self).__init__()
+    def __init__(self, app, window, choices):
+        super(ChosenScene, self).__init__(window)
         LOGGER.info("new ChosenScene")
 
         self.app = app
