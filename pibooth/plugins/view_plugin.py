@@ -205,5 +205,6 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_finish_validate(self):
-        if self.finish_timer.is_timeout():
-            return 'wait'
+        LOGGER.info("state_finish_validate")
+        #if self.finish_timer.is_timeout():
+        #    return 'wait'

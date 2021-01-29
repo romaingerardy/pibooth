@@ -14,16 +14,13 @@ import faulthandler
 
 faulthandler.enable()
 
-class ChosenScene(Scene):
-    app = None
 
+class ChosenScene(Scene):
     TIMEOUT = 3
 
     def __init__(self, app, choices):
         super(ChosenScene, self).__init__()
         LOGGER.info("new ChosenScene")
-
-        # self.timer = PoolingTimer(10)
 
         self.app = app
         self._setup(choices)

@@ -243,6 +243,7 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("show_finished")
         scene = FinishScene(self.app)
         self.push(scene)
+        scene.startTimer()
 
     # Menus Scenes
     def show_shutdown(self):
