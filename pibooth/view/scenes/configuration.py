@@ -1,6 +1,7 @@
 from pgi import require_version
 
 from pibooth.common.apply_styles import apply_styling_to_widget
+from pibooth.common.buttons import PixButton
 from pibooth.utils import LOGGER
 from pibooth.view.scenes.paths import configuration_media_path, common_media_path, configuration_css_path
 
@@ -49,6 +50,20 @@ class ConfigurationScene(Scene):
             labelSsid,
             Placement(0.2, 0.3, 1),
             Placement(0.2, 0.3, 1)
+        )
+
+    def _putUpdateButtons(self):
+        update_button = PixButton('Chercher des mises à jour')
+        sync_button = PixButton('Synchroniser')
+        self.add_widget(
+            update_button,
+            Placement(0.05, 0.5, 1),
+            Placement(0.05, 0.5, 1)
+        )
+        self.add_widget(
+            sync_button,
+            Placement(0.05, 0.6, 1),
+            Placement(0.05, 0.6, 1)
         )
 
     def _back(self):
