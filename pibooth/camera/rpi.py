@@ -10,7 +10,7 @@ try:
     import picamera
 except ImportError:
     picamera = None  # picamera is optional
-from pibooth.utils import memorize
+from pibooth.utils import memorize, LOGGER
 from pibooth.language import get_translated_text
 from pibooth.camera.base import BaseCamera
 
@@ -76,7 +76,9 @@ class RpiCamera(BaseCamera):
     def _hide_overlay(self):
         """Remove any existing overlay.
         """
+        LOGGER.info("_hide_overlay")
         if self._overlay:
+            LOGGER.info("Hide camera overlay")
             self._cam.remove_overlay(self._overlay)
             self._overlay = None
 
