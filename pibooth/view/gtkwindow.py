@@ -17,7 +17,7 @@ from pibooth.view.scenes.shutdown import ShutdownScene
 from pibooth.view.scenes.wait import WaitScene
 
 require_version('Gtk', '3.0')
-from pgi.repository import Gtk, Gdk, GLib
+from pgi.repository import Gtk, Gdk, GLib, GObject
 
 from pibooth.view import background
 from pibooth.utils import LOGGER
@@ -163,6 +163,22 @@ class GtkWindow(Gtk.Window):
 
         GLib.timeout_add_seconds(event['delay'], __wrapper1)
         self._timeouts.append(t_id)
+
+    def set_key_events_handlers(self, press=None, release=None):
+        if self._press_signal_id:
+            GObject.signal_handler_disconnect(self, self._press_signal_id)
+            self._press_signal_id = None
+
+        if self._release_signal_id:
+            GObject.signal_handler_disconnect(self, self._release_signal_id)
+            self._release_signal_id = None
+
+        if press:
+            self._press_signal_id = self.connect('key-press-event', press)
+
+        if release:
+            self._release_signal_id = self.connect('key-release-event',
+                                                   release)
 
     def _key_emergency_exit(self, widget, event):
         if (hasattr(event, 'keyval') and
