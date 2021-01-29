@@ -143,6 +143,8 @@ class ViewPlugin(object):
         if self.count >= app.capture_nbr:
             app.goToProcessingStep()
             #return 'processing'
+        else:
+            app.goToPreviewStep()
         #return 'preview'
 
     @pibooth.hookimpl
