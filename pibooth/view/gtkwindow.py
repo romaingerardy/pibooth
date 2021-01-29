@@ -118,6 +118,7 @@ class GtkWindow(Gtk.Window):
         LOGGER.info("set_print_number no code...")
 
     def _do_push(self, child):
+        LOGGER.info("_do_push")
         # Cleans up any pending scheduled events
         for i, src in enumerate(self._timeouts):
             LOGGER.info("Cleans up any pending scheduled events")
