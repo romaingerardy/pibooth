@@ -109,6 +109,7 @@ class GtkWindow(Gtk.Window):
         overlay.add_overlay(debug_button)
 
     def push(self, child):
+        LOGGER.info("Push")
         GLib.idle_add(self._do_push, child)
 
     def set_print_number(self, current_nbr=None, failure=None):
