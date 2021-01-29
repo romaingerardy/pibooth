@@ -54,4 +54,4 @@ class ShareScene(Scene):
     def _on_click_quit(self):
         LOGGER.info("_on_click_quit")
         # Go to finish screen
-        #self.app.goToFinishStep()
+        self.app.goToFinishStep()
