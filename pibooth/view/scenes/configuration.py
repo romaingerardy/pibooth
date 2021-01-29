@@ -60,13 +60,21 @@ class ConfigurationScene(Scene):
         self.add_widget(
             update_button,
             Placement(0.05, 0.5, 1),
-            Placement(0.05, 0.5, 1)
+            Placement(0.05, 0.5, 1),
+            self._update()
         )
         self.add_widget(
             sync_button,
             Placement(0.05, 0.6, 1),
-            Placement(0.05, 0.6, 1)
+            Placement(0.05, 0.6, 1),
+            self._sync
         )
 
     def _back(self):
         self.window.hide_config()
+
+    def _sync(self):
+        LOGGER.info("Sync")
+
+    def _update(self):
+        LOGGER.info("Find updates")
