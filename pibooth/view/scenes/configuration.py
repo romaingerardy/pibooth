@@ -41,8 +41,8 @@ class ConfigurationScene(Scene):
 
         self.add_widget(
             labelWifi,
-            Placement(0.1, 0.3, 1),
-            Placement(0.1, 0.3, 1)
+            Placement(0.05, 0.3, 1),
+            Placement(0.05, 0.3, 1)
         )
 
         self.add_widget(
