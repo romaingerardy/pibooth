@@ -309,10 +309,12 @@ class PiApplication(object):
             # pygame.quit()
 
     def _find_ssid(self):
-        ssid = subprocess.check_output("iwgetid -r", shell = True)
-        if ssid is None:
+        #output = subprocess.check_output("iwgetid -r", shell = True)
+        output = subprocess.check_output(['sudo', 'iwgetid'])
+        if output is None:
             return "Déconnecté"
         else:
+            ssid = output.split('"')[1
             #ssid = ssid.replace("b'", "")
             #ssid = ssid.replace("'", "")
             #ssid = ssid.replace("\\", "")
