@@ -310,11 +310,13 @@ class PiApplication(object):
 
     def _find_ssid(self):
         #output = subprocess.check_output("iwgetid -r", shell = True)
-        output = subprocess.check_output(['sudo', 'iwgetid'])
+        output = subprocess.check_output(['sudo', 'iwgetid', '-r'])
+        #output = subprocess.check_output(['sudo', 'iwgetid'])
         if output is None:
             return "Déconnecté"
         else:
-            ssid = output.split('"')[1]
+            ssid = output
+            #ssid = output.split('"')[1]
             #ssid = ssid.replace("b'", "")
             #ssid = ssid.replace("'", "")
             #ssid = ssid.replace("\\", "")
