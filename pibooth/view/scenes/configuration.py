@@ -52,9 +52,7 @@ class ConfigurationScene(Scene):
             Placement(0.2, 0.3, 1)
         )
 
-        self._putUpdateButtons()
-
-    def _putUpdateButtons(self):
+        # Buttons
         update_button = PixButton('Chercher des mises à jour')
         sync_button = PixButton('Synchroniser')
         self.add_widget(
@@ -69,6 +67,7 @@ class ConfigurationScene(Scene):
             Placement(0.05, 0.6, 1),
             self._sync
         )
+
 
     def _back(self):
         self.window.hide_config()
