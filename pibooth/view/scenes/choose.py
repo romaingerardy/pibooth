@@ -33,14 +33,42 @@ class ChooseScene(Scene):
                         Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
                         Placement(x, 0.65, 1),
                         Placement(x, 0.65, 1),
-                        self._chooseTemplate
+                        self._chooseTemplate_1
                     )
-                else:
+                elif choice == 2:
+                    self.add_widget(
+                        Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
+                        Placement(x, 0.65, 1),
+                        Placement(x, 0.65, 1),
+                        self._chooseTemplate_2
+                    )
+                elif choice == 3:
+                    self.add_widget(
+                        Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
+                        Placement(x, 0.65, 1),
+                        Placement(x, 0.65, 1),
+                        self._chooseTemplate_3
+                    )
+                elif choice == 4:
                     self.add_widget(
                         Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
                         Placement(x, 0.65, 1),
                         Placement(x, 0.65, 1),
                         self._chooseTemplate_4
+                    )
+                elif choice == 8:
+                    self.add_widget(
+                        Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
+                        Placement(x, 0.65, 1),
+                        Placement(x, 0.65, 1),
+                        self._chooseTemplate_gif
+                    )
+                else:
+                    self.add_widget(
+                        Gtk.Image.new_from_file(choose_media_path('choice_po_1.png')),
+                        Placement(x, 0.65, 1),
+                        Placement(x, 0.65, 1),
+                        self._chooseTemplate
                     )
                 x = x + 0.45
         elif choices and len(choices) == 1:
@@ -55,6 +83,22 @@ class ChooseScene(Scene):
         self.app.capture_nbr = 1
         self.app.goToChosenStep(1)
 
+    def _chooseTemplate_1(self):
+        self.app.capture_nbr = 1
+        self.app.goToChosenStep(1)
+
+    def _chooseTemplate_2(self):
+        self.app.capture_nbr = 2
+        self.app.goToChosenStep(2)
+
+    def _chooseTemplate_3(self):
+        self.app.capture_nbr = 3
+        self.app.goToChosenStep(3)
+
     def _chooseTemplate_4(self):
         self.app.capture_nbr = 4
         self.app.goToChosenStep(4)
+
+    def _chooseTemplate_gif(self):
+        self.app.capture_nbr = 8
+        self.app.goToChosenStep(8)
