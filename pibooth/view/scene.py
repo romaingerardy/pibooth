@@ -10,6 +10,7 @@ import time
 from pgi.repository import Gtk, Gdk, GdkPixbuf, GLib
 #from kano.gtk3.cursor import attach_cursor_events
 from pibooth.common.buttons import TransparentButton
+from pibooth.utils import LOGGER
 from pibooth.view.utils import scale_image, scale_pixbuf, add_class, scale_gif
 
 #from kano_avatar.paths import AVATAR_DEFAULT_LOC, AVATAR_DEFAULT_NAME
@@ -279,10 +280,18 @@ class Scene(object):
         def __reactivate_button():
             widget.set_sensitive(True)
             return False
-        GLib.timeout_add_seconds(1, __reactivate_button)
+        #GLib.timeout_add_seconds(1, __reactivate_button)
+
+        LOGGER.info("_clicked_cb_wrapper")
+        Gdk.threads_enter()
 
         clicked_cb(*args)
-        return True
+
+        Gdk.threads_leave()
+        Gdk.thread_exit()
+
+        #return True
+        return False
 
     def _handle_key_event(self, event, cb_seq):
         if hasattr(event, 'keyval'):
