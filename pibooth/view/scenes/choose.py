@@ -58,7 +58,7 @@ class ChooseScene(Scene):
                     )
                 elif choice == 8:
                     self.add_widget(
-                        Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
+                        Gtk.Image.new_from_file(choose_media_path('choice_' + str(choice) + '.png')),
                         Placement(x, 0.65, 1),
                         Placement(x, 0.65, 1),
                         self._chooseTemplate_gif
