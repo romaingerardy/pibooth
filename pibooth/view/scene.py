@@ -283,15 +283,17 @@ class Scene(object):
         #GLib.timeout_add_seconds(1, __reactivate_button)
 
         LOGGER.info("_clicked_cb_wrapper")
+
+        # Added thread management : very important => crashes occurred without it
         Gdk.threads_enter()
 
         clicked_cb(*args)
 
+        # Leave the thread
         Gdk.threads_leave()
         Gdk.thread_exit()
 
         return True
-        #return False
 
     def _handle_key_event(self, event, cb_seq):
         if hasattr(event, 'keyval'):
