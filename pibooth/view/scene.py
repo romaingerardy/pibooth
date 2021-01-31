@@ -274,6 +274,9 @@ class Scene(object):
         return self._scheduled
 
     def _clicked_cb_wrapper(self, widget, clicked_cb, *args):
+        LOGGER.info("_clicked_cb_wrapper")
+
+        Gdk.threads_enter()
         widget.set_sensitive(False)
 
         # A callback to reactivate the button
@@ -282,8 +285,6 @@ class Scene(object):
             return False
         GLib.timeout_add_seconds(1, __reactivate_button)
 
-        LOGGER.info("_clicked_cb_wrapper")
-        Gdk.threads_enter()
 
         clicked_cb(*args)
 
