@@ -276,17 +276,19 @@ class Scene(object):
     def _clicked_cb_wrapper(self, widget, clicked_cb, *args):
         LOGGER.info("_clicked_cb_wrapper")
 
-        Gdk.threads_enter()
         widget.set_sensitive(False)
 
         # A callback to reactivate the button
         def __reactivate_button():
             widget.set_sensitive(True)
             return False
-        GLib.timeout_add_seconds(1, __reactivate_button)
+        #GLib.timeout_add_seconds(1, __reactivate_button)
 
+        Gdk.threads_enter()
 
         clicked_cb(*args)
+
+        widget.set_sensitive(True)
 
         Gdk.threads_leave()
         Gdk.thread_exit()
