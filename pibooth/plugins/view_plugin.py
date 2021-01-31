@@ -140,12 +140,12 @@ class ViewPlugin(object):
     @pibooth.hookimpl
     def state_capture_validate(self, app):
         LOGGER.info("state_capture_validate")
-        if self.count >= app.capture_nbr:
+        if self.count >= app.capture_nbr or app.capture_nbr == 8:
+            # Process captures if session finished (all photos captured or gif)
             app.goToProcessingStep()
-            # return 'processing'
         else:
+            # Continue capturing if session not finished
             app.goToPreviewStep()
-        # return 'preview'
 
     @pibooth.hookimpl
     def state_processing_enter(self, win):

@@ -207,6 +207,14 @@ class PiApplication(object):
             raise EnvironmentError("The 'capture_date' attribute is not set yet")
         return "{}_pibooth.jpg".format(self.capture_date)
 
+    @property
+    def gif_filename(self):
+        """Return the final picture file name.
+        """
+        if not self.capture_date:
+            raise EnvironmentError("The 'capture_date' attribute is not set yet")
+        return "{}_pibooth.gif".format(self.capture_date)
+
     def find_quit_event(self, events):
         """Return the first found event if found in the list.
         """

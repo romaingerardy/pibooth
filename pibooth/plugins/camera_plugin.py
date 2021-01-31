@@ -68,6 +68,11 @@ class CameraPlugin(object):
 
     @pibooth.hookimpl
     def state_capture_do(self, cfg, app, win):
+
+        if app.capture_nbr == 8:
+            # Not available for GIF (see gif_plugin)
+            return
+
         effects = cfg.gettyped('PICTURE', 'captures_effects')
         if not isinstance(effects, (list, tuple)):
             # Same effect for all captures

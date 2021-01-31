@@ -162,6 +162,20 @@ class RpiCamera(BaseCamera):
 
         self._hide_overlay()  # If stop_preview() has not been called
 
+    def capture_gif(self, size=(500, 500), num_frame=8, gif_delay=15, boomerang=True):
+
+        LOGGER.info("Capturing GIF...")
+
+        for i in range(num_frame):
+            frame = Image.new("RGB", size, (25, 25, 255 * (num_frame - i) // num_frame))
+            # Saving/opening is needed for better compression and quality
+            fobj = BytesIO()
+            frame.save(fobj, 'GIF')
+            frame = Image.open(fobj)
+            self._captures.append(frame)
+
+        self._hide_overlay()
+
     def quit(self):
         """Close the camera driver, it's definitive.
         """

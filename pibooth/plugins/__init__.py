@@ -8,6 +8,7 @@ from pibooth.plugins import hookspecs
 from pibooth.plugins.camera_plugin import CameraPlugin
 from pibooth.plugins.lights_plugin import LightsPlugin
 from pibooth.plugins.picture_plugin import PicturePlugin
+from pibooth.plugins.gif_plugin import GifPlugin
 from pibooth.plugins.printer_plugin import PrinterPlugin
 from pibooth.plugins.view_plugin import ViewPlugin
 
@@ -42,6 +43,7 @@ def load_plugins(plugin_manager, *paths):
                 ViewPlugin(plugin_manager),
                 PrinterPlugin(plugin_manager),
                 PicturePlugin(plugin_manager),
+                GifPlugin(plugin_manager),
                 CameraPlugin(plugin_manager)]  # First called
 
     for plugin in plugins:
