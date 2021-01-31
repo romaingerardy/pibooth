@@ -160,6 +160,7 @@ class RpiCamera(BaseCamera):
             raise ValueError("Invalid capture effect '{}' (choose among {})".format(effect, self.IMAGE_EFFECTS))
 
         try:
+            stream = BytesIO()
             self._cam.capture(stream, format='jpeg')
             self._cam.image_effect = effect
             self._cam.capture(stream, format='jpeg')
@@ -174,13 +175,14 @@ class RpiCamera(BaseCamera):
         LOGGER.info("Capturing GIF...")
 
         for i in range(num_frame):
-            fobj = BytesIO()
-            self._cam.capture(fobj, format='jpeg')
+            stream = BytesIO()
+            self._cam.capture(stream, format='jpeg')
+            self._captures.append(stream)
             #frame = Image.new("RGB", size, (25, 25, 255 * (num_frame - i) // num_frame))
             # Saving/opening is needed for better compression and quality
-            frame.save(fobj, 'GIF')
-            frame = Image.open(fobj)
-            self._captures.append(frame)
+            #frame.save(fobj, 'GIF')
+            #frame = Image.open(fobj)
+            #self._captures.append(frame)
 
         self._hide_overlay()
 
