@@ -33,7 +33,7 @@ class ChosenScene(Scene):
         template_file_name = 'choice_po_' + str(choice) + '.png'
         if choice == 8:
             template_file_name = 'choice_8.png'
-            
+
         self.add_widget(
             Gtk.Image.new_from_file(choose_media_path(template_file_name)),
             Placement(0.5, 0.65, 1),

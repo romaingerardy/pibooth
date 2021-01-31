@@ -89,8 +89,9 @@ class RpiCamera(BaseCamera):
         :type capture_data: :py:class:`io.BytesIO`
         """
         # "Rewind" the stream to the beginning so we can read its content
-        capture_data.seek(0)
-        return Image.open(capture_data)
+        #capture_data.seek(0)
+        return capture_data
+        #return Image.open(capture_data)
 
     def preview(self, window, flip=True):
         """Display a preview on the given Rect (flip if necessary).
