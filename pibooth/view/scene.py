@@ -291,7 +291,7 @@ class Scene(object):
 
         # Leave the thread
         Gdk.threads_leave()
-        #Gdk.thread_exit()
+        Gdk.thread_exit()
 
         return True
 
