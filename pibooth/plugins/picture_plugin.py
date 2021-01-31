@@ -96,6 +96,11 @@ class PicturePlugin(object):
 
     @pibooth.hookimpl
     def state_processing_do(self, cfg, app):
+
+        if app.capture_nbr == 8:
+            # Only available for GIF
+            return
+
         LOGGER.info("state_processing_do")
         idx = app.capture_choices.index(app.capture_nbr)
 
