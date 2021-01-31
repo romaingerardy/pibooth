@@ -90,7 +90,13 @@ class RpiCamera(BaseCamera):
         """
         # "Rewind" the stream to the beginning so we can read its content
         capture_data.seek(0)
-        return capture_data
+
+        try:
+            return_image = Image.open(capture_data)
+        except Exception as ex:
+            return_image = capture_data
+
+        return return_image
         #return Image.open(capture_data)
 
     def preview(self, window, flip=True):
@@ -154,7 +160,7 @@ class RpiCamera(BaseCamera):
             raise ValueError("Invalid capture effect '{}' (choose among {})".format(effect, self.IMAGE_EFFECTS))
 
         try:
-            stream = BytesIO()
+            self._cam.capture(stream, format='jpeg')
             self._cam.image_effect = effect
             self._cam.capture(stream, format='jpeg')
             self._captures.append(stream)
@@ -168,9 +174,10 @@ class RpiCamera(BaseCamera):
         LOGGER.info("Capturing GIF...")
 
         for i in range(num_frame):
-            frame = Image.new("RGB", size, (25, 25, 255 * (num_frame - i) // num_frame))
-            # Saving/opening is needed for better compression and quality
             fobj = BytesIO()
+            self._cam.capture(fobj, format='jpeg')
+            #frame = Image.new("RGB", size, (25, 25, 255 * (num_frame - i) // num_frame))
+            # Saving/opening is needed for better compression and quality
             frame.save(fobj, 'GIF')
             frame = Image.open(fobj)
             self._captures.append(frame)
