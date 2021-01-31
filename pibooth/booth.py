@@ -114,7 +114,7 @@ class PiApplication(object):
         # Change them may break plugins compatibility
         self.capture_nbr = None
         self.capture_date = None
-        self.capture_choices = (4, 1)
+        self.capture_choices = (1, 4)
         self.previous_picture = None
         self.previous_animated = None
         self.previous_picture_file = None
@@ -159,7 +159,7 @@ class PiApplication(object):
         # Set the captures choices
         choices = self._config.gettuple('PICTURE', 'captures', int)
         for chx in choices:
-            if chx not in [1, 2, 3, 4]:
+            if chx not in [1, 2, 3, 4, 8]:
                 LOGGER.warning("Invalid captures number '%s' in config, fallback to '%s'",
                                chx, self.capture_choices)
                 choices = self.capture_choices
