@@ -30,14 +30,18 @@ class ChosenScene(Scene):
                             chosen_media_path('BG-Chosen.png'))
 
         # Summary of choice
+        template_file_name = 'choice_po_' + str(choice) + '.png'
+        if choice == 8:
+            template_file_name = 'choice_8.png'
+            
         self.add_widget(
-            Gtk.Image.new_from_file(choose_media_path('choice_po_' + str(choice) + '.png')),
+            Gtk.Image.new_from_file(choose_media_path(template_file_name)),
             Placement(0.5, 0.65, 1),
             Placement(0.5, 0.65, 1)
         )
 
     def startTimer(self):
-        #self.schedule(self.TIMEOUT, callback=self._callable)
+        # self.schedule(self.TIMEOUT, callback=self._callable)
         t = threading.Timer(self.TIMEOUT, self._callable)
         t.start()
         LOGGER.info("timer started")
