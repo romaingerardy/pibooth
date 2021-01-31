@@ -290,8 +290,8 @@ class Scene(object):
         Gdk.threads_leave()
         Gdk.thread_exit()
 
-        #return True
-        return False
+        return True
+        #return False
 
     def _handle_key_event(self, event, cb_seq):
         if hasattr(event, 'keyval'):
